@@ -1,9 +1,0 @@
-E:\CIS 3342\Lab 2\CIS3342\CIS3342\Utilities\Utilities\bin\Release\Utilities.dll
-E:\CIS 3342\Lab 2\CIS3342\CIS3342\Utilities\Utilities\bin\Release\Utilities.pdb
-E:\CIS 3342\Lab 2\CIS3342\CIS3342\Utilities\Utilities\obj\Release\Utilities.dll
-E:\CIS 3342\Lab 2\CIS3342\CIS3342\Utilities\Utilities\obj\Release\Utilities.pdb
-E:\CIS 3342\Lab 3\CIS3342\Utilities\Utilities\bin\Release\Utilities.dll
-E:\CIS 3342\Lab 3\CIS3342\Utilities\Utilities\bin\Release\Utilities.pdb
-E:\CIS 3342\Lab 3\CIS3342\Utilities\Utilities\obj\Release\Utilities.csprojResolveAssemblyReference.cache
-E:\CIS 3342\Lab 3\CIS3342\Utilities\Utilities\obj\Release\Utilities.dll
-E:\CIS 3342\Lab 3\CIS3342\Utilities\Utilities\obj\Release\Utilities.pdb
