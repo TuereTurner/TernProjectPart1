@@ -17,6 +17,7 @@ namespace TermProject
             {
                 HttpCookie cookie=   Request.Cookies["LoginIDCookie"];
                 txtUserName.Text = cookie.Values["LoginIDCookie"].ToString();
+                txtUserName.Text = "Test";
 
             }
         }
