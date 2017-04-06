@@ -9,9 +9,10 @@ namespace TermProject
 {
     public partial class Registration : System.Web.UI.Page
     {
+        WebSvc.RestaurantSvc pxy = new WebSvc.RestaurantSvc();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

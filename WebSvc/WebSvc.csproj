@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{01AF015D-9616-4BF6-AD9D-A63DFA678FAD}</ProjectGuid>
+    <ProjectGuid>{BC204064-3DD3-4E2B-89EE-CC62CEB3B87E}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TermProject</RootNamespace>
-    <AssemblyName>TermProject</AssemblyName>
+    <RootNamespace>WebSvc</RootNamespace>
+    <AssemblyName>WebSvc</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -66,17 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Login.aspx" />
     <Content Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\RestaurantWebSvc\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\RestaurantWebSvc\RestaurantSvc.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -85,65 +75,25 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Registration.aspx" />
-    <None Include="Web References\RestaurantWebSvc\RestaurantSvc.disco" />
+    <Content Include="RestaurantSvc.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Registration.aspx.cs">
-      <DependentUpon>Registration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Registration.aspx.designer.cs">
-      <DependentUpon>Registration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\RestaurantWebSvc\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
+    <Compile Include="RestaurantSvc.asmx.cs">
+      <DependentUpon>RestaurantSvc.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebSvc\WebSvc.csproj">
-      <Project>{bc204064-3dd3-4e2b-89ee-cc62ceb3b87e}</Project>
-      <Name>WebSvc</Name>
-    </ProjectReference>
-    <ProjectReference Include="Utilities\Utilities.csproj">
+    <ProjectReference Include="..\TermProject\Utilities\Utilities.csproj">
       <Project>{863001fc-7e33-4f6e-8be8-ae6513e7c5d4}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:12400/RestaurantSvc.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\RestaurantWebSvc\</RelPath>
-      <UpdateFromURL>http://localhost:12400/RestaurantSvc.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>TermProject_RestaurantWebSvc_RestaurantSvc</CachedSettingsPropName>
-    </WebReferenceUrl>
+    <ProjectReference Include="..\Users\Users.csproj">
+      <Project>{65e1cd43-acb5-4604-af2f-1eb7210171c1}</Project>
+      <Name>Users</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -158,9 +108,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>9293</DevelopmentServerPort>
+          <DevelopmentServerPort>12400</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:9293/</IISUrl>
+          <IISUrl>http://localhost:12400/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
