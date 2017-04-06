@@ -42,3 +42,6 @@ C:\Users\Samuel Gagan\Desktop\Github\TermProject\bin\Microsoft.CodeDom.Providers
 C:\Users\Samuel Gagan\Desktop\Github\TermProject\obj\Debug\TermProject.csprojResolveAssemblyReference.cache
 C:\Users\Samuel Gagan\Desktop\Github\TermProject\obj\Debug\TermProject.dll
 C:\Users\Samuel Gagan\Desktop\Github\TermProject\obj\Debug\TermProject.pdb
+C:\Users\Test Account\Source\Repos\TernProjectPart13\TermProject\obj\Debug\TermProject.csprojResolveAssemblyReference.cache
+C:\Users\Test Account\Source\Repos\TernProjectPart13\TermProject\obj\Debug\TermProject.dll
+C:\Users\Test Account\Source\Repos\TernProjectPart13\TermProject\obj\Debug\TermProject.pdb
