@@ -19,6 +19,7 @@ namespace TermProject
                 txtUserName.Text = cookie.Values["LoginIDCookie"].ToString();
                 txtUserName.Text = "Test";
                 ///tuere 
+                ///Sam
             }
         }
 
