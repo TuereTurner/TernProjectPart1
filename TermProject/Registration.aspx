@@ -98,7 +98,7 @@
 
                 </div>
                 <div class="col-sm-4 ">
-                    <label class="col-2 col-form-label">Last Name</label>
+                    <label class="col-2 col-form-label">Type Of User</label>
                     <div class="col-10">
                         <div class="dropdown">
                             <asp:DropDownList runat="server" ID="drpTypeOfUser" CssClass="dropbtn">
@@ -123,7 +123,7 @@
             </div>
             <br />
         </div>
-
+        <br />
         <div class="row">
             <div class="col-sm-8 col-xs-offset-2">
                 <label class="col-2 col-form-label">Address</label>
