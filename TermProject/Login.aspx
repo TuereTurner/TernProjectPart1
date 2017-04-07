@@ -58,8 +58,8 @@
                                 <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                             <div>
-                                <label for="txtAppID">Application ID:</label>
-                                <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control"></asp:TextBox>
+                                <label for="txtAppID">Password:</label>
+                                <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
 
                             </div>
                             <br />

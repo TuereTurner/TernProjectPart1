@@ -66,7 +66,7 @@
                 <h1>&quot;Cloud&quot; Registration</h1>
                 <p>Welcome!!! </p>
 
-                <p>Please fill out all the information below to Registar .</p>
+                <p>Please fill out all the information below to Register .</p>
 
             </div>
         </div>
@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-3">
                     <div class="alert alert-success" id="ATLSuccessAlert" runat="server" visible="false">
-                        <strong>Account Successfully submitted!</strong>
+                        <strong>Account Successfully Created!</strong>
 
                     </div>
                     <div class="alert alert-warning" id="ATLAccountFailure" runat="server" visible="false">
@@ -88,7 +88,7 @@
             <div class="row">
 
                 <div class="col-sm-4 col-xs-offset-2">
-                    <label class="col-2 col-form-label">Name</label>
+                    <label class="col-2 col-form-label">First Name</label>
                     <div class="col-10">
                         <asp:TextBox ID="txtName" runat="server" CssClass="form-control" type="text" required="true">
                         
@@ -136,7 +136,7 @@
             <br />
             <div class="row">
                 <div class="col-sm-3 col-xs-offset-2">
-                    <label class="col-2 col-form-label">city</label>
+                    <label class="col-2 col-form-label">City</label>
                     <div class="col-10">
                         <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" type="text" required="true"></asp:TextBox>
 
@@ -173,7 +173,7 @@
         <br />
             <div class="row">
                 <div class="col-sm-4 col-xs-offset-2">
-                    <label class="col-2 col-form-label">User Name</label>
+                    <label class="col-2 col-form-label">Username</label>
                     <div class="col-10">
                         <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" type="text" required="true"></asp:TextBox>
 
@@ -181,7 +181,7 @@
                 </div>
                 
                 <div class="col-sm-4 ">
-                    <label class="col-2 col-form-label">Passwaord</label>
+                    <label class="col-2 col-form-label">Password</label>
                     <div class="col-10">
                         <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" type="text" required="true"></asp:TextBox>
 
