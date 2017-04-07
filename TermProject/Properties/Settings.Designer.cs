@@ -26,10 +26,10 @@ namespace TermProject.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:12400/RestaurantSvc.asmx")]
-        public string TermProject_RestaurantWebSvc_RestaurantSvc {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:12400/CloudWebS.asmx")]
+        public string TermProject_WebS_CloudWebS {
             get {
-                return ((string)(this["TermProject_RestaurantWebSvc_RestaurantSvc"]));
+                return ((string)(this["TermProject_WebS_CloudWebS"]));
             }
         }
     }

@@ -66,17 +66,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppMainPage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\RestaurantWebSvc\Reference.map">
+    <None Include="Web References\WebS\CloudWebS.wsdl" />
+    <Content Include="Web References\WebS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\RestaurantWebSvc\RestaurantSvc.wsdl" />
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -86,10 +87,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Registration.aspx" />
-    <None Include="Web References\RestaurantWebSvc\RestaurantSvc.disco" />
+    <None Include="Web References\WebS\CloudWebS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppMainPage.aspx.cs">
+      <DependentUpon>AppMainPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppMainPage.aspx.designer.cs">
+      <DependentUpon>AppMainPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -110,7 +118,7 @@
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Web References\RestaurantWebSvc\Reference.cs">
+    <Compile Include="Web References\WebS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -133,16 +141,16 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:12400/RestaurantSvc.asmx">
+    <WebReferenceUrl Include="http://localhost:12400/CloudWebS.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\RestaurantWebSvc\</RelPath>
-      <UpdateFromURL>http://localhost:12400/RestaurantSvc.asmx</UpdateFromURL>
+      <RelPath>Web References\WebS\</RelPath>
+      <UpdateFromURL>http://localhost:12400/CloudWebS.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>TermProject_RestaurantWebSvc_RestaurantSvc</CachedSettingsPropName>
+      <CachedSettingsPropName>TermProject_WebS_CloudWebS</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>

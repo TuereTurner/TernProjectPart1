@@ -24,8 +24,20 @@
 <body>
     <form id="form1" runat="server">
 
-        <div class="container-fluid">
-        </div>
+       <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-3">
+                    <div class="alert alert-success" id="ATLSuccessAlert" runat="server" visible="false">
+                        <strong> Successfull Login!</strong>
+
+                    </div>
+                    <div class="alert alert-warning" id="ATLAccountFailure" runat="server" visible="false">
+                        <strong>Wrong User Name or Password!</strong>
+
+                    </div>
+                </div>
+            </div>
+            </div>
 
         <div class="container-fluid">
             <div class="row">
