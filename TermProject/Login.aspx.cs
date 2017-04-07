@@ -25,30 +25,38 @@ namespace TermProject
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            //cookie is stored on client machine
-            if (chkRememberMe.Checked == true)
+            if (txtUserName.Text != " " && txtPassword.Text != " ")
             {
-                HttpCookie UserIdCookie = new HttpCookie("LoginIDCookie");
-                UserIdCookie.Values["loginID"] = txtUserName.Text;
-                UserIdCookie.Expires = new DateTime(2025, 1, 1);
-                Response.Cookies.Add(UserIdCookie);
+                //cookie is stored on client machine
+                if (chkRememberMe.Checked == true)
+                {
+                    HttpCookie UserIdCookie = new HttpCookie("LoginIDCookie");
+                    UserIdCookie.Values["loginID"] = txtUserName.Text;
+                    UserIdCookie.Expires = new DateTime(2025, 1, 1);
+                    Response.Cookies.Add(UserIdCookie);
 
-                
 
-            }
-            //authiticate login info
-            if (VerifyAccount( txtUserName.Text,  txtPassword.Text))
-            {
-                //show success allert
-                ATLSuccessAlert.Visible = true;
-                //assign session key to reteive as user moves through the application
-                Session["login"] = "Loged in";
-                //redirect to main page
-                Response.Redirect("AppMainPage.aspx");
+
+                }
+                //authiticate login info
+                if (VerifyAccount(txtUserName.Text, txtPassword.Text))
+                {
+                    //show success allert
+                    ATLSuccessAlert.Visible = true;
+                    //assign session key to reteive as user moves through the application
+                    Session["login"] = "Loged in";
+                    //redirect to main page
+                    Response.Redirect("AppMainPage.aspx");
+                }
+                else
+                {
+                    ATLAccountFailure.Visible = true;
+                }
             }
             else
             {
-                ATLAccountFailure.Visible = true;
+                txtUserName.Text = "Required";
+                txtPassword.Text = "Required";
             }
 
            
@@ -61,6 +69,12 @@ namespace TermProject
             }
             else
                 return false;
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            
+            Response.Redirect("Registration.aspx");
         }
     }
 }
