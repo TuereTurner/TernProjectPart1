@@ -152,25 +152,24 @@ namespace WebSvc
 
         }
 
-      //  public static String UploadFile(String API_Key, byte[] SerializedFile)
-     //   {
-      //      if (VerifyAPIKey(API_Key))
-        //    {
+        public static String UploadFile(String API_Key, byte[] SerializedFile, FileUpload file)
+        {
+            if (VerifyAPIKey(API_Key))
+            {
 
-        //        if(SerializedFile != null)
-           //     {
+                if (SerializedFile != null)
+                {                
 
-
-            //    }
-
+                }
 
 
-          //  }
-          //  else
-         //   {
-        //        return "API Key not found.";
-        //    }
-            
-       // }
+
+            }
+            else
+            {
+                return "API Key not found.";
+            }
+
+        }
     }
 }
