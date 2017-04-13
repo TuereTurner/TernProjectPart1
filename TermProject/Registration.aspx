@@ -63,6 +63,7 @@
     <form id="form1" runat="server">
         <div class="container">
             <div class="jumbotron">
+                <h1>&nbsp;</h1>
                 <h1>&quot;Cloud&quot; Registration</h1>
                 <p>Welcome!!! </p>
 

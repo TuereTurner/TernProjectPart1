@@ -74,6 +74,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Web References\WebS\CloudWebS.wsdl" />
+    <Content Include="RequestAndTestWebS.aspx" />
     <Content Include="Web References\WebS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -117,6 +118,13 @@
     </Compile>
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RequestAndTestWebS.aspx.cs">
+      <DependentUpon>RequestAndTestWebS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequestAndTestWebS.aspx.designer.cs">
+      <DependentUpon>RequestAndTestWebS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\WebS\Reference.cs">
       <AutoGen>True</AutoGen>
