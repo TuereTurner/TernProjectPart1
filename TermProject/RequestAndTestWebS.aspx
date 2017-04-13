@@ -13,14 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Log in Page</title>
-    <style type="text/css">
-        .auto-style1 {
-            position: absolute;
-            left: 15px;
-            top: 16px;
-        }
-    </style>
-</head>
+    </head>
 <body>
     <form id="form1" runat="server">
 
@@ -44,7 +37,7 @@
                 <div class="col-xs-5 col-md-offset-4">
                     <div class="page-header">
                         <h1 style="align-content: center; color: lightslategray">
-                            <b>Log In</b></h1>
+                            Request Access for WebService:FileSerialization </h1>
                     </div>
                 </div>
             </div>
@@ -54,20 +47,18 @@
                         <div class="col-xs-5 col-md-offset-3">
                             <div class="form-group">
 
-                                <label for="txtusername">AccesNet User Name</label>
+                                <label for="txtusername">Chooses Username</label>
                                 <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                             <div>
-                                <label for="txtAppID">Password:</label>
-                                <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
+                                <label for="txtAppID">Assigned API-Key</label>
+                                <asp:TextBox ID="TxtAPIKey" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
 
                             </div>
                             <br />
                             <br />
-                            <asp:Button runat="server" ID="btnLogin" CssClass="btn btn-primary btn-sm" Text="Log in" OnClick="btnLogin_Click" /> <br/> <br/>
-                            <asp:Button runat="server" ID="btnRegister" CssClass="btn btn-primary btn-sm" Text="Register" OnClick="btnRegister_Click" />
-                            <asp:CheckBox ID="chkRememberMe" runat="server" style="z-index: 1; left: 355px; top: 170px; position: absolute"></asp:CheckBox>
-                            <asp:Label ID="lblRememberMe" runat="server" Text="Remember Me" style="z-index: 1; left: 250px; top: 170px; position: absolute"></asp:Label></div>
+                            <asp:Button runat="server" ID="btnGetAPIKey" CssClass="btn btn-primary btn-sm" Text="Get API Key" OnClick="btnGetAPIKey_Click" /> <br/> <br/>
+                            </div>
                         
                     </div>
                 </div>

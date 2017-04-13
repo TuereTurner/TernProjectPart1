@@ -73,8 +73,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\WebS\CloudWebS.wsdl" />
     <Content Include="RequestAndTestWebS.aspx" />
+    <None Include="Web References\WebS\CloudWebS.wsdl" />
     <Content Include="Web References\WebS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

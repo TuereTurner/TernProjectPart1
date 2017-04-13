@@ -112,6 +112,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\File\File.csproj">
+      <Project>{a60e1668-754e-433e-9de3-22627c9a06e4}</Project>
+      <Name>File</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TermProject\Utilities\Utilities.csproj">
       <Project>{863001fc-7e33-4f6e-8be8-ae6513e7c5d4}</Project>
       <Name>Utilities</Name>

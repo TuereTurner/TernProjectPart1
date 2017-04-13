@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using Utilities;
 using System.Data.SqlClient;
 using System.Data;
+using File;
 
 namespace WebSvc
 {
@@ -49,6 +50,7 @@ namespace WebSvc
             else
                 return false;
         }
+
         [WebMethod]
         public Boolean ConfirmUserLogin(String Username, String password)
         {
@@ -84,7 +86,8 @@ namespace WebSvc
 
         }
 
-         private String  AssignWebServiceAPI(String userName)
+        [WebMethod]
+         public  String  AssignWebServiceAPI(String userName)
         {
           
           
@@ -119,6 +122,7 @@ namespace WebSvc
             }
         }
 
+        [WebMethod]
         public static Boolean VerifyAPIKey(String APIKey)
         {
 
@@ -152,17 +156,20 @@ namespace WebSvc
 
         }
 
-        public static String UploadFile(String API_Key, byte[] SerializedFile, FileUpload file)
+        [WebMethod]
+        public static String UploadFile(String API_Key , FileInfo File )
         {
             if (VerifyAPIKey(API_Key))
             {
 
-                if (SerializedFile != null)
-                {                
+                if (File != null)
+                {
+
+                    return "";
 
                 }
 
-
+                return "";
 
             }
             else

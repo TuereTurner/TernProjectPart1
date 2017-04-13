@@ -98,3 +98,5 @@ C:\Users\tuf07576\Source\Repos\TernProjectPart1\TermProject\bin\Users.pdb
 C:\Users\tuf07576\Source\Repos\TernProjectPart1\TermProject\obj\Debug\TermProject.csprojResolveAssemblyReference.cache
 C:\Users\tuf07576\Source\Repos\TernProjectPart1\TermProject\obj\Debug\TermProject.dll
 C:\Users\tuf07576\Source\Repos\TernProjectPart1\TermProject\obj\Debug\TermProject.pdb
+C:\Users\Test Account\Source\Repos\TernProjectPart13\TermProject\bin\File.dll
+C:\Users\Test Account\Source\Repos\TernProjectPart13\TermProject\bin\File.pdb
