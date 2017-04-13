@@ -11,8 +11,8 @@ namespace Utilities
     public class DBConnect
     {
         //1st is for SSHing in 2nd is for use at serc
-        String SqlConnectString = "server=127.0.0.1,5555;Database=sp17_3342_tuf07576;User id=tuf07576;Password=ooK7booz";
-        //String SqlConnectString = "server=cis-mssql1.temple.edu;Database=sp17_3342_tuf07576;User id=tuf07576;Password=ooK7booz";
+        //String SqlConnectString = "server=127.0.0.1,5555;Database=sp17_3342_tuf07576;User id=tuf07576;Password=ooK7booz";
+        String SqlConnectString = "server=cis-mssql1.temple.edu;Database=sp17_3342_tuf07576;User id=tuf07576;Password=ooK7booz";
         SqlConnection myConnectionSql;
         SqlCommand objCmd;
         SqlDataReader objDataReader;

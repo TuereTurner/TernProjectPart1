@@ -64,10 +64,10 @@
                             </div>
                             <br />
                             <br />
-                            <asp:Button runat="server" ID="btnLogin" CssClass="btn btn-primary btn-sm" Text="Log in" OnClick="btnLogin_Click" />
+                            <asp:Button runat="server" ID="btnLogin" CssClass="btn btn-primary btn-sm" Text="Log in" OnClick="btnLogin_Click" /> <br/> <br/>
+                            <asp:Button runat="server" ID="btnRegister" CssClass="btn btn-primary btn-sm" Text="Register" OnClick="btnRegister_Click" />
                             <asp:CheckBox ID="chkRememberMe" runat="server" style="z-index: 1; left: 355px; top: 170px; position: absolute"></asp:CheckBox>
                             <asp:Label ID="lblRememberMe" runat="server" Text="Remember Me" style="z-index: 1; left: 250px; top: 170px; position: absolute"></asp:Label></div>
-
                         
                     </div>
                 </div>
