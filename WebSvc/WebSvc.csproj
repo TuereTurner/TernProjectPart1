@@ -66,6 +66,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icon Images\MusicIcon.png" />
+    <Content Include="Icon Images\JPG.png" />
+    <Content Include="Icon Images\WordIcon.jpg" />
+    <Content Include="Icon Images\pdfIcon.png" />
+    <Content Include="Icon Images\PNGIcon.png" />
+    <Content Include="Icon Images\PowerPointIcon.png" />
     <Content Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -134,6 +140,7 @@
       <CachedSettingsPropName>WebSvc_WebS_CloudWebS</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
