@@ -22,24 +22,6 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ATLSuccessAlert control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ATLSuccessAlert;
-        
-        /// <summary>
-        /// ATLAccountFailure control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ATLAccountFailure;
-        
-        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -112,13 +94,13 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.TextBox txtPhoneNumber;
         
         /// <summary>
-        /// txtUserName control.
+        /// TextBox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserName;
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
         /// txtPassword control.

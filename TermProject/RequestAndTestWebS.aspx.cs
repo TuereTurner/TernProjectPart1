@@ -38,5 +38,50 @@ namespace TermProject
             }
 
         }
+
+        protected void gvFiles_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+
+        }
+
+        protected void gvFiles_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void gvFiles_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void gvFiles_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+        }
+
+        protected void GvCloudAccounts_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+
+        }
+
+        protected void GvCloudAccounts_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void GvCloudAccounts_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+        }
+
+        protected void GvCloudAccounts_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void btnUploadFile_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
