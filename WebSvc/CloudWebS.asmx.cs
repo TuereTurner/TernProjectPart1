@@ -22,7 +22,7 @@ namespace WebSvc
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+    [System.Web.Script.Services.ScriptService]
     public class CloudWebS : System.Web.Services.WebService
     {
         [WebMethod]
@@ -407,6 +407,66 @@ namespace WebSvc
             {
                 return "File Successfully updated.";
             }
+        }
+   
+        public GridView EditUserByAdmin(GridView gv, int i)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "EditUserByAdmin";
+
+            string username = ((TextBox)gv.Rows[i].Cells[0].Controls[0]).Text;
+            string password = ((TextBox)gv.Rows[i].Cells[1].Controls[0]).Text;
+            string typeOfUser = ((TextBox)gv.Rows[i].Cells[2].Controls[0]).Text;
+            string name = ((TextBox)gv.Rows[i].Cells[3].Controls[0]).Text;
+            string email = ((TextBox)gv.Rows[i].Cells[4].Controls[0]).Text;
+            string address = ((TextBox)gv.Rows[i].Cells[5].Controls[0]).Text;
+            string phoneNumber = ((TextBox)gv.Rows[i].Cells[6].Controls[0]).Text;
+            string totalCapacity = ((TextBox)gv.Rows[i].Cells[7].Controls[0]).Text;
+
+            objCommand.Parameters.AddWithValue("@username", username);
+            objCommand.Parameters.AddWithValue("@password", password);
+            objCommand.Parameters.AddWithValue("@typeOfUser", typeOfUser);
+            objCommand.Parameters.AddWithValue("@name", name);
+            objCommand.Parameters.AddWithValue("@email", email);
+            objCommand.Parameters.AddWithValue("@address", address);
+            objCommand.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+            objCommand.Parameters.AddWithValue("@totalCapacity", totalCapacity);
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+
+            gv.DataSource = GetAllUsers();
+
+            return gv;
+        }
+
+        [WebMethod]
+        public DataSet GetAllUsers()
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetAllUsers";
+
+            DataSet ds = objDB.GetDataSetUsingCmdObj(objCommand);
+            return ds;
+        }
+
+        [WebMethod]
+        public void DeleteUser(string username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "DeleteUSer";
+
+            objCommand.Parameters.AddWithValue("@username", username);
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
         }
     }
 }

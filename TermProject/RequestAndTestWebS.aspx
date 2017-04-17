@@ -244,31 +244,39 @@
         </div>
         <!--Cloud user edits their own account-->
             <div>
-              <h1>Edit Cloud User Accounts As Cloud User</h1>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="GvCloudAccounts_RowCancelingEdit" OnRowDeleting="GvCloudAccounts_RowDeleting" OnRowEditing="GvCloudAccounts_RowEditing" OnRowUpdating="GvCloudAccounts_RowUpdating">
+              <h1>Edit Cloud User Accounts As Admin</h1>
+        <asp:GridView ID="gvEditUserByAdmin" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="gvEditUserByAdmin_RowCancelingEdit" OnRowDeleting="gvEditUserByAdmin_RowDeleting" OnRowEditing="gvEditUserByAdmin_RowEditing" OnRowUpdating="gvEditUserByAdmin_RowUpdating1">
             <Columns>
-                <asp:BoundField DataField="UserID" HeaderText="UserName" />
-                <asp:BoundField DataField="UserID" HeaderText="UserName" />
-                <asp:BoundField DataField="UserID" HeaderText="UserName" />
-                <asp:BoundField DataField="UserID" HeaderText="UserName" />
-                <asp:BoundField DataField="UserID" HeaderText="UserName" />
-                <asp:BoundField DataField="UserID" HeaderText="UserName" />
-                <asp:BoundField DataField="UserID" HeaderText="UserName" />
+                <asp:BoundField DataField="username" HeaderText="Username" />
+                <asp:BoundField DataField="password" HeaderText="Password" />
+                <asp:BoundField DataField="typeOfUser" HeaderText="Type Of User" />
+                <asp:BoundField DataField="name" HeaderText="Name" />
+                <asp:BoundField DataField="email" HeaderText="Email" />
+                <asp:BoundField DataField="address" HeaderText="Address" />
+                <asp:BoundField DataField="phoneNumber" HeaderText="Phone Number" />
+                <asp:BoundField DataField="totalCapacity" HeaderText="Total Capacity" />
                
                 
                  <asp:CommandField ButtonType="Button" HeaderText="Edit Account" ShowEditButton="true" />
-                <asp:CommandField ButtonType="Button" HeaderText="Delete Account" ShowDeleteButton="true" />
 
             </Columns>
         </asp:GridView>
         </div>
-      
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <!--Delete User...Admin Control-->
+
+        <asp:DropDownList ID="ddlDeleteUser" runat="server"></asp:DropDownList> <br />
+        <asp:Button ID="btnDeleteUser" runat="server" Text="Delete" OnClick="btnDeleteUser_Click" />
 
         
          <!--add modify  delete accoumnt-->
         <div>
               <h1>Edit Cloud User Accounts As Administrator</h1>
-        <asp:GridView ID="GvCloudAccounts" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="GvCloudAccounts_RowCancelingEdit" OnRowDeleting="GvCloudAccounts_RowDeleting" OnRowEditing="GvCloudAccounts_RowEditing" OnRowUpdating="GvCloudAccounts_RowUpdating">
+        <%--<asp:GridView ID="GvCloudAccounts" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="GvCloudAccounts_RowCancelingEdit" OnRowDeleting="GvCloudAccounts_RowDeleting" OnRowEditing="GvCloudAccounts_RowEditing" OnRowUpdating="GvCloudAccounts_RowUpdating">
             <Columns>
                 <asp:BoundField DataField="UserID" HeaderText="UserName" />
                 <asp:BoundField DataField="UserID" HeaderText="UserName" />
@@ -283,7 +291,7 @@
                 <asp:CommandField ButtonType="Button" HeaderText="Delete Account" ShowDeleteButton="true" />
 
             </Columns>
-        </asp:GridView>
+        </asp:GridView>--%>
         </div>
       
 
