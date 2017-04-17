@@ -117,6 +117,12 @@ namespace TermProject
                             = true;
                         lblAddfile.Text = ResultFIleUpload;
                         }
+                        if(ResultFIleUpload== "File not uploaded Succesfully"|| ResultFIleUpload== "Not enough free storage to upload file"|| ResultFIleUpload== "API Key not found.")
+                    {
+                        lblAddfile.Visible
+                            = true;
+                        lblAddfile.Text = ResultFIleUpload;
+                    }
                         else
                         {
                         lblAddfile.Visible = true;

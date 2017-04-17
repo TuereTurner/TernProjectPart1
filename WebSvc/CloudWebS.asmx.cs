@@ -163,84 +163,140 @@ namespace WebSvc
             {
 
                 //Assign vaules to file object 
-                
+
                 //check avaiblae storage
 
                 if (OBJFile != null)
                 {
-
-                    BinaryFormatter Serializer = new BinaryFormatter();
-                    MemoryStream memStream = new MemoryStream();
-                    Byte[] bytefileArray;
-
-                    Serializer.Serialize(memStream, OBJFile);
-                    //Create byte array
-                    bytefileArray = memStream.ToArray();
-
-                    ////sql code to store the serialized fiel
-
-                    DBConnect objDB = new DBConnect();
-                    SqlCommand objCommand = new SqlCommand();
-
-                    //set parameters for stored prosdure
-                    objCommand.CommandType = CommandType.StoredProcedure;
-                    objCommand.CommandText = "StoreFile";
-                    objCommand.Parameters.AddWithValue("@username", username);
-                    objCommand.Parameters.AddWithValue("@file", bytefileArray);
-                    objCommand.Parameters.AddWithValue("@uploadDate", OBJFile.UploadDate);
-                    objCommand.Parameters.AddWithValue("@fileType", OBJFile.FileType);
-                    objCommand.Parameters.AddWithValue("@fileName", OBJFile.FileName);
-                    objCommand.Parameters.AddWithValue("@fileSize", OBJFile.FileSize);
-                    int updated = 0;
-                    updated = objDB.DoUpdateUsingCmdObj(objCommand);
-                    if (updated == 0)
+                    if (CheckStorage((OBJFile.FileSize),OBJFile.Username))
                     {
-                        return "";
+                        BinaryFormatter Serializer = new BinaryFormatter();
+                        MemoryStream memStream = new MemoryStream();
+                        Byte[] bytefileArray;
+
+                        Serializer.Serialize(memStream, OBJFile);
+                        //Create byte array
+                        bytefileArray = memStream.ToArray();
+
+                        ////sql code to store the serialized fiel
+
+                        DBConnect objDB = new DBConnect();
+                        SqlCommand objCommand = new SqlCommand();
+
+                        //set parameters for stored prosdure
+                        objCommand.CommandType = CommandType.StoredProcedure;
+                        objCommand.CommandText = "StoreFile";
+                        objCommand.Parameters.AddWithValue("@username", username);
+                        objCommand.Parameters.AddWithValue("@file", bytefileArray);
+                        objCommand.Parameters.AddWithValue("@uploadDate", OBJFile.UploadDate);
+                        objCommand.Parameters.AddWithValue("@fileType", OBJFile.FileType);
+                        objCommand.Parameters.AddWithValue("@fileName", OBJFile.FileName);
+                        objCommand.Parameters.AddWithValue("@fileSize", OBJFile.FileSize);
+                        int updated = 0;
+                        ///upload file
+                        updated = objDB.DoUpdateUsingCmdObj(objCommand);
+                        UpdateStorageCapacity(OBJFile);
+                        if (updated == 0)
+                        {
+                            return "";
+                        }
+                        else
+                        {
+                            String imageurl = "";
+                            switch (OBJFile.FileType)
+                            {
+                                case ".jpg":
+                                    imageurl = "~/pic/Icon Images/JPG.png";
+                                    break;
+
+                                case ".mp3":
+                                    imageurl = "~/pic/Icon Images/MusicIcon.png";
+                                    break;
+                                case ".pdf":
+                                    imageurl = "~/pic/Icon Images/pdfIcon.png";
+                                    break;
+                                case ".png":
+                                    imageurl = "~/pic/Icon Images/PNGIcon.png";
+                                    break;
+                                case ".pptx":
+                                    imageurl = "~/pic/Icon Images/PowerPointIcon.png";
+                                    break;
+                                case ".docx":
+                                    imageurl = "~/pic/Icon Images/WordIcon.jpg";
+                                    break;
+
+                                   
+                            }
+                            //subtact from total storage available
+
+                            //set parameters for stored prosdure
+
+                  
+                            //get icon extencion
+                            return imageurl;
+
+
+                        }
+
                     }
                     else
                     {
-                        String imageurl = "";
-                        switch(OBJFile.FileType){
-                            case ".jpg" :
-                                imageurl= "~/pic/Icon Images/JPG.png";
-                                break;
-
-                            case ".mp3":
-                                imageurl= "~/pic/Icon Images/MusicIcon.png";
-                                break;
-                            case ".pdf":
-                                imageurl= "~/pic/Icon Images/pdfIcon.png";
-                                break;
-                            case ".png":
-                                imageurl= "~/pic/Icon Images/PNGIcon.png";
-                                break;
-                            case ".pptx":
-                                imageurl= "~/pic/Icon Images/PowerPointIcon.png";
-                                break;
-                            case ".docx":
-                                imageurl = "~/pic/Icon Images/WordIcon.jpg";
-                                break;
-
-                        }
-                        //get icon extencion
-                        return imageurl;
-
-
+                        return "Not enough free storage to upload file";
                     }
 
                 }
                 else
                 {
-                    return "File n0t uploaded Succesfully";
+                        return "File not uploaded Succesfully";
 
                 }
-                
             }
             else
             {
                 return "API Key not found.";
             }
 
+        }
+        public Boolean UpdateStorageCapacity(FileInfoWS OBJFile)
+        {
+            DBConnect objDB1 = new DBConnect();
+            SqlCommand objCommand1 = new SqlCommand();
+            objCommand1.CommandType = CommandType.StoredProcedure;
+            objCommand1.CommandText = "updateCapacityUsed";
+
+            objCommand1.Parameters.AddWithValue("@username", OBJFile.Username);
+            objCommand1.Parameters.AddWithValue("@fileSize", (OBJFile.FileSize));
+
+
+            int updated1 = 0;
+            updated1 = objDB1.DoUpdateUsingCmdObj(objCommand1);
+            return true;
+        }
+        public Boolean CheckStorage(float fileSize,String userName)
+        {
+            //sql statemnt that gets usert file storage
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetUserFileSize";
+
+            objCommand.Parameters.AddWithValue("@username", userName);
+
+            DataSet updated = new DataSet();
+            updated = objDB.GetDataSetUsingCmdObj(objCommand);
+            //get value of file size
+
+            float TotaluserStorage = Convert.ToSingle(updated.Tables[0].Rows[0]["totalCapacity"].ToString());
+            float UsedStorage = Convert.ToSingle(updated.Tables[0].Rows[0]["capacityUsed"].ToString());
+            float availableDStarage = TotaluserStorage - UsedStorage;
+            if (availableDStarage >= fileSize)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         [WebMethod]
         public  string[] CloudUserStorage()
