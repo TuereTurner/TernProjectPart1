@@ -73,6 +73,7 @@
     <Content Include="Icon Images\PNGIcon.png" />
     <Content Include="Icon Images\PowerPointIcon.png" />
     <Content Include="packages.config" />
+    <Content Include="WebUserControlShowFIle.ascx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -109,6 +110,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControl1.ascx.cs">
+      <DependentUpon>WebUserControlShowFIle.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControl1.ascx.designer.cs">
+      <DependentUpon>WebUserControlShowFIle.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

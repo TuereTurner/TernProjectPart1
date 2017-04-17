@@ -48,6 +48,8 @@ namespace TermProject.WebS {
         
         private System.Threading.SendOrPostCallback UpDateFileOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SelectFilesWithIconsOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -112,6 +114,9 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         public event UpDateFileCompletedEventHandler UpDateFileCompleted;
+        
+        /// <remarks/>
+        public event SelectFilesWithIconsCompletedEventHandler SelectFilesWithIconsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -379,6 +384,35 @@ namespace TermProject.WebS {
             if ((this.UpDateFileCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UpDateFileCompleted(this, new UpDateFileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SelectFilesWithIcons", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SelectFilesWithIcons(string userName) {
+            object[] results = this.Invoke("SelectFilesWithIcons", new object[] {
+                        userName});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SelectFilesWithIconsAsync(string userName) {
+            this.SelectFilesWithIconsAsync(userName, null);
+        }
+        
+        /// <remarks/>
+        public void SelectFilesWithIconsAsync(string userName, object userState) {
+            if ((this.SelectFilesWithIconsOperationCompleted == null)) {
+                this.SelectFilesWithIconsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSelectFilesWithIconsOperationCompleted);
+            }
+            this.InvokeAsync("SelectFilesWithIcons", new object[] {
+                        userName}, this.SelectFilesWithIconsOperationCompleted, userState);
+        }
+        
+        private void OnSelectFilesWithIconsOperationCompleted(object arg) {
+            if ((this.SelectFilesWithIconsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SelectFilesWithIconsCompleted(this, new SelectFilesWithIconsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -806,6 +840,32 @@ namespace TermProject.WebS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void SelectFilesWithIconsCompletedEventHandler(object sender, SelectFilesWithIconsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SelectFilesWithIconsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SelectFilesWithIconsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }

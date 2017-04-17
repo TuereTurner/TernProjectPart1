@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RequestAndTestWebS.aspx.cs" Inherits="TermProject.RequestAndTestWebS" %>
 
+<%@ Register Src="http://localhost:12400/WebUserControlShowFIle.ascx" TagPrefix="uc1" TagName="WebUserControlShowFIle" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -112,6 +115,36 @@
             </Columns>
         </asp:GridView>
      </div>
+        <div>
+            <h1>View Files </h1>
+                     <asp:TextBox AutoPostBack="true" OnTextChanged="txtGetAllFilesicon_TextChanged" runat="server" ID="txtGetAllFilesicon" placeholder="Enter User Name"></asp:TextBox>
+        <asp:Label runat="server" ID="LblviewfILESMesage" ></asp:Label>
+         
+             <asp:GridView ID="GvShowaLLfiLESwITHiCON" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="GvShowaLLfiLESwITHiCON_RowCancelingEdit" OnRowDeleting="GvShowaLLfiLESwITHiCON_RowDeleting" OnRowEditing="GvShowaLLfiLESwITHiCON_RowEditing" OnRowUpdating="GvShowaLLfiLESwITHiCON_RowUpdating" Width="463px">
+            <Columns>
+                <asp:BoundField DataField="fileName" HeaderText="File Name" ReadOnly="true"/>
+                <asp:BoundField DataField="fileType" HeaderText="File Type" ReadOnly="true" />
+                <asp:BoundField DataField="fileSize" HeaderText="Size" ReadOnly="true"/>
+                <asp:BoundField DataField="uploadDate" HeaderText="Upload date" ReadOnly="true"  />
+                <asp:TemplateField HeaderText="UpdateFile to Newer Version">
+                    <ItemTemplate>
+                        <asp:Image runat="server" id="gvIMage" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="UpdateFile to Newer Version">
+                    <ItemTemplate>
+                        <asp:FileUpload runat="server" ID="fileUploadGV1" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:CommandField ButtonType="Button" HeaderText="Edit File" ShowEditButton="true" />
+                <asp:CommandField ButtonType="Button" HeaderText="Delete File" ShowDeleteButton="true" />
+
+            </Columns>
+        </asp:GridView>
+            <!--
+    <uc1:WebUserControlShowFIle runat="server" id="WebUserControlShowFIle" /> -->
+        </div>
        
         <!--add accoumnt cloud admin-->
         <div>

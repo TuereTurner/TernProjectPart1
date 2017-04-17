@@ -87,10 +87,10 @@ namespace WebSvc
         }
 
         [WebMethod]
-         public  String  AssignWebServiceAPI(String userName)
+        public String AssignWebServiceAPI(String userName)
         {
-          
-          
+
+
             ///Generate  API 
             Random randgen = new Random();
             String APIKEY = "";
@@ -99,7 +99,7 @@ namespace WebSvc
 
                 APIKEY += randgen.Next(1, 9).ToString();
             }
-            
+
             //////Stored Proceda
 
             DBConnect objDB = new DBConnect();
@@ -111,19 +111,19 @@ namespace WebSvc
             objCommand.Parameters.AddWithValue("@API_Key", APIKEY);
 
             int updated = 0;
-         updated=   objDB.DoUpdateUsingCmdObj(objCommand);
+            updated = objDB.DoUpdateUsingCmdObj(objCommand);
 
             if (updated == 0)
             {
                 return null;
-            }else
+            } else
             {
                 return APIKEY;
             }
         }
 
         [WebMethod]
-        public  Boolean VerifyAPIKey(String APIKey)
+        public Boolean VerifyAPIKey(String APIKey)
         {
 
             DBConnect objDB = new DBConnect();
@@ -134,7 +134,7 @@ namespace WebSvc
             objCommand.CommandText = "GetAPI_Key";
 
             objCommand.Parameters.AddWithValue("@API_Key", APIKey);
-         
+
 
             SqlParameter output = new SqlParameter("@count", 0);
             output.Direction = ParameterDirection.Output;
@@ -157,7 +157,7 @@ namespace WebSvc
         }
 
         [WebMethod]
-        public  String UploadFile(String API_Key , FileInfoWS OBJFile, String username )
+        public String UploadFile(String API_Key, FileInfoWS OBJFile, String username)
         {
             if (VerifyAPIKey(API_Key))
             {
@@ -168,7 +168,7 @@ namespace WebSvc
 
                 if (OBJFile != null)
                 {
-                    if (CheckStorage((OBJFile.FileSize),OBJFile.Username))
+                    if (CheckStorage((OBJFile.FileSize), OBJFile.Username))
                     {
                         BinaryFormatter Serializer = new BinaryFormatter();
                         MemoryStream memStream = new MemoryStream();
@@ -225,13 +225,13 @@ namespace WebSvc
                                     imageurl = "~/pic/Icon Images/WordIcon.jpg";
                                     break;
 
-                                   
+
                             }
                             //subtact from total storage available
 
                             //set parameters for stored prosdure
 
-                  
+
                             //get icon extencion
                             return imageurl;
 
@@ -247,7 +247,7 @@ namespace WebSvc
                 }
                 else
                 {
-                        return "File not uploaded Succesfully";
+                    return "File not uploaded Succesfully";
 
                 }
             }
@@ -272,7 +272,7 @@ namespace WebSvc
             updated1 = objDB1.DoUpdateUsingCmdObj(objCommand1);
             return true;
         }
-        public Boolean CheckStorage(float fileSize,String userName)
+        public Boolean CheckStorage(float fileSize, String userName)
         {
             //sql statemnt that gets usert file storage
             DBConnect objDB = new DBConnect();
@@ -299,9 +299,9 @@ namespace WebSvc
             }
         }
         [WebMethod]
-        public  string[] CloudUserStorage()
+        public string[] CloudUserStorage()
         {
-            string [] stri = new string[10];
+            string[] stri = new string[10];
             return stri
                 ;
         }
@@ -334,11 +334,11 @@ namespace WebSvc
                 set1.Tables.Add(tb);
                 return set1;
             }
-           
+
 
         }
         [WebMethod]
-        public String DeleteFile(String username,String fileName, float size)
+        public String DeleteFile(String username, String fileName, float size)
         {
             DBConnect objDB1 = new DBConnect();
             SqlCommand objCommand1 = new SqlCommand();
@@ -366,7 +366,7 @@ namespace WebSvc
             if (updated1 == 0)
             {
                 return "File Not Deleted";
-            }else
+            } else
             {
                 return "File Successfully Deleted";
             }
@@ -408,5 +408,72 @@ namespace WebSvc
                 return "File Successfully updated.";
             }
         }
-    }
+        [WebMethod]
+        public DataSet SelectFilesWithIcons(String userName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetUserFiles";
+
+            objCommand.Parameters.AddWithValue("@username", userName);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //add a roe to the table
+            DataTable tb = new DataTable();
+            tb.Clear();
+            tb.Columns.Add("File Icon");
+           
+            
+
+            String fileextse = "";
+
+            //get file extresion
+            for(int i = 0; i < set.Tables[0].Rows.Count; ++i)
+            {
+
+
+                fileextse = set.Tables[0].Rows[i]["fileType"].ToString();
+                DataRow row = tb.NewRow();
+               
+              
+                
+                switch (fileextse)
+                {
+                    case ".jpg":
+                        row["File Icon"] = "~/pic/Icon Images/JPG.png";
+                        tb.Rows.Add(row);
+                        break;
+
+                    case ".mp3":
+                        row["File Icon"] = "~/pic/Icon Images/MusicIcon.png";
+                        tb.Rows.Add(row);
+                        break;
+                    case ".pdf":
+                        row["File Icon"]  = "~/pic/Icon Images/pdfIcon.png";
+                        tb.Rows.Add(row);
+                        break;
+                    case ".png":
+                        row["File Icon"] = "~/pic/Icon Images/PNGIcon.png";
+                        tb.Rows.Add(row);
+                        break;
+                    case ".pptx":
+                        row["File Icon"] = "~/pic/Icon Images/PowerPointIcon.png";
+                        tb.Rows.Add(row);
+                        break;
+                    case ".docx":
+                        row["File Icon"] = "~/pic/Icon Images/WordIcon.jpg";
+                        tb.Rows.Add(row);
+                        break;
+
+                }
+
+            }
+            set.Tables.Add(tb);
+            return set;
+
+        } 
+        }
 }

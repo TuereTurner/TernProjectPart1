@@ -166,6 +166,42 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.GridView GvFiles;
         
         /// <summary>
+        /// txtGetAllFilesicon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGetAllFilesicon;
+        
+        /// <summary>
+        /// LblviewfILESMesage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblviewfILESMesage;
+        
+        /// <summary>
+        /// GvShowaLLfiLESwITHiCON control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GvShowaLLfiLESwITHiCON;
+        
+        /// <summary>
+        /// WebUserControlShowFIle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl WebUserControlShowFIle;
+        
+        /// <summary>
         /// TextBox2 control.
         /// </summary>
         /// <remarks>

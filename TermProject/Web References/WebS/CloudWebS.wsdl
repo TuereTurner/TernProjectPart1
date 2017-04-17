@@ -162,6 +162,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="SelectFilesWithIcons">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectFilesWithIconsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectFilesWithIconsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddUserSoapIn">
@@ -218,6 +239,12 @@
   <wsdl:message name="UpDateFileSoapOut">
     <wsdl:part name="parameters" element="tns:UpDateFileResponse" />
   </wsdl:message>
+  <wsdl:message name="SelectFilesWithIconsSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectFilesWithIcons" />
+  </wsdl:message>
+  <wsdl:message name="SelectFilesWithIconsSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectFilesWithIconsResponse" />
+  </wsdl:message>
   <wsdl:portType name="CloudWebSSoap">
     <wsdl:operation name="AddUser">
       <wsdl:input message="tns:AddUserSoapIn" />
@@ -254,6 +281,10 @@
     <wsdl:operation name="UpDateFile">
       <wsdl:input message="tns:UpDateFileSoapIn" />
       <wsdl:output message="tns:UpDateFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectFilesWithIcons">
+      <wsdl:input message="tns:SelectFilesWithIconsSoapIn" />
+      <wsdl:output message="tns:SelectFilesWithIconsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWebSSoap" type="tns:CloudWebSSoap">
@@ -339,6 +370,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SelectFilesWithIcons">
+      <soap:operation soapAction="http://tempuri.org/SelectFilesWithIcons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CloudWebSSoap12" type="tns:CloudWebSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -416,6 +456,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpDateFile">
       <soap12:operation soapAction="http://tempuri.org/UpDateFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectFilesWithIcons">
+      <soap12:operation soapAction="http://tempuri.org/SelectFilesWithIcons" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
