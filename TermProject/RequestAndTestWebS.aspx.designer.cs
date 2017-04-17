@@ -76,6 +76,15 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMethods;
         
         /// <summary>
+        /// lblAddfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddfile;
+        
+        /// <summary>
         /// BtnFileUpload control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,24 @@ namespace TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUploadFile;
+        
+        /// <summary>
+        /// placeImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder placeImage;
+        
+        /// <summary>
+        /// ImgFileIcon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImgFileIcon;
         
         /// <summary>
         /// GvFiles control.

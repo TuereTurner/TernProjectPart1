@@ -10,6 +10,8 @@ using Utilities;
 using System.Data.SqlClient;
 using System.Data;
 using File;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace WebSvc
 {
@@ -23,8 +25,6 @@ namespace WebSvc
     // [System.Web.Script.Services.ScriptService]
     public class CloudWebS : System.Web.Services.WebService
     {
-
-
         [WebMethod]
         public Boolean AddUser(User newUser)
         {
@@ -123,7 +123,7 @@ namespace WebSvc
         }
 
         [WebMethod]
-        public static Boolean VerifyAPIKey(String APIKey)
+        public  Boolean VerifyAPIKey(String APIKey)
         {
 
             DBConnect objDB = new DBConnect();
@@ -157,26 +157,97 @@ namespace WebSvc
         }
 
         [WebMethod]
-        public static String UploadFile(String API_Key , FileInfo File )
+        public  String UploadFile(String API_Key , FileInfoWS OBJFile, String username )
         {
             if (VerifyAPIKey(API_Key))
             {
 
-                if (File != null)
+                //Assign vaules to file object 
+                
+                //check avaiblae storage
+
+                if (OBJFile != null)
                 {
 
-                    return "";
+                    BinaryFormatter Serializer = new BinaryFormatter();
+                    MemoryStream memStream = new MemoryStream();
+                    Byte[] bytefileArray;
+
+                    Serializer.Serialize(memStream, OBJFile);
+                    //Create byte array
+                    bytefileArray = memStream.ToArray();
+
+                    ////sql code to store the serialized fiel
+
+                    DBConnect objDB = new DBConnect();
+                    SqlCommand objCommand = new SqlCommand();
+
+                    //set parameters for stored prosdure
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "StoreFile";
+                    objCommand.Parameters.AddWithValue("@username", username);
+                    objCommand.Parameters.AddWithValue("@file", bytefileArray);
+                    objCommand.Parameters.AddWithValue("@uploadDate", OBJFile.UploadDate);
+                    objCommand.Parameters.AddWithValue("@fileType", OBJFile.FileType);
+                    objCommand.Parameters.AddWithValue("@fileName", OBJFile.FileName);
+                    objCommand.Parameters.AddWithValue("@fileSize", OBJFile.FileSize);
+                    int updated = 0;
+                    updated = objDB.DoUpdateUsingCmdObj(objCommand);
+                    if (updated == 0)
+                    {
+                        return "";
+                    }
+                    else
+                    {
+                        String imageurl = "";
+                        switch(OBJFile.FileType){
+                            case ".jpg" :
+                                imageurl= "~/pic/Icon Images/JPG.png";
+                                break;
+
+                            case ".mp3":
+                                imageurl= "~/pic/Icon Images/MusicIcon.png";
+                                break;
+                            case ".pdf":
+                                imageurl= "~/pic/Icon Images/pdfIcon.png";
+                                break;
+                            case ".png":
+                                imageurl= "~/pic/Icon Images/PNGIcon.png";
+                                break;
+                            case ".pptx":
+                                imageurl= "~/pic/Icon Images/PowerPointIcon.png";
+                                break;
+                            case ".docx":
+                                imageurl = "~/pic/Icon Images/WordIcon.jpg";
+                                break;
+
+                        }
+                        //get icon extencion
+                        return imageurl;
+
+
+                    }
 
                 }
+                else
+                {
+                    return "File n0t uploaded Succesfully";
 
-                return "";
-
+                }
+                
             }
             else
             {
                 return "API Key not found.";
             }
 
+        }
+        [WebMethod]
+        public  string[] CloudUserStorage()
+        {
+            string [] stri = new string[10];
+            return stri
+                ;
         }
     }
 }

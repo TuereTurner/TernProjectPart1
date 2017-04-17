@@ -35,6 +35,12 @@ namespace TermProject.WebS {
         
         private System.Threading.SendOrPostCallback AssignWebServiceAPIOperationCompleted;
         
+        private System.Threading.SendOrPostCallback VerifyAPIKeyOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UploadFileOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CloudUserStorageOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -81,6 +87,15 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         public event AssignWebServiceAPICompletedEventHandler AssignWebServiceAPICompleted;
+        
+        /// <remarks/>
+        public event VerifyAPIKeyCompletedEventHandler VerifyAPIKeyCompleted;
+        
+        /// <remarks/>
+        public event UploadFileCompletedEventHandler UploadFileCompleted;
+        
+        /// <remarks/>
+        public event CloudUserStorageCompletedEventHandler CloudUserStorageCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -168,6 +183,95 @@ namespace TermProject.WebS {
             if ((this.AssignWebServiceAPICompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AssignWebServiceAPICompleted(this, new AssignWebServiceAPICompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/VerifyAPIKey", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool VerifyAPIKey(string APIKey) {
+            object[] results = this.Invoke("VerifyAPIKey", new object[] {
+                        APIKey});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void VerifyAPIKeyAsync(string APIKey) {
+            this.VerifyAPIKeyAsync(APIKey, null);
+        }
+        
+        /// <remarks/>
+        public void VerifyAPIKeyAsync(string APIKey, object userState) {
+            if ((this.VerifyAPIKeyOperationCompleted == null)) {
+                this.VerifyAPIKeyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnVerifyAPIKeyOperationCompleted);
+            }
+            this.InvokeAsync("VerifyAPIKey", new object[] {
+                        APIKey}, this.VerifyAPIKeyOperationCompleted, userState);
+        }
+        
+        private void OnVerifyAPIKeyOperationCompleted(object arg) {
+            if ((this.VerifyAPIKeyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.VerifyAPIKeyCompleted(this, new VerifyAPIKeyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UploadFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string UploadFile(string API_Key, FileInfoWS OBJFile, string username) {
+            object[] results = this.Invoke("UploadFile", new object[] {
+                        API_Key,
+                        OBJFile,
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UploadFileAsync(string API_Key, FileInfoWS OBJFile, string username) {
+            this.UploadFileAsync(API_Key, OBJFile, username, null);
+        }
+        
+        /// <remarks/>
+        public void UploadFileAsync(string API_Key, FileInfoWS OBJFile, string username, object userState) {
+            if ((this.UploadFileOperationCompleted == null)) {
+                this.UploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadFileOperationCompleted);
+            }
+            this.InvokeAsync("UploadFile", new object[] {
+                        API_Key,
+                        OBJFile,
+                        username}, this.UploadFileOperationCompleted, userState);
+        }
+        
+        private void OnUploadFileOperationCompleted(object arg) {
+            if ((this.UploadFileCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UploadFileCompleted(this, new UploadFileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CloudUserStorage", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string[] CloudUserStorage() {
+            object[] results = this.Invoke("CloudUserStorage", new object[0]);
+            return ((string[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CloudUserStorageAsync() {
+            this.CloudUserStorageAsync(null);
+        }
+        
+        /// <remarks/>
+        public void CloudUserStorageAsync(object userState) {
+            if ((this.CloudUserStorageOperationCompleted == null)) {
+                this.CloudUserStorageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCloudUserStorageOperationCompleted);
+            }
+            this.InvokeAsync("CloudUserStorage", new object[0], this.CloudUserStorageOperationCompleted, userState);
+        }
+        
+        private void OnCloudUserStorageOperationCompleted(object arg) {
+            if ((this.CloudUserStorageCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CloudUserStorageCompleted(this, new CloudUserStorageCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -284,6 +388,88 @@ namespace TermProject.WebS {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class FileInfoWS {
+        
+        private byte[] fileField;
+        
+        private string fileNameField;
+        
+        private float fileSizeField;
+        
+        private string fileTypeField;
+        
+        private string uploadDateField;
+        
+        private string usernameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] File {
+            get {
+                return this.fileField;
+            }
+            set {
+                this.fileField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FileName {
+            get {
+                return this.fileNameField;
+            }
+            set {
+                this.fileNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float FileSize {
+            get {
+                return this.fileSizeField;
+            }
+            set {
+                this.fileSizeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FileType {
+            get {
+                return this.fileTypeField;
+            }
+            set {
+                this.fileTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string UploadDate {
+            get {
+                return this.uploadDateField;
+            }
+            set {
+                this.uploadDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void AddUserCompletedEventHandler(object sender, AddUserCompletedEventArgs e);
     
@@ -357,6 +543,84 @@ namespace TermProject.WebS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void VerifyAPIKeyCompletedEventHandler(object sender, VerifyAPIKeyCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class VerifyAPIKeyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal VerifyAPIKeyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UploadFileCompletedEventHandler(object sender, UploadFileCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UploadFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UploadFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void CloudUserStorageCompletedEventHandler(object sender, CloudUserStorageCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CloudUserStorageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CloudUserStorageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string[])(this.results[0]));
             }
         }
     }

@@ -56,6 +56,61 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="VerifyAPIKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyAPIKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VerifyAPIKeyResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="API_Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OBJFile" type="tns:FileInfoWS" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FileInfoWS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="File" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileSize" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UploadDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UploadFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloudUserStorage">
+        <s:complexType />
+      </s:element>
+      <s:element name="CloudUserStorageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CloudUserStorageResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddUserSoapIn">
@@ -76,6 +131,24 @@
   <wsdl:message name="AssignWebServiceAPISoapOut">
     <wsdl:part name="parameters" element="tns:AssignWebServiceAPIResponse" />
   </wsdl:message>
+  <wsdl:message name="VerifyAPIKeySoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyAPIKey" />
+  </wsdl:message>
+  <wsdl:message name="VerifyAPIKeySoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyAPIKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CloudUserStorageSoapIn">
+    <wsdl:part name="parameters" element="tns:CloudUserStorage" />
+  </wsdl:message>
+  <wsdl:message name="CloudUserStorageSoapOut">
+    <wsdl:part name="parameters" element="tns:CloudUserStorageResponse" />
+  </wsdl:message>
   <wsdl:portType name="CloudWebSSoap">
     <wsdl:operation name="AddUser">
       <wsdl:input message="tns:AddUserSoapIn" />
@@ -88,6 +161,18 @@
     <wsdl:operation name="AssignWebServiceAPI">
       <wsdl:input message="tns:AssignWebServiceAPISoapIn" />
       <wsdl:output message="tns:AssignWebServiceAPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyAPIKey">
+      <wsdl:input message="tns:VerifyAPIKeySoapIn" />
+      <wsdl:output message="tns:VerifyAPIKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <wsdl:input message="tns:UploadFileSoapIn" />
+      <wsdl:output message="tns:UploadFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CloudUserStorage">
+      <wsdl:input message="tns:CloudUserStorageSoapIn" />
+      <wsdl:output message="tns:CloudUserStorageSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWebSSoap" type="tns:CloudWebSSoap">
@@ -119,6 +204,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="VerifyAPIKey">
+      <soap:operation soapAction="http://tempuri.org/VerifyAPIKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://tempuri.org/UploadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloudUserStorage">
+      <soap:operation soapAction="http://tempuri.org/CloudUserStorage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CloudWebSSoap12" type="tns:CloudWebSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -142,6 +254,33 @@
     </wsdl:operation>
     <wsdl:operation name="AssignWebServiceAPI">
       <soap12:operation soapAction="http://tempuri.org/AssignWebServiceAPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyAPIKey">
+      <soap12:operation soapAction="http://tempuri.org/VerifyAPIKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap12:operation soapAction="http://tempuri.org/UploadFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloudUserStorage">
+      <soap12:operation soapAction="http://tempuri.org/CloudUserStorage" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

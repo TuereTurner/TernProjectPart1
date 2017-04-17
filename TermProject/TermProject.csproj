@@ -73,6 +73,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="pic\Icon Images\JPG.png" />
+    <Content Include="pic\Icon Images\MusicIcon.png" />
+    <Content Include="pic\Icon Images\pdfIcon.png" />
+    <Content Include="pic\Icon Images\PNGIcon.png" />
+    <Content Include="pic\Icon Images\PowerPointIcon.png" />
+    <Content Include="pic\Icon Images\WordIcon.jpg" />
+    <Content Include="pic\MusicIcon.png" />
     <Content Include="RequestAndTestWebS.aspx" />
     <None Include="Web References\WebS\CloudWebS.wsdl" />
     <Content Include="Web References\WebS\Reference.map">

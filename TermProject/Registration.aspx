@@ -72,6 +72,14 @@
             </div>
         </div>
         <br />
+          <div class="alert alert-success" id="ATLSuccessAlert" runat="server" visible="false">
+                <strong>Information Successfully submitted!</strong>
+       
+            </div>
+          <div class="alert alert-warning" id="ATLAccountFailure" runat="server" visible="false">
+                <strong>Information Not Successfully submitted!</strong>
+       
+            </div>
          <div class="row">
 
                 <div class="col-sm-4 col-xs-offset-2">
@@ -162,7 +170,7 @@
                 <div class="col-sm-4 col-xs-offset-2">
                     <label class="col-2 col-form-label">Username</label>
                     <div class="col-10">
-                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" type="text" required="true"></asp:TextBox>
+                        <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" type="text" required="true"></asp:TextBox>
 
                     </div>
                 </div>

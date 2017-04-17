@@ -79,13 +79,16 @@
     <div id="divMethods" runat="server">
         <!--Add file for cloud user-->
         <div>    <h1>Add a File</h1>
-       
+       <asp:Label runat="server" ID="lblAddfile" ForeColor="Red" Visible="false" ></asp:Label>
         <asp:FileUpload runat="server" ID="BtnFileUpload" />
 
         <asp:TextBox ID="txtApiKeyFileupload" runat="server" placeholder="API Key"></asp:TextBox>
        
         <asp:TextBox ID="txtAccountUsername" runat="server"  placeholder="User Name" ></asp:TextBox>
 <asp:Button runat="server" ID="btnUploadFile" OnClick="btnUploadFile_Click" Text="Upload File to Account" />
+<asp:PlaceHolder runat="server" ID="placeImage">
+        <asp:Image runat="server" ID="ImgFileIcon" Height="60" Width="45" />
+    </asp:PlaceHolder>
 </div>
      <div>
  <h1>Edit Files</h1>
@@ -120,7 +123,7 @@
             </div>
             <div class="row">
 
-                <div class="col-sm-4 col-xs-offset-2">
+                <div class="col-sm-4 col-xs-offset-1">
                     <label class="col-2 col-form-label">First Name</label>
                     <div class="col-10">
                         <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" type="text" >
@@ -147,7 +150,7 @@
             </div>
        
         <div class="row">
-            <div class="col-sm-8 col-xs-offset-2">
+            <div class="col-sm-8 col-xs-offset-1">
                 <label class="col-2 col-form-label">Email</label>
                 <div class="col-10">
                     <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" type="email" ></asp:TextBox>
@@ -158,7 +161,7 @@
         </div>
         <br />
         <div class="row">
-            <div class="col-sm-8 col-xs-offset-2">
+            <div class="col-sm-8 col-xs-offset-1">
                 <label class="col-2 col-form-label">Address</label>
                 <div class="col-10">
                     <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control" type="text" ></asp:TextBox>
@@ -168,7 +171,7 @@
             </div>
             <br />
             <div class="row">
-                <div class="col-sm-3 col-xs-offset-2">
+                <div class="col-sm-3 col-xs-offset-1">
                     <label class="col-2 col-form-label">City</label>
                     <div class="col-10">
                         <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control" type="text"></asp:TextBox>
@@ -194,7 +197,7 @@
             <br />
 
             <div class="row">
-                <div class="col-sm-8 col-xs-offset-2">
+                <div class="col-sm-8 col-xs-offset-1">
                     <label class="col-2 col-form-label">Phone Number</label>
                     <div class="col-10">
                         <asp:TextBox ID="TextBox8" runat="server" CssClass="form-control" type="number" ></asp:TextBox>
@@ -205,7 +208,7 @@
             </div>
         <br />
             <div class="row">
-                <div class="col-sm-4 col-xs-offset-2">
+                <div class="col-sm-4 col-xs-offset-1">
                     <label class="col-2 col-form-label">Username</label>
                     <div class="col-10">
                         <asp:TextBox ID="TextBox9" runat="server" CssClass="form-control" type="text" ></asp:TextBox>
@@ -230,7 +233,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="form-group">
-                        <asp:Button runat="server" CssClass="btn btn-primary btn-md btn-block" Text="Sumbit" ID="Button1" OnClick="btnSubmit_Click" />
+                        <asp:Button runat="server" CssClass="btn btn-primary btn-md btn-block" Text="Sumbit" ID="Button1" OnClick="Button1_Click" />
                     </div>
                 </div>
 
