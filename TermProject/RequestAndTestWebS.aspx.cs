@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,10 +10,15 @@ namespace TermProject
 {
     public partial class RequestAndTestWebS : System.Web.UI.Page
     {
+        static String userNemFilesearch ;
          WebS.CloudWebS pxy = new WebS.CloudWebS();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                GvFiles.Visible = false;
+                GvCloudAccounts.Visible = false;
+            }
         }
 
        
@@ -38,35 +44,104 @@ namespace TermProject
             }
 
         }
-
-        protected void gvFiles_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        public void GenerateFileGridView()
         {
+            DataSet set = new DataSet();
+            set = pxy.GetFilesByUser(txtuserNameGetAllFiles.Text);
+            GvFiles.DataSource = set;
+            GvFiles.DataBind();
+            GvFiles.Visible = true;
+        }
+        protected void GvFiles_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GvFiles.EditIndex = -1;
+            GenerateFileGridView();
+        }
+
+        protected void GvFiles_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int row = e.RowIndex;
+            //get the row upload file
+            String username =  userNemFilesearch;
+            float size = Convert.ToSingle(GvFiles.Rows[row].Cells[2].Text);
+            String filename = GvFiles.Rows[row].Cells[0].Text;
+            //call funtion to do update
+            String results = "";
+            results = pxy.DeleteFile(username, filename,size);
+            lblfileListMessage.Text = results;
+            lblfileListMessage.ForeColor = System.Drawing.Color.Green;
+            //regenerate gridview
+            GvFiles.EditIndex = -1;
+            GenerateFileGridView();
 
         }
 
-        protected void gvFiles_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void GvFiles_RowEditing(object sender, GridViewEditEventArgs e)
         {
-
+            GvFiles.EditIndex = e.NewEditIndex;
+            GenerateFileGridView();
         }
 
-        protected void gvFiles_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void GvFiles_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            int row = e.RowIndex;
+            //get the row upload file
+            FileUpload uploader = (FileUpload)GvFiles.Rows[row].FindControl("fileUploadGV");
+            if (uploader.HasFile)
+            {
+                //file web object 
+                WebS.FileInfoWS objfile = new WebS.FileInfoWS();
+                //fiile length 
+                int SizeFile = uploader.PostedFile.ContentLength;
+                //file byte array
+                byte[] FileDataByteArray = new byte[SizeFile];
+                // inout data from the fileupload control into the byte array
+                uploader.PostedFile.InputStream.Read(FileDataByteArray, 0, SizeFile);
+                //objfile.File =
+                // get file nmae os selected file
+             //   String fileName = uploader.PostedFile.FileName;
+                String fileName = GvFiles.Rows[row].Cells[0].Text;
 
-        }
+                objfile.FileName = fileName;
+                objfile.FileSize = SizeFile;
 
-        protected void gvFiles_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
+                //establishh file extension to get the type
+                String fileExtension = fileName.Substring(fileName.LastIndexOf("."));
+                fileExtension = fileExtension.ToLower();
+                objfile.FileType = fileExtension;
+                objfile.UploadDate = (DateTime.Now.ToShortDateString()).ToString();
+                objfile.Username = userNemFilesearch;
+                objfile.File = FileDataByteArray;
 
-        }
+                //call funtion to do update
+                String results = "";
+                results= pxy.UpDateFile(objfile);
+                lblfileListMessage.Text = results;
+                lblfileListMessage.ForeColor = System.Drawing.Color.Green;
+                //regenerate gridview
+                GvFiles.EditIndex = -1;
+                GenerateFileGridView();
+
+            }
+            else
+            {
+                GvFiles.EditIndex = -1;
+                lblfileListMessage.Text = "Not file was selected";
+                lblfileListMessage.ForeColor = System.Drawing.Color.Red;
+            }
+            }
 
         protected void GvCloudAccounts_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-
+            GvFiles.EditIndex = -1;
+            GenerateFileGridView();
         }
 
         protected void GvCloudAccounts_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            
+            
+          
         }
 
         protected void GvCloudAccounts_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -97,7 +172,7 @@ namespace TermProject
                     String fileName = BtnFileUpload.PostedFile.FileName;
                     objfile.FileName = fileName;
                     objfile.FileSize = SizeFile;
-
+                objfile.File = FileDataByteArray;
                     //establishh file extension to get the type
                     String fileExtension = fileName.Substring(fileName.LastIndexOf("."));
                     fileExtension = fileExtension.ToLower();
@@ -150,6 +225,15 @@ namespace TermProject
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void txtuserNameGetAllFiles_TextChanged(object sender, EventArgs e)
+        {
+            //show grid view with files
+            String username = txtuserNameGetAllFiles.Text;
+            userNemFilesearch = username;
+            GenerateFileGridView();
 
         }
     }

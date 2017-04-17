@@ -305,5 +305,108 @@ namespace WebSvc
             return stri
                 ;
         }
+
+        [WebMethod]
+        public DataSet GetFilesByUser(String userName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetUserFiles";
+
+            objCommand.Parameters.AddWithValue("@username", userName);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+            if (set.Tables[0].Rows.Count != 0)
+            {
+                return set;
+            }
+            else
+            {
+                DataSet set1 = new DataSet();
+                DataTable tb = new DataTable();
+                tb.Clear();
+                tb.Columns.Add("File Search Result");
+                DataRow row = tb.NewRow();
+                row["File Search Result"] = "Error: No files to retrieve";
+                tb.Rows.Add(row);
+                set1.Tables.Add(tb);
+                return set1;
+            }
+           
+
+        }
+        [WebMethod]
+        public String DeleteFile(String username,String fileName, float size)
+        {
+            DBConnect objDB1 = new DBConnect();
+            SqlCommand objCommand1 = new SqlCommand();
+            objCommand1.CommandType = CommandType.StoredProcedure;
+            objCommand1.CommandText = "DeleteFile";
+
+            objCommand1.Parameters.AddWithValue("@username", username);
+            objCommand1.Parameters.AddWithValue("@fileName", (fileName));
+
+
+            int updated = 0;
+            updated = objDB1.DoUpdateUsingCmdObj(objCommand1);
+            //add storage back
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "updateCapacityUsed";
+
+            objCommand.Parameters.AddWithValue("@username", username);
+            objCommand.Parameters.AddWithValue("@fileSize", -(size));
+
+
+            int updated1 = 0;
+            updated1 = objDB1.DoUpdateUsingCmdObj(objCommand1);
+            if (updated1 == 0)
+            {
+                return "File Not Deleted";
+            }else
+            {
+                return "File Successfully Deleted";
+            }
+        }
+        [WebMethod]
+        public String UpDateFile(FileInfoWS OBJFile)
+        {
+
+            BinaryFormatter Serializer = new BinaryFormatter();
+            MemoryStream memStream = new MemoryStream();
+            Byte[] bytefileArray;
+
+            Serializer.Serialize(memStream, OBJFile);
+            //Create byte array
+            bytefileArray = memStream.ToArray();
+
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            //set parameters for stored prosdure
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateFile";
+            objCommand.Parameters.AddWithValue("@username", OBJFile.Username);
+            objCommand.Parameters.AddWithValue("@file", bytefileArray);
+            objCommand.Parameters.AddWithValue("@uploadDate", OBJFile.UploadDate);
+            objCommand.Parameters.AddWithValue("@fileType", OBJFile.FileType);
+            objCommand.Parameters.AddWithValue("@fileName", OBJFile.FileName);
+            objCommand.Parameters.AddWithValue("@fileSize", OBJFile.FileSize);
+            int updated = 0;
+            ///upload file
+            updated = objDB.DoUpdateUsingCmdObj(objCommand);
+            UpdateStorageCapacity(OBJFile);
+            if (updated == 0)
+            {
+                return "File not Updated";
+            }
+            else
+            {
+                return "File Successfully updated.";
+            }
+        }
     }
 }

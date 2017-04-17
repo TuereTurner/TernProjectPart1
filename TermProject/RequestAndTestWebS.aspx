@@ -92,14 +92,16 @@
 </div>
      <div>
  <h1>Edit Files</h1>
-        <!-- EDit delete and update file-->
-        <asp:GridView ID="GvFiles" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="gvFiles_RowCancelingEdit" OnRowDeleting="gvFiles_RowDeleting" OnRowEditing="gvFiles_RowEditing" OnRowUpdating="gvFiles_RowUpdating" Width="463px">
+         <asp:TextBox AutoPostBack="true" OnTextChanged="txtuserNameGetAllFiles_TextChanged" runat="server" ID="txtuserNameGetAllFiles" placeholder="Enter User Name"></asp:TextBox>
+        <asp:Label runat="server" ID="lblfileListMessage" ></asp:Label>
+         <!-- EDit delete and update file-->
+        <asp:GridView ID="GvFiles" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="GvFiles_RowCancelingEdit" OnRowDeleting="GvFiles_RowDeleting" OnRowEditing="GvFiles_RowEditing" OnRowUpdating="GvFiles_RowUpdating" Width="463px">
             <Columns>
-                <asp:BoundField DataField="fileName" HeaderText="File Name" />
-                <asp:BoundField DataField="fileType" HeaderText="File Type" />
-                <asp:BoundField DataField="fileSize" HeaderText="Size" />
-                <asp:BoundField DataField="uploadDate" HeaderText="Upload date" />
-                <asp:TemplateField HeaderText="UpdateFile">
+                <asp:BoundField DataField="fileName" HeaderText="File Name" ReadOnly="true"/>
+                <asp:BoundField DataField="fileType" HeaderText="File Type" ReadOnly="true" />
+                <asp:BoundField DataField="fileSize" HeaderText="Size" ReadOnly="true"/>
+                <asp:BoundField DataField="uploadDate" HeaderText="Upload date" ReadOnly="true"  />
+                <asp:TemplateField HeaderText="UpdateFile to Newer Version">
                     <ItemTemplate>
                         <asp:FileUpload runat="server" ID="fileUploadGV" />
                     </ItemTemplate>
@@ -123,7 +125,7 @@
             </div>
             <div class="row">
 
-                <div class="col-sm-4 col-xs-offset-1">
+                <div class="col-sm-4 ">
                     <label class="col-2 col-form-label">First Name</label>
                     <div class="col-10">
                         <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" type="text" >
@@ -150,7 +152,7 @@
             </div>
        
         <div class="row">
-            <div class="col-sm-8 col-xs-offset-1">
+            <div class="col-sm-8 ">
                 <label class="col-2 col-form-label">Email</label>
                 <div class="col-10">
                     <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" type="email" ></asp:TextBox>
@@ -161,7 +163,7 @@
         </div>
         <br />
         <div class="row">
-            <div class="col-sm-8 col-xs-offset-1">
+            <div class="col-sm-8 ">
                 <label class="col-2 col-form-label">Address</label>
                 <div class="col-10">
                     <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control" type="text" ></asp:TextBox>
@@ -197,7 +199,7 @@
             <br />
 
             <div class="row">
-                <div class="col-sm-8 col-xs-offset-1">
+                <div class="col-sm-8 ">
                     <label class="col-2 col-form-label">Phone Number</label>
                     <div class="col-10">
                         <asp:TextBox ID="TextBox8" runat="server" CssClass="form-control" type="number" ></asp:TextBox>
@@ -208,7 +210,7 @@
             </div>
         <br />
             <div class="row">
-                <div class="col-sm-4 col-xs-offset-1">
+                <div class="col-sm-4 ">
                     <label class="col-2 col-form-label">Username</label>
                     <div class="col-10">
                         <asp:TextBox ID="TextBox9" runat="server" CssClass="form-control" type="text" ></asp:TextBox>
@@ -225,7 +227,7 @@
                 </div>
                            <div class="col-sm-2">
                     <div class="col-10">
-                        <asp:TextBox ID="txtAPIAddCloudUser" runat="server" CssClass="form-control" type="text" ></asp:TextBox>
+                        <asp:TextBox ID="txtAPIAddCloudUser" runat="server" placeholder="API Key" CssClass="form-control" type="text" ></asp:TextBox>
                     </div>
                 </div>
             </div>
