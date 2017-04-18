@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Web;
 namespace File
 {
     [Serializable]
-    public class FileInfo
+    public class FileInfoWS
     {
         public byte[] File { get; set; }
         public string FileName { get; set; }

@@ -73,12 +73,19 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\WebS\CloudWebS.wsdl" />
+    <Content Include="pic\Icon Images\JPG.png" />
+    <Content Include="pic\Icon Images\MusicIcon.png" />
+    <Content Include="pic\Icon Images\pdfIcon.png" />
+    <Content Include="pic\Icon Images\PNGIcon.png" />
+    <Content Include="pic\Icon Images\PowerPointIcon.png" />
+    <Content Include="pic\Icon Images\WordIcon.jpg" />
+    <Content Include="pic\MusicIcon.png" />
     <Content Include="RequestAndTestWebS.aspx" />
-    <Content Include="Web References\WebS\Reference.map">
+    <None Include="Web References\WebS\CloudWebS.wsdl" />
+    <None Include="Web References\WebS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

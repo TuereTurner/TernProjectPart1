@@ -66,7 +66,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icon Images\MusicIcon.png" />
+    <Content Include="Icon Images\JPG.png" />
+    <Content Include="Icon Images\WordIcon.jpg" />
+    <Content Include="Icon Images\pdfIcon.png" />
+    <Content Include="Icon Images\PNGIcon.png" />
+    <Content Include="Icon Images\PowerPointIcon.png" />
     <Content Include="packages.config" />
+    <Content Include="WebUserControlShowFIle.ascx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,8 +111,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="WebUserControl1.ascx.cs">
+      <DependentUpon>WebUserControlShowFIle.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControl1.ascx.designer.cs">
+      <DependentUpon>WebUserControlShowFIle.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\File\File.csproj">
+      <Project>{a60e1668-754e-433e-9de3-22627c9a06e4}</Project>
+      <Name>File</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TermProject\Utilities\Utilities.csproj">
       <Project>{863001fc-7e33-4f6e-8be8-ae6513e7c5d4}</Project>
       <Name>Utilities</Name>
@@ -134,6 +152,7 @@
       <CachedSettingsPropName>WebSvc_WebS_CloudWebS</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

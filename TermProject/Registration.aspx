@@ -72,21 +72,15 @@
             </div>
         </div>
         <br />
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-3">
-                    <div class="alert alert-success" id="ATLSuccessAlert" runat="server" visible="false">
-                        <strong>Account Successfully Created!</strong>
-
-                    </div>
-                    <div class="alert alert-warning" id="ATLAccountFailure" runat="server" visible="false">
-                        <strong>Account was not created!</strong>
-
-                    </div>
-                </div>
+          <div class="alert alert-success" id="ATLSuccessAlert" runat="server" visible="false">
+                <strong>Information Successfully submitted!</strong>
+       
             </div>
+          <div class="alert alert-warning" id="ATLAccountFailure" runat="server" visible="false">
+                <strong>Information Not Successfully submitted!</strong>
+       
             </div>
-            <div class="row">
+         <div class="row">
 
                 <div class="col-sm-4 col-xs-offset-2">
                     <label class="col-2 col-form-label">First Name</label>
@@ -204,6 +198,9 @@
 
 
             </div>
+
+            <br />
+            <br />
 
             <br />
             <br />
