@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RequestAndTestWebS.aspx.cs" Inherits="TermProject.RequestAndTestWebS" %>
 
-<%@ Register Src="http://localhost:12400/WebUserControlShowFIle.ascx" TagPrefix="uc1" TagName="WebUserControlShowFIle" %>
+<%--<%@ Register Src="http://localhost:12400/WebUserControlShowFIle.ascx" TagPrefix="uc1" TagName="WebUserControlShowFIle" %>--%>
 
 
 <!DOCTYPE html>
@@ -120,7 +120,7 @@
                      <asp:TextBox AutoPostBack="true" OnTextChanged="txtGetAllFilesicon_TextChanged" runat="server" ID="txtGetAllFilesicon" placeholder="Enter User Name"></asp:TextBox>
         <asp:Label runat="server" ID="LblviewfILESMesage" ></asp:Label>
          
-             <asp:GridView ID="GvShowaLLfiLESwITHiCON" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="GvShowaLLfiLESwITHiCON_RowCancelingEdit" OnRowDeleting="GvShowaLLfiLESwITHiCON_RowDeleting" OnRowEditing="GvShowaLLfiLESwITHiCON_RowEditing" OnRowUpdating="GvShowaLLfiLESwITHiCON_RowUpdating" Width="463px">
+             <asp:GridView ID="GvShowaLLfiLESwITHiCON" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="GvShowaLLfiLESwITHiCON_RowCancelingEdit" OnRowDeleting="GvShowaLLfiLESwITHiCON_RowDeleting" OnRowEditing="GvShowaLLfiLESwITHiCON_RowEditing" OnRowUpdating="GvShowaLLfiLESwITHiCON_RowUpdating" Width="463px" OnSelectedIndexChanged="txtGetAllFilesicon_TextChanged">
             <Columns>
                 <asp:BoundField DataField="fileName" HeaderText="File Name" ReadOnly="true"/>
                 <asp:BoundField DataField="fileType" HeaderText="File Type" ReadOnly="true" />
@@ -128,7 +128,7 @@
                 <asp:BoundField DataField="uploadDate" HeaderText="Upload date" ReadOnly="true"  />
                 <asp:TemplateField HeaderText="UpdateFile to Newer Version">
                     <ItemTemplate>
-                        <asp:Image runat="server" id="gvIMage" />
+                        <asp:Image runat="server" id="gvIMage"/>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="UpdateFile to Newer Version">
@@ -142,8 +142,8 @@
 
             </Columns>
         </asp:GridView>
-            <!--
-    <uc1:WebUserControlShowFIle runat="server" id="WebUserControlShowFIle" /> -->
+            
+    <%--<uc1:WebUserControlShowFIle runat="server" id="WebUserControlShowFIle" /> --%>
         </div>
        
         <!--add accoumnt cloud admin-->
@@ -275,19 +275,19 @@
 
             </div>
         </div>
-        <!--Cloud user edits their own account-->
+        <!--Edit Cloud User Accounts As Admin-->
             <div>
               <h1>Edit Cloud User Accounts As Admin</h1>
         <asp:GridView ID="gvEditUserByAdmin" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="gvEditUserByAdmin_RowCancelingEdit" OnRowDeleting="gvEditUserByAdmin_RowDeleting" OnRowEditing="gvEditUserByAdmin_RowEditing" OnRowUpdating="gvEditUserByAdmin_RowUpdating1">
             <Columns>
-                <asp:BoundField DataField="username" HeaderText="Username" />
+                <asp:BoundField DataField="username" HeaderText="Username" ReadOnly="true" />
                 <asp:BoundField DataField="password" HeaderText="Password" />
                 <asp:BoundField DataField="typeOfUser" HeaderText="Type Of User" />
                 <asp:BoundField DataField="name" HeaderText="Name" />
                 <asp:BoundField DataField="email" HeaderText="Email" />
                 <asp:BoundField DataField="address" HeaderText="Address" />
                 <asp:BoundField DataField="phoneNumber" HeaderText="Phone Number" />
-                <asp:BoundField DataField="totalCapacity" HeaderText="Total Capacity" />
+                <asp:BoundField DataField="totalCapacity" HeaderText="Total Capacity"  />
                
                 
                  <asp:CommandField ButtonType="Button" HeaderText="Edit Account" ShowEditButton="true" />
@@ -295,6 +295,33 @@
             </Columns>
         </asp:GridView>
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div>
+            <h1>Edit Cloud User Accounts As Cloud User</h1>
+            <asp:GridView ID="gvUserEditUser" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="gvUserEditUser_RowCancelingEdit" OnRowEditing="gvUserEditUser_RowEditing" OnRowUpdated="gvUserEditUser_RowUpdated" OnRowUpdating="gvUserEditUser_RowUpdating">
+                <Columns>
+                <asp:BoundField DataField="username" HeaderText="Username" />
+                <asp:BoundField DataField="password" HeaderText="Password" />
+                <asp:BoundField DataField="typeOfUser" HeaderText="Type Of User" ReadOnly="true" />
+                <asp:BoundField DataField="name" HeaderText="Name" />
+                <asp:BoundField DataField="email" HeaderText="Email" />
+                <asp:BoundField DataField="address" HeaderText="Address" />
+                <asp:BoundField DataField="phoneNumber" HeaderText="Phone Number" />
+                <asp:BoundField DataField="totalCapacity" HeaderText="Total Capacity" ReadOnly="true" />
+               
+                
+                 <asp:CommandField ButtonType="Button" HeaderText="Edit Account" ShowEditButton="true" />
+
+            </Columns>
+            </asp:GridView>
+
+        </div>
+
         <br />
         <br />
         <br />
@@ -308,7 +335,7 @@
         
          <!--add modify  delete accoumnt-->
         <div>
-              <h1>Edit Cloud User Accounts As Administrator</h1>
+              <%--<h1>Edit Cloud User Accounts As Administrator</h1>--%>
         <%--<asp:GridView ID="GvCloudAccounts" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="GvCloudAccounts_RowCancelingEdit" OnRowDeleting="GvCloudAccounts_RowDeleting" OnRowEditing="GvCloudAccounts_RowEditing" OnRowUpdating="GvCloudAccounts_RowUpdating">
             <Columns>
                 <asp:BoundField DataField="UserID" HeaderText="UserName" />

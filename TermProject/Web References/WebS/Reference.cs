@@ -52,6 +52,12 @@ namespace TermProject.WebS {
         
         private System.Threading.SendOrPostCallback DeleteUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SelectFilesWithIconsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertUserTransactionsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SelectUserTransactionsOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -122,6 +128,15 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         public event DeleteUserCompletedEventHandler DeleteUserCompleted;
+        
+        /// <remarks/>
+        public event SelectFilesWithIconsCompletedEventHandler SelectFilesWithIconsCompleted;
+        
+        /// <remarks/>
+        public event InsertUserTransactionsCompletedEventHandler InsertUserTransactionsCompleted;
+        
+        /// <remarks/>
+        public event SelectUserTransactionsCompletedEventHandler SelectUserTransactionsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -444,6 +459,97 @@ namespace TermProject.WebS {
             if ((this.DeleteUserCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.DeleteUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SelectFilesWithIcons", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SelectFilesWithIcons(string userName) {
+            object[] results = this.Invoke("SelectFilesWithIcons", new object[] {
+                        userName});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SelectFilesWithIconsAsync(string userName) {
+            this.SelectFilesWithIconsAsync(userName, null);
+        }
+        
+        /// <remarks/>
+        public void SelectFilesWithIconsAsync(string userName, object userState) {
+            if ((this.SelectFilesWithIconsOperationCompleted == null)) {
+                this.SelectFilesWithIconsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSelectFilesWithIconsOperationCompleted);
+            }
+            this.InvokeAsync("SelectFilesWithIcons", new object[] {
+                        userName}, this.SelectFilesWithIconsOperationCompleted, userState);
+        }
+        
+        private void OnSelectFilesWithIconsOperationCompleted(object arg) {
+            if ((this.SelectFilesWithIconsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SelectFilesWithIconsCompleted(this, new SelectFilesWithIconsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertUserTransactions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string InsertUserTransactions(string Username, string Desc, string date) {
+            object[] results = this.Invoke("InsertUserTransactions", new object[] {
+                        Username,
+                        Desc,
+                        date});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InsertUserTransactionsAsync(string Username, string Desc, string date) {
+            this.InsertUserTransactionsAsync(Username, Desc, date, null);
+        }
+        
+        /// <remarks/>
+        public void InsertUserTransactionsAsync(string Username, string Desc, string date, object userState) {
+            if ((this.InsertUserTransactionsOperationCompleted == null)) {
+                this.InsertUserTransactionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertUserTransactionsOperationCompleted);
+            }
+            this.InvokeAsync("InsertUserTransactions", new object[] {
+                        Username,
+                        Desc,
+                        date}, this.InsertUserTransactionsOperationCompleted, userState);
+        }
+        
+        private void OnInsertUserTransactionsOperationCompleted(object arg) {
+            if ((this.InsertUserTransactionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertUserTransactionsCompleted(this, new InsertUserTransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SelectUserTransactions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SelectUserTransactions(string Username) {
+            object[] results = this.Invoke("SelectUserTransactions", new object[] {
+                        Username});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SelectUserTransactionsAsync(string Username) {
+            this.SelectUserTransactionsAsync(Username, null);
+        }
+        
+        /// <remarks/>
+        public void SelectUserTransactionsAsync(string Username, object userState) {
+            if ((this.SelectUserTransactionsOperationCompleted == null)) {
+                this.SelectUserTransactionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSelectUserTransactionsOperationCompleted);
+            }
+            this.InvokeAsync("SelectUserTransactions", new object[] {
+                        Username}, this.SelectUserTransactionsOperationCompleted, userState);
+        }
+        
+        private void OnSelectUserTransactionsOperationCompleted(object arg) {
+            if ((this.SelectUserTransactionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SelectUserTransactionsCompleted(this, new SelectUserTransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -904,6 +1010,84 @@ namespace TermProject.WebS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void DeleteUserCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void SelectFilesWithIconsCompletedEventHandler(object sender, SelectFilesWithIconsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SelectFilesWithIconsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SelectFilesWithIconsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void InsertUserTransactionsCompletedEventHandler(object sender, InsertUserTransactionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertUserTransactionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertUserTransactionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void SelectUserTransactionsCompletedEventHandler(object sender, SelectUserTransactionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SelectUserTransactionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SelectUserTransactionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591
