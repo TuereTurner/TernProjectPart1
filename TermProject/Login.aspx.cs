@@ -6,20 +6,20 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
 using Utilities;
+using WebSvc;
 
 namespace TermProject
 {
     public partial class Login : System.Web.UI.Page
     {
         WebS.CloudWebS pxy = new WebS.CloudWebS();
+        CloudWebS pxy2 = new CloudWebS();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack && Request.Cookies["LoginIDCookie"]!=null)
             {
                 HttpCookie cookie=   Request.Cookies["LoginIDCookie"];
-                txtUserName.Text = cookie.Values["loginID"].ToString();
-
-               
+                txtUserName.Text = cookie.Values["loginID"].ToString();               
             }
         }
 
@@ -46,7 +46,15 @@ namespace TermProject
                     //assign session key to reteive as user moves through the application
                     Session["login"] = "Loged in";
                     //redirect to main page
-                    Response.Redirect("AppMainPage.aspx");
+                    if(pxy2.GetAccountType(txtUserName.Text) == "Cloud User")
+                    {
+                        Response.Redirect("CloudUser.aspx");
+                    }
+                    if(pxy2.GetAccountType(txtUserName.Text) == "Cloud Administrator")
+                    {
+                        Response.Redirect("CloudAdministrator.aspx");
+                    }
+                    //Response.Redirect("AppMainPage.aspx");
                 }
                 else
                 {

@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppMainPage.aspx" />
+    <Content Include="CloudAdministrator.aspx" />
+    <Content Include="CloudUser.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -105,6 +107,20 @@
     </Compile>
     <Compile Include="AppMainPage.aspx.designer.cs">
       <DependentUpon>AppMainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CloudAdministrator.aspx.cs">
+      <DependentUpon>CloudAdministrator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CloudAdministrator.aspx.designer.cs">
+      <DependentUpon>CloudAdministrator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CloudUser.aspx.cs">
+      <DependentUpon>CloudUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CloudUser.aspx.designer.cs">
+      <DependentUpon>CloudUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

@@ -247,6 +247,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetFilesByIcon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFilesByIconResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFilesByIconResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddUserSoapIn">
@@ -333,6 +354,12 @@
   <wsdl:message name="SelectUserTransactionsSoapOut">
     <wsdl:part name="parameters" element="tns:SelectUserTransactionsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetFilesByIconSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFilesByIcon" />
+  </wsdl:message>
+  <wsdl:message name="GetFilesByIconSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFilesByIconResponse" />
+  </wsdl:message>
   <wsdl:portType name="CloudWebSSoap">
     <wsdl:operation name="AddUser">
       <wsdl:input message="tns:AddUserSoapIn" />
@@ -389,6 +416,10 @@
     <wsdl:operation name="SelectUserTransactions">
       <wsdl:input message="tns:SelectUserTransactionsSoapIn" />
       <wsdl:output message="tns:SelectUserTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesByIcon">
+      <wsdl:input message="tns:GetFilesByIconSoapIn" />
+      <wsdl:output message="tns:GetFilesByIconSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWebSSoap" type="tns:CloudWebSSoap">
@@ -519,6 +550,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetFilesByIcon">
+      <soap:operation soapAction="http://tempuri.org/GetFilesByIcon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CloudWebSSoap12" type="tns:CloudWebSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -641,6 +681,15 @@
     </wsdl:operation>
     <wsdl:operation name="SelectUserTransactions">
       <soap12:operation soapAction="http://tempuri.org/SelectUserTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesByIcon">
+      <soap12:operation soapAction="http://tempuri.org/GetFilesByIcon" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

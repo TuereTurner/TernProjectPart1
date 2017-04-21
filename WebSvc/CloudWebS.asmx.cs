@@ -690,5 +690,51 @@ namespace WebSvc
             set1.Tables.Add(tb);
             return set1;
         }
+        
+        [WebMethod]
+        public String GetAccountType(String username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            DataSet ds = new DataSet();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetAccountType";
+
+            objCommand.Parameters.AddWithValue("@username", username);                    
+
+            ds = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            string dsToString = ds.ToString();
+
+            if (dsToString == "Cloud User")
+            {
+                return "Cloud User";
+            }
+            else
+            {
+                return "Cloud Administrator";
+            }
+        }
+
+        [WebMethod]
+        public Boolean CheckDuplicateUsername(string username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetUsernames";
+
+            DataSet ds = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            foreach (DataRow row in ds.Tables[""].Rows)
+            {
+                if (row.ToString() == username) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
