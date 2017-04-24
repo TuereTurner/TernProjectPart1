@@ -161,6 +161,7 @@ namespace TermProject
         {
             GvShowaLLfiLESwITHiCON.EditIndex = -1;
             GenerateGvShowaLLfiLESwITHiCONGridView();
+            //k.kjjkki
         }
 
         protected void gvEditUserByAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
