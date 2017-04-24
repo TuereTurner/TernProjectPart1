@@ -12,8 +12,7 @@ namespace TermProject
     public partial class RequestAndTestWebS : System.Web.UI.Page
     {
         static String userNemFilesearch ;
-        WebS.CloudWebS pxy = new WebS.CloudWebS();
-        CloudWebS pxy2 = new CloudWebS();
+         WebS.CloudWebS pxy = new WebS.CloudWebS();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -59,6 +58,14 @@ namespace TermProject
             GvFiles.DataSource = set;
             GvFiles.DataBind();
             GvFiles.Visible = true;
+        }
+        public void GenerateGvShowaLLfiLESwITHiCONGridView()
+        {
+            DataSet set = new DataSet();
+            set = pxy.GetFilesByUser(txtuserNameGetAllFiles.Text);
+            GvShowaLLfiLESwITHiCON.DataSource = set;
+            GvShowaLLfiLESwITHiCON.DataBind();
+            GvShowaLLfiLESwITHiCON.Visible = true;
         }
         protected void GvFiles_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
@@ -141,8 +148,8 @@ namespace TermProject
 
         protected void GvCloudAccounts_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            GvFiles.EditIndex = -1;
-            GenerateFileGridView();
+            GvShowaLLfiLESwITHiCON.EditIndex = -1;
+            GenerateGvShowaLLfiLESwITHiCONGridView();
         }
 
         protected void gvEditUserByAdmin_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -159,7 +166,8 @@ namespace TermProject
 
         protected void GvCloudAccounts_RowEditing(object sender, GridViewEditEventArgs e)
         {
-
+            GvFiles.EditIndex = e.NewEditIndex;
+            GenerateFileGridView();
         }
 
         protected void btnUploadFile_Click(object sender, EventArgs e)
@@ -243,58 +251,6 @@ namespace TermProject
             userNemFilesearch = username;
             GenerateFileGridView();
 
-        }
-
-        protected void gvEditUserByAdmin_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            gvEditUserByAdmin.EditIndex = e.NewEditIndex;
-            gvEditUserByAdmin.DataSource = pxy.GetAllUsers();
-            gvEditUserByAdmin.DataBind();
-        }
-
-        protected void gvEditUserByAdmin_RowUpdating(object sender, GridViewEditEventArgs e)
-        {
-            //pxy.EditUserByAdmin(gvEditUserByAdmin, e.RowIndex);
-            //gvEditUserByAdmin.DataSource = pxy.GetAllUsers();
-            //gvEditUserByAdmin.EditIndex = -1;
-            //gvEditUserByAdmin.DataBind();
-        }
-
-        protected void gvEditUserByAdmin_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void gvEditUserByAdmin_RowUpdating1(object sender, GridViewUpdateEventArgs e)
-        {
-            pxy2.EditUserByAdmin(gvEditUserByAdmin, e.RowIndex);
-            gvEditUserByAdmin.DataSource = pxy.GetAllUsers();
-            gvEditUserByAdmin.EditIndex = -1;
-            gvEditUserByAdmin.DataBind();
-
-        }
-
-        protected void gvEditUserByAdmin_RowUpdated(object sender, GridViewUpdatedEventArgs e)
-        {
-            gvEditUserByAdmin.DataSource = pxy.GetAllUsers();
-            gvEditUserByAdmin.DataBind();
-
-        }
-
-        protected void gvEditUserByAdmin_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            gvEditUserByAdmin.EditIndex = -1;
-            gvEditUserByAdmin.DataSource = pxy.GetAllUsers();
-            gvEditUserByAdmin.DataBind();
-        }
-
-        protected void btnDeleteUser_Click(object sender, EventArgs e)
-        {
-            string username = ddlDeleteUser.SelectedItem.Value;
-
-            pxy.DeleteUser(username);
-
-            ddlDeleteUser.DataBind();
         }
     }
 }
