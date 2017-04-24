@@ -338,6 +338,72 @@ namespace WebSvc
 
         }
         [WebMethod]
+        public DataSet GetFilesByIcon(String userName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetUserFiles";
+
+            objCommand.Parameters.AddWithValue("@username", userName);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+            ///add colum to dataset
+
+            //////////
+            DataSet set1 = new DataSet();
+            /////////
+
+            DataTable tb = new DataTable();
+                tb.Clear();
+                tb.Columns.Add("FileIcon");
+            for (int i = 0; i < set.Tables[0].Rows.Count; i++)
+            {
+                String ext = set.Tables[0].Rows[i]["fileType"].ToString();
+
+                DataRow row = tb.NewRow();
+
+
+                switch (ext)
+                {
+                    case ".jpg":
+                        row["FileIcon"] = "~/pic/Icon Images/JPG.png";
+                        tb.Rows.Add(row);
+
+                        break;
+
+                    case ".mp3":
+                        row["FileIcon"] = "~/pic/Icon Images/MusicIcon.png";
+                        tb.Rows.Add(row);
+
+                        break;
+                    case ".pdf":
+                        row["FileIcon"] = "~/pic/Icon Images/pdfIcon.png";
+                        tb.Rows.Add(row);
+
+                        break;
+                    case ".png":
+                        row["FileIcon"] = "~/pic/Icon Images/PNGIcon.png";
+                        tb.Rows.Add(row);
+
+                        break;
+                    case ".pptx":
+                        row["FileIcon"] = "~/pic/Icon Images/PowerPointIcon.png";
+                        tb.Rows.Add(row);
+
+                        break;
+                    case ".docx":
+                        row["FileIcon"] = "~/pic/Icon Images/WordIcon.jpg";
+                        tb.Rows.Add(row);
+
+                        break;
+                }
+            }
+            set1.Tables.Add(tb);
+            return set1;
+        }
+        [WebMethod]
         public String DeleteFile(String username,String fileName, float size)
         {
             DBConnect objDB1 = new DBConnect();
@@ -368,6 +434,8 @@ namespace WebSvc
                 return "File Not Deleted";
             }else
             {
+                InsertUserTransactions(username, username + " Deleted File " + fileName + "", DateTime.Today.ToString());
+
                 return "File Successfully Deleted";
             }
         }
@@ -405,6 +473,8 @@ namespace WebSvc
             }
             else
             {
+                //record trannsaction
+                InsertUserTransactions(OBJFile.Username, OBJFile.Username + " Updated File " + OBJFile.FileName + "", DateTime.Today.ToString());
                 return "File Successfully updated.";
             }
         }
@@ -467,6 +537,51 @@ namespace WebSvc
             objCommand.Parameters.AddWithValue("@username", username);
 
             objDB.DoUpdateUsingCmdObj(objCommand);
+        }
+
+        [WebMethod]
+        public DataSet SelectUserTransactions(String Username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectUserTransactions";
+
+            objCommand.Parameters.AddWithValue("@username", Username);
+            objCommand.Parameters.AddWithValue("@dateOne", DateTime.Today.ToString());
+            objCommand.Parameters.AddWithValue("@dateTwo", DateTime.Today.AddDays(-1).ToString());
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            return set;
+        }
+        [WebMethod]
+        public String InsertUserTransactions(String Username, String Desc, String date)
+        {
+
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            //set parameters for stored prosdure
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "InsertRecentUserTransaction";
+            objCommand.Parameters.AddWithValue("@desc", Desc);
+            objCommand.Parameters.AddWithValue("@date", date);
+            objCommand.Parameters.AddWithValue("@userName", Username);
+
+            int updated = 0;
+            ///upload file
+            updated = objDB.DoUpdateUsingCmdObj(objCommand);
+           
+            if (updated == 0)
+            {
+                return "Transaction not recorded";
+            }
+            else
+            {
+                return "Transaction Successfully Recorded.";
+            }
         }
     }
 }

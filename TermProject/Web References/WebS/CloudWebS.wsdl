@@ -132,6 +132,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetFilesByIcon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFilesByIconResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFilesByIconResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="DeleteFile">
         <s:complexType>
           <s:sequence>
@@ -161,6 +182,33 @@
             <s:element minOccurs="0" maxOccurs="1" name="UpDateFileResult" type="s:string" />
           </s:sequence>
         </s:complexType>
+      </s:element>
+      <s:element name="GetAllUsers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllUsersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserResponse">
+        <s:complexType />
       </s:element>
     </s:schema>
   </wsdl:types>
@@ -206,6 +254,12 @@
   <wsdl:message name="GetFilesByUserSoapOut">
     <wsdl:part name="parameters" element="tns:GetFilesByUserResponse" />
   </wsdl:message>
+  <wsdl:message name="GetFilesByIconSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFilesByIcon" />
+  </wsdl:message>
+  <wsdl:message name="GetFilesByIconSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFilesByIconResponse" />
+  </wsdl:message>
   <wsdl:message name="DeleteFileSoapIn">
     <wsdl:part name="parameters" element="tns:DeleteFile" />
   </wsdl:message>
@@ -217,6 +271,18 @@
   </wsdl:message>
   <wsdl:message name="UpDateFileSoapOut">
     <wsdl:part name="parameters" element="tns:UpDateFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetAllUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
   </wsdl:message>
   <wsdl:portType name="CloudWebSSoap">
     <wsdl:operation name="AddUser">
@@ -247,6 +313,10 @@
       <wsdl:input message="tns:GetFilesByUserSoapIn" />
       <wsdl:output message="tns:GetFilesByUserSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetFilesByIcon">
+      <wsdl:input message="tns:GetFilesByIconSoapIn" />
+      <wsdl:output message="tns:GetFilesByIconSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteFile">
       <wsdl:input message="tns:DeleteFileSoapIn" />
       <wsdl:output message="tns:DeleteFileSoapOut" />
@@ -254,6 +324,14 @@
     <wsdl:operation name="UpDateFile">
       <wsdl:input message="tns:UpDateFileSoapIn" />
       <wsdl:output message="tns:UpDateFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input message="tns:GetAllUsersSoapIn" />
+      <wsdl:output message="tns:GetAllUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input message="tns:DeleteUserSoapIn" />
+      <wsdl:output message="tns:DeleteUserSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWebSSoap" type="tns:CloudWebSSoap">
@@ -321,6 +399,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetFilesByIcon">
+      <soap:operation soapAction="http://tempuri.org/GetFilesByIcon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteFile">
       <soap:operation soapAction="http://tempuri.org/DeleteFile" style="document" />
       <wsdl:input>
@@ -332,6 +419,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpDateFile">
       <soap:operation soapAction="http://tempuri.org/UpDateFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap:operation soapAction="http://tempuri.org/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/DeleteUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -405,6 +510,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetFilesByIcon">
+      <soap12:operation soapAction="http://tempuri.org/GetFilesByIcon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteFile">
       <soap12:operation soapAction="http://tempuri.org/DeleteFile" style="document" />
       <wsdl:input>
@@ -416,6 +530,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpDateFile">
       <soap12:operation soapAction="http://tempuri.org/UpDateFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap12:operation soapAction="http://tempuri.org/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap12:operation soapAction="http://tempuri.org/DeleteUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

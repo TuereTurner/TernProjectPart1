@@ -44,6 +44,8 @@ namespace TermProject.WebS {
         
         private System.Threading.SendOrPostCallback GetFilesByUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetFilesByIconOperationCompleted;
+        
         private System.Threading.SendOrPostCallback DeleteFileOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpDateFileOperationCompleted;
@@ -110,6 +112,9 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         public event GetFilesByUserCompletedEventHandler GetFilesByUserCompleted;
+        
+        /// <remarks/>
+        public event GetFilesByIconCompletedEventHandler GetFilesByIconCompleted;
         
         /// <remarks/>
         public event DeleteFileCompletedEventHandler DeleteFileCompleted;
@@ -327,6 +332,35 @@ namespace TermProject.WebS {
             if ((this.GetFilesByUserCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetFilesByUserCompleted(this, new GetFilesByUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetFilesByIcon", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetFilesByIcon(string userName) {
+            object[] results = this.Invoke("GetFilesByIcon", new object[] {
+                        userName});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetFilesByIconAsync(string userName) {
+            this.GetFilesByIconAsync(userName, null);
+        }
+        
+        /// <remarks/>
+        public void GetFilesByIconAsync(string userName, object userState) {
+            if ((this.GetFilesByIconOperationCompleted == null)) {
+                this.GetFilesByIconOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetFilesByIconOperationCompleted);
+            }
+            this.InvokeAsync("GetFilesByIcon", new object[] {
+                        userName}, this.GetFilesByIconOperationCompleted, userState);
+        }
+        
+        private void OnGetFilesByIconOperationCompleted(object arg) {
+            if ((this.GetFilesByIconCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetFilesByIconCompleted(this, new GetFilesByIconCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -810,6 +844,32 @@ namespace TermProject.WebS {
         private object[] results;
         
         internal GetFilesByUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetFilesByIconCompletedEventHandler(object sender, GetFilesByIconCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetFilesByIconCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetFilesByIconCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

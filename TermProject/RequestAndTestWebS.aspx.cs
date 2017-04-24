@@ -54,7 +54,7 @@ namespace TermProject
         public void GenerateFileGridView()
         {
             DataSet set = new DataSet();
-            set = pxy.GetFilesByUser(txtuserNameGetAllFiles.Text);
+            set = pxy.GetFilesByIcon(txtuserNameGetAllFiles.Text);
             GvFiles.DataSource = set;
             GvFiles.DataBind();
             GvFiles.Visible = true;
@@ -65,6 +65,17 @@ namespace TermProject
             set = pxy.GetFilesByUser(txtuserNameGetAllFiles.Text);
             GvShowaLLfiLESwITHiCON.DataSource = set;
             GvShowaLLfiLESwITHiCON.DataBind();
+            ///
+            DataSet set1 = new DataSet();
+         set1=   pxy.GetFilesByIcon(userName);
+            ///use table to asign
+            ///
+            for(int i = 0; i < set1.Tables[0].Rows.Count; i++)
+            {
+                gvIMage.ImagUrl = set1.Tables[0].Rows[i].ToString();
+            }
+           
+           
             GvShowaLLfiLESwITHiCON.Visible = true;
         }
         protected void GvFiles_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -250,6 +261,41 @@ namespace TermProject
             String username = txtuserNameGetAllFiles.Text;
             userNemFilesearch = username;
             GenerateFileGridView();
+
+        }
+
+        protected void txtGetAllFilesicon_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GvShowaLLfiLESwITHiCON_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+
+        }
+
+        protected void GvShowaLLfiLESwITHiCON_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void GvShowaLLfiLESwITHiCON_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void GvShowaLLfiLESwITHiCON_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+        }
+
+        protected void gvEditUserByAdmin_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+
+        }
+
+        protected void gvEditUserByAdmin_RowCancelingEdit1(object sender, GridViewCancelEditEventArgs e)
+        {
 
         }
     }
