@@ -42,7 +42,7 @@ namespace TermProject
             user.Username = username;
             user.Address = Address;
             //return object to webservice
-            if (pxy2.CheckDuplicateUsername(username))
+            if (pxy2.CheckDuplicateUsername(txtUserName.Text))
             {
                 if (pxy.AddUser(user))
                 {
@@ -58,7 +58,7 @@ namespace TermProject
                         UserIdCookie.Expires = new DateTime(2025, 1, 1);
                         Response.Cookies.Add(UserIdCookie);
                     }
-                    Response.Redirect("AppMainPage.aspx");
+                    Response.Redirect("Login.aspx");
 
                 }
             }
@@ -67,6 +67,11 @@ namespace TermProject
                 lblBadUsername.Visible = true;
                 ATLAccountFailure.Visible = true;
             }
+
+        }
+
+        protected void txtUserName_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

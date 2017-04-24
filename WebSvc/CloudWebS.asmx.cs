@@ -720,6 +720,7 @@ namespace WebSvc
         [WebMethod]
         public Boolean CheckDuplicateUsername(string username)
         {
+            Boolean retVal = false;
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
 
@@ -727,14 +728,20 @@ namespace WebSvc
             objCommand.CommandText = "GetUsernames";
 
             DataSet ds = objDB.GetDataSetUsingCmdObj(objCommand);
+            //ds.Tables[0].Rows[i]["username"].ToString();
 
-            foreach (DataRow row in ds.Tables[""].Rows)
+            for(int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
-                if (row.ToString() == username) {
-                    return false;
+                if(ds.Tables[0].Rows[i]["username"].ToString() == username)
+                {
+                    retVal = false;
+                }
+                else
+                {
+                    retVal = true;
                 }
             }
-            return true;
+            return retVal;
         }
     }
 }

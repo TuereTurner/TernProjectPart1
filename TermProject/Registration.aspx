@@ -173,7 +173,7 @@
             <div class="col-sm-4 col-xs-offset-2">
                 <label class="col-2 col-form-label">Username</label>
                 <div class="col-10">
-                    <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" type="text" required="true"></asp:TextBox>
+                    <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" type="text" required="true" AutoPostBack="True" OnTextChanged="txtUserName_TextChanged"></asp:TextBox>
 
                 </div>
             </div>
