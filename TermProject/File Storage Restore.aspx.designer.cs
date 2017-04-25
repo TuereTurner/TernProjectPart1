@@ -7,63 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebSvc {
+namespace TermProject {
     
     
-    public partial class WebUserControl1 {
+    public partial class File_Storage_Restore {
         
         /// <summary>
-        /// LblUserControlUserNamw control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblUserControlUserNamw;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lblUsercontrolFileName control.
+        /// GridVDeletedFiles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsercontrolFileName;
+        protected global::System.Web.UI.WebControls.GridView GridVDeletedFiles;
         
         /// <summary>
-        /// LblUserCOontrolFileSize control.
+        /// BTNDeletedFileReover control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblUserCOontrolFileSize;
+        protected global::System.Web.UI.WebControls.Button BTNDeletedFileReover;
         
         /// <summary>
-        /// ImgUserControlFileIcon control.
+        /// GridViewVersionRecover control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImgUserControlFileIcon;
+        protected global::System.Web.UI.WebControls.GridView GridViewVersionRecover;
         
         /// <summary>
-        /// LblUserControlFileType control.
+        /// GvShowaLLfiLESwITHiCON control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblUserControlFileType;
-        
-        /// <summary>
-        /// lblUserControlFileUPloadDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserControlFileUPloadDate;
+        protected global::System.Web.UI.WebControls.GridView GvShowaLLfiLESwITHiCON;
     }
 }

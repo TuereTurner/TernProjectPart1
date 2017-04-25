@@ -87,6 +87,8 @@
           <s:element minOccurs="0" maxOccurs="1" name="FileType" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="UploadDate" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentFolder" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Path" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="UploadFileResponse">
@@ -268,6 +270,34 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetAccountType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDuplicateUsername">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDuplicateUsernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckDuplicateUsernameResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddUserSoapIn">
@@ -360,6 +390,18 @@
   <wsdl:message name="GetFilesByIconSoapOut">
     <wsdl:part name="parameters" element="tns:GetFilesByIconResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAccountTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccountType" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckDuplicateUsernameSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateUsername" />
+  </wsdl:message>
+  <wsdl:message name="CheckDuplicateUsernameSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateUsernameResponse" />
+  </wsdl:message>
   <wsdl:portType name="CloudWebSSoap">
     <wsdl:operation name="AddUser">
       <wsdl:input message="tns:AddUserSoapIn" />
@@ -420,6 +462,14 @@
     <wsdl:operation name="GetFilesByIcon">
       <wsdl:input message="tns:GetFilesByIconSoapIn" />
       <wsdl:output message="tns:GetFilesByIconSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountType">
+      <wsdl:input message="tns:GetAccountTypeSoapIn" />
+      <wsdl:output message="tns:GetAccountTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateUsername">
+      <wsdl:input message="tns:CheckDuplicateUsernameSoapIn" />
+      <wsdl:output message="tns:CheckDuplicateUsernameSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWebSSoap" type="tns:CloudWebSSoap">
@@ -559,6 +609,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAccountType">
+      <soap:operation soapAction="http://tempuri.org/GetAccountType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateUsername">
+      <soap:operation soapAction="http://tempuri.org/CheckDuplicateUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CloudWebSSoap12" type="tns:CloudWebSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -690,6 +758,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetFilesByIcon">
       <soap12:operation soapAction="http://tempuri.org/GetFilesByIcon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountType">
+      <soap12:operation soapAction="http://tempuri.org/GetAccountType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateUsername">
+      <soap12:operation soapAction="http://tempuri.org/CheckDuplicateUsername" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

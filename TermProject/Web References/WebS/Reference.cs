@@ -60,6 +60,10 @@ namespace TermProject.WebS {
         
         private System.Threading.SendOrPostCallback GetFilesByIconOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetAccountTypeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckDuplicateUsernameOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -142,6 +146,12 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         public event GetFilesByIconCompletedEventHandler GetFilesByIconCompleted;
+        
+        /// <remarks/>
+        public event GetAccountTypeCompletedEventHandler GetAccountTypeCompleted;
+        
+        /// <remarks/>
+        public event CheckDuplicateUsernameCompletedEventHandler CheckDuplicateUsernameCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -588,6 +598,64 @@ namespace TermProject.WebS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountType", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetAccountType(string username) {
+            object[] results = this.Invoke("GetAccountType", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAccountTypeAsync(string username) {
+            this.GetAccountTypeAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void GetAccountTypeAsync(string username, object userState) {
+            if ((this.GetAccountTypeOperationCompleted == null)) {
+                this.GetAccountTypeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAccountTypeOperationCompleted);
+            }
+            this.InvokeAsync("GetAccountType", new object[] {
+                        username}, this.GetAccountTypeOperationCompleted, userState);
+        }
+        
+        private void OnGetAccountTypeOperationCompleted(object arg) {
+            if ((this.GetAccountTypeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAccountTypeCompleted(this, new GetAccountTypeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CheckDuplicateUsername", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool CheckDuplicateUsername(string username) {
+            object[] results = this.Invoke("CheckDuplicateUsername", new object[] {
+                        username});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckDuplicateUsernameAsync(string username) {
+            this.CheckDuplicateUsernameAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void CheckDuplicateUsernameAsync(string username, object userState) {
+            if ((this.CheckDuplicateUsernameOperationCompleted == null)) {
+                this.CheckDuplicateUsernameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckDuplicateUsernameOperationCompleted);
+            }
+            this.InvokeAsync("CheckDuplicateUsername", new object[] {
+                        username}, this.CheckDuplicateUsernameOperationCompleted, userState);
+        }
+        
+        private void OnCheckDuplicateUsernameOperationCompleted(object arg) {
+            if ((this.CheckDuplicateUsernameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckDuplicateUsernameCompleted(this, new CheckDuplicateUsernameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -719,6 +787,10 @@ namespace TermProject.WebS {
         
         private string usernameField;
         
+        private string currentFolderField;
+        
+        private string pathField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
         public byte[] File {
@@ -777,6 +849,26 @@ namespace TermProject.WebS {
             }
             set {
                 this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CurrentFolder {
+            get {
+                return this.currentFolderField;
+            }
+            set {
+                this.currentFolderField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Path {
+            get {
+                return this.pathField;
+            }
+            set {
+                this.pathField = value;
             }
         }
     }
@@ -1145,6 +1237,58 @@ namespace TermProject.WebS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetAccountTypeCompletedEventHandler(object sender, GetAccountTypeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAccountTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAccountTypeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void CheckDuplicateUsernameCompletedEventHandler(object sender, CheckDuplicateUsernameCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckDuplicateUsernameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckDuplicateUsernameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }

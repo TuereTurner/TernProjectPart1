@@ -338,9 +338,14 @@ namespace WebSvc
 
 
         }
+    //seltes file addes it to trash bin //tracks the transaction
         [WebMethod]
-        public String DeleteFile(String username, String fileName, float size)
+        public String DeleteFile(String username, FileInfoWS file)
         {
+            String fileName = file.FileName;
+            float size = file.FileSize;
+            byte[] bytefileArray = file.File;
+            
             DBConnect objDB1 = new DBConnect();
             SqlCommand objCommand1 = new SqlCommand();
             objCommand1.CommandType = CommandType.StoredProcedure;
@@ -361,22 +366,38 @@ namespace WebSvc
             objCommand.Parameters.AddWithValue("@username", username);
             objCommand.Parameters.AddWithValue("@fileSize", -(size));
 
-
+            //
             int updated1 = 0;
             updated1 = objDB1.DoUpdateUsingCmdObj(objCommand1);
+
+           
             if (updated1 == 0)
             {
                 return "File Not Deleted";
             }
             else
             {
+                //add deletede file to dleted file table 
+                SqlCommand objCommand2 = new SqlCommand();
+                objCommand2.CommandType = CommandType.StoredProcedure;
+                objCommand2.CommandText = "InsertDeletedFile";
+                objCommand2.Parameters.AddWithValue("@file", bytefileArray);
+                objCommand2.Parameters.AddWithValue("@Date", DateTime.Now.ToShortDateString().ToString());
+                objCommand2.Parameters.AddWithValue("@fileType", file.FileType );
+                objCommand2.Parameters.AddWithValue("@fileName", fileName);
+                objCommand2.Parameters.AddWithValue("@fileSize", size);
+
+                objCommand2.Parameters.AddWithValue("@username", username);
+                objDB1.DoUpdateUsingCmdObj(objCommand2);
+
+                ////track user movements 
                 InsertUserTransactions(username, username + " Deleted File " + fileName + "", DateTime.Today.ToString());
 
                 return "File Successfully Deleted";
             }
         }
         [WebMethod]
-        public String UpDateFile(FileInfoWS OBJFile)
+        public String UpDateFile(FileInfoWS OBJFile, String newFileName)
         {
 
             BinaryFormatter Serializer = new BinaryFormatter();
@@ -409,6 +430,25 @@ namespace WebSvc
             }
             else
             {
+                //add file to recovey old version file
+                SqlCommand objCommand1 = new SqlCommand();
+
+                //set parameters for stored prosdure
+                objCommand1.CommandType = CommandType.StoredProcedure;
+                objCommand1.CommandText = "InsertRecoveryFile";
+                objCommand1.Parameters.AddWithValue("@username", OBJFile.Username);
+                objCommand1.Parameters.AddWithValue("@file", bytefileArray);
+                objCommand1.Parameters.AddWithValue("@Date", OBJFile.UploadDate);
+                objCommand1.Parameters.AddWithValue("@fileType", OBJFile.FileType);
+                objCommand1.Parameters.AddWithValue("@fileName", OBJFile.FileName);
+                objCommand1.Parameters.AddWithValue("@fileSize", OBJFile.FileSize);
+                
+                objCommand1.Parameters.AddWithValue("@versionNUM", newFileName);
+
+                ///insert
+                updated = objDB.DoUpdateUsingCmdObj(objCommand1);
+          
+
                 //record trannsaction
                 InsertUserTransactions(OBJFile.Username, OBJFile.Username + " Updated File " + OBJFile.FileName + "", DateTime.Today.ToString());
                 return "File Successfully updated.";
@@ -632,62 +672,68 @@ namespace WebSvc
 
             //////////
             DataSet set1 = new DataSet();
+            DataColumn col = new DataColumn();
 
-
-
-
-
-
-
-
+            col.ColumnName = "FileIcon";
             /////////
 
+
             DataTable tb = new DataTable();
-            tb.Clear();
-            tb.Columns.Add("FileIcon");
+            tb.TableName = "Icons";
+            DataRow row;
+            tb.Columns.Add(col);
+         
+
             for (int i = 0; i < set.Tables[0].Rows.Count; i++)
             {
                 String ext = set.Tables[0].Rows[i]["fileType"].ToString();
 
-                DataRow row = tb.NewRow();
+               
 
 
                 switch (ext)
                 {
                     case ".jpg":
-                        row["FileIcon"] = "~/pic/Icon Images/JPG.png";
+                        row = tb.NewRow();
+
+                        row[0] = "~/pic/Icon Images/JPG.png";
                         tb.Rows.Add(row);
 
                         break;
 
                     case ".mp3":
-                        row["FileIcon"] = "~/pic/Icon Images/MusicIcon.png";
+                        row = tb.NewRow();
+                        row[0] = "~/pic/Icon Images/MusicIcon.png";
                         tb.Rows.Add(row);
 
                         break;
                     case ".pdf":
-                        row["FileIcon"] = "~/pic/Icon Images/pdfIcon.png";
+                        row = tb.NewRow();
+                        row[0] = "~/pic/Icon Images/pdfIcon.png";
                         tb.Rows.Add(row);
 
                         break;
                     case ".png":
-                        row["FileIcon"] = "~/pic/Icon Images/PNGIcon.png";
+                        row = tb.NewRow();
+                        row[0] = "~/pic/Icon Images/PNGIcon.png";
                         tb.Rows.Add(row);
 
                         break;
                     case ".pptx":
-                        row["FileIcon"] = "~/pic/Icon Images/PowerPointIcon.png";
+                        row = tb.NewRow();
+                        row[0] = "~/pic/Icon Images/PowerPointIcon.png";
                         tb.Rows.Add(row);
 
                         break;
                     case ".docx":
-                        row["FileIcon"] = "~/pic/Icon Images/WordIcon.jpg";
+                        row = tb.NewRow();
+                        row[0] = "~/pic/Icon Images/WordIcon.jpg";
                         tb.Rows.Add(row);
 
                         break;
                 }
             }
-            set1.Tables.Add(tb);
+           set1.Tables.Add(tb);
             return set1;
         }
         
@@ -742,6 +788,37 @@ namespace WebSvc
                 }
             }
             return retVal;
+        }
+
+        [WebMethod]
+        public DataSet SelectAllDeletedFiles(String Username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectDeletedFiles";
+
+            objCommand.Parameters.AddWithValue("@username", Username);
+     
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            return set;
+        }
+        [WebMethod]
+        public DataSet SelectAlRevery_OlderVersionFiles(String Username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectFile_OlderVersion_Recovery";
+
+            objCommand.Parameters.AddWithValue("@username", Username);
+          
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            return set;
         }
     }
 }

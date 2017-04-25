@@ -15,5 +15,7 @@ namespace File
         public string FileType { get; set; }
         public string UploadDate { get; set; }
         public string Username { get; set; }
+        public string CurrentFolder { get; set; }
+        public string Path { get; set; }
     }
 }

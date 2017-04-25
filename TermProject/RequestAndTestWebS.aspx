@@ -126,9 +126,9 @@
                 <asp:BoundField DataField="fileType" HeaderText="File Type" ReadOnly="true" />
                 <asp:BoundField DataField="fileSize" HeaderText="Size" ReadOnly="true"/>
                 <asp:BoundField DataField="uploadDate" HeaderText="Upload date" ReadOnly="true"  />
-                <asp:TemplateField HeaderText="UpdateFile to Newer Version">
+                <asp:TemplateField HeaderText=" icon">
                     <ItemTemplate>
-                        <asp:Image runat="server" id="gvIMage"/>
+                        <asp:Image runat="server" id="gvIMage" Height="60" Width="45"  />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="UpdateFile to Newer Version">

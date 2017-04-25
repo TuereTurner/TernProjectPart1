@@ -69,6 +69,7 @@
     <Content Include="AppMainPage.aspx" />
     <Content Include="CloudAdministrator.aspx" />
     <Content Include="CloudUser.aspx" />
+    <Content Include="File Storage Restore.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -121,6 +122,13 @@
     </Compile>
     <Compile Include="CloudUser.aspx.designer.cs">
       <DependentUpon>CloudUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File Storage Restore.aspx.cs">
+      <DependentUpon>File Storage Restore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File Storage Restore.aspx.designer.cs">
+      <DependentUpon>File Storage Restore.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
