@@ -138,8 +138,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="size" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="file" type="tns:FileInfoWS" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -154,6 +153,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="OBJFile" type="tns:FileInfoWS" />
+            <s:element minOccurs="0" maxOccurs="1" name="newFileName" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -298,6 +298,48 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="SelectAllDeletedFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAllDeletedFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAllDeletedFilesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAlRevery_OlderVersionFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAlRevery_OlderVersionFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAlRevery_OlderVersionFilesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddUserSoapIn">
@@ -402,6 +444,18 @@
   <wsdl:message name="CheckDuplicateUsernameSoapOut">
     <wsdl:part name="parameters" element="tns:CheckDuplicateUsernameResponse" />
   </wsdl:message>
+  <wsdl:message name="SelectAllDeletedFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAllDeletedFiles" />
+  </wsdl:message>
+  <wsdl:message name="SelectAllDeletedFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAllDeletedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAlRevery_OlderVersionFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAlRevery_OlderVersionFiles" />
+  </wsdl:message>
+  <wsdl:message name="SelectAlRevery_OlderVersionFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAlRevery_OlderVersionFilesResponse" />
+  </wsdl:message>
   <wsdl:portType name="CloudWebSSoap">
     <wsdl:operation name="AddUser">
       <wsdl:input message="tns:AddUserSoapIn" />
@@ -470,6 +524,14 @@
     <wsdl:operation name="CheckDuplicateUsername">
       <wsdl:input message="tns:CheckDuplicateUsernameSoapIn" />
       <wsdl:output message="tns:CheckDuplicateUsernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllDeletedFiles">
+      <wsdl:input message="tns:SelectAllDeletedFilesSoapIn" />
+      <wsdl:output message="tns:SelectAllDeletedFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAlRevery_OlderVersionFiles">
+      <wsdl:input message="tns:SelectAlRevery_OlderVersionFilesSoapIn" />
+      <wsdl:output message="tns:SelectAlRevery_OlderVersionFilesSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWebSSoap" type="tns:CloudWebSSoap">
@@ -627,6 +689,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SelectAllDeletedFiles">
+      <soap:operation soapAction="http://tempuri.org/SelectAllDeletedFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAlRevery_OlderVersionFiles">
+      <soap:operation soapAction="http://tempuri.org/SelectAlRevery_OlderVersionFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CloudWebSSoap12" type="tns:CloudWebSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -776,6 +856,24 @@
     </wsdl:operation>
     <wsdl:operation name="CheckDuplicateUsername">
       <soap12:operation soapAction="http://tempuri.org/CheckDuplicateUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllDeletedFiles">
+      <soap12:operation soapAction="http://tempuri.org/SelectAllDeletedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAlRevery_OlderVersionFiles">
+      <soap12:operation soapAction="http://tempuri.org/SelectAlRevery_OlderVersionFiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

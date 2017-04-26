@@ -64,6 +64,10 @@ namespace TermProject.WebS {
         
         private System.Threading.SendOrPostCallback CheckDuplicateUsernameOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SelectAllDeletedFilesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SelectAlRevery_OlderVersionFilesOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -152,6 +156,12 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         public event CheckDuplicateUsernameCompletedEventHandler CheckDuplicateUsernameCompleted;
+        
+        /// <remarks/>
+        public event SelectAllDeletedFilesCompletedEventHandler SelectAllDeletedFilesCompleted;
+        
+        /// <remarks/>
+        public event SelectAlRevery_OlderVersionFilesCompletedEventHandler SelectAlRevery_OlderVersionFilesCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -362,28 +372,26 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string DeleteFile(string username, string fileName, float size) {
+        public string DeleteFile(string username, FileInfoWS file) {
             object[] results = this.Invoke("DeleteFile", new object[] {
                         username,
-                        fileName,
-                        size});
+                        file});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void DeleteFileAsync(string username, string fileName, float size) {
-            this.DeleteFileAsync(username, fileName, size, null);
+        public void DeleteFileAsync(string username, FileInfoWS file) {
+            this.DeleteFileAsync(username, file, null);
         }
         
         /// <remarks/>
-        public void DeleteFileAsync(string username, string fileName, float size, object userState) {
+        public void DeleteFileAsync(string username, FileInfoWS file, object userState) {
             if ((this.DeleteFileOperationCompleted == null)) {
                 this.DeleteFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteFileOperationCompleted);
             }
             this.InvokeAsync("DeleteFile", new object[] {
                         username,
-                        fileName,
-                        size}, this.DeleteFileOperationCompleted, userState);
+                        file}, this.DeleteFileOperationCompleted, userState);
         }
         
         private void OnDeleteFileOperationCompleted(object arg) {
@@ -395,24 +403,26 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpDateFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string UpDateFile(FileInfoWS OBJFile) {
+        public string UpDateFile(FileInfoWS OBJFile, string newFileName) {
             object[] results = this.Invoke("UpDateFile", new object[] {
-                        OBJFile});
+                        OBJFile,
+                        newFileName});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void UpDateFileAsync(FileInfoWS OBJFile) {
-            this.UpDateFileAsync(OBJFile, null);
+        public void UpDateFileAsync(FileInfoWS OBJFile, string newFileName) {
+            this.UpDateFileAsync(OBJFile, newFileName, null);
         }
         
         /// <remarks/>
-        public void UpDateFileAsync(FileInfoWS OBJFile, object userState) {
+        public void UpDateFileAsync(FileInfoWS OBJFile, string newFileName, object userState) {
             if ((this.UpDateFileOperationCompleted == null)) {
                 this.UpDateFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpDateFileOperationCompleted);
             }
             this.InvokeAsync("UpDateFile", new object[] {
-                        OBJFile}, this.UpDateFileOperationCompleted, userState);
+                        OBJFile,
+                        newFileName}, this.UpDateFileOperationCompleted, userState);
         }
         
         private void OnUpDateFileOperationCompleted(object arg) {
@@ -652,6 +662,64 @@ namespace TermProject.WebS {
             if ((this.CheckDuplicateUsernameCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CheckDuplicateUsernameCompleted(this, new CheckDuplicateUsernameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SelectAllDeletedFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SelectAllDeletedFiles(string Username) {
+            object[] results = this.Invoke("SelectAllDeletedFiles", new object[] {
+                        Username});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SelectAllDeletedFilesAsync(string Username) {
+            this.SelectAllDeletedFilesAsync(Username, null);
+        }
+        
+        /// <remarks/>
+        public void SelectAllDeletedFilesAsync(string Username, object userState) {
+            if ((this.SelectAllDeletedFilesOperationCompleted == null)) {
+                this.SelectAllDeletedFilesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSelectAllDeletedFilesOperationCompleted);
+            }
+            this.InvokeAsync("SelectAllDeletedFiles", new object[] {
+                        Username}, this.SelectAllDeletedFilesOperationCompleted, userState);
+        }
+        
+        private void OnSelectAllDeletedFilesOperationCompleted(object arg) {
+            if ((this.SelectAllDeletedFilesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SelectAllDeletedFilesCompleted(this, new SelectAllDeletedFilesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SelectAlRevery_OlderVersionFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SelectAlRevery_OlderVersionFiles(string Username) {
+            object[] results = this.Invoke("SelectAlRevery_OlderVersionFiles", new object[] {
+                        Username});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SelectAlRevery_OlderVersionFilesAsync(string Username) {
+            this.SelectAlRevery_OlderVersionFilesAsync(Username, null);
+        }
+        
+        /// <remarks/>
+        public void SelectAlRevery_OlderVersionFilesAsync(string Username, object userState) {
+            if ((this.SelectAlRevery_OlderVersionFilesOperationCompleted == null)) {
+                this.SelectAlRevery_OlderVersionFilesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSelectAlRevery_OlderVersionFilesOperationCompleted);
+            }
+            this.InvokeAsync("SelectAlRevery_OlderVersionFiles", new object[] {
+                        Username}, this.SelectAlRevery_OlderVersionFilesOperationCompleted, userState);
+        }
+        
+        private void OnSelectAlRevery_OlderVersionFilesOperationCompleted(object arg) {
+            if ((this.SelectAlRevery_OlderVersionFilesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SelectAlRevery_OlderVersionFilesCompleted(this, new SelectAlRevery_OlderVersionFilesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1289,6 +1357,58 @@ namespace TermProject.WebS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void SelectAllDeletedFilesCompletedEventHandler(object sender, SelectAllDeletedFilesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SelectAllDeletedFilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SelectAllDeletedFilesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void SelectAlRevery_OlderVersionFilesCompletedEventHandler(object sender, SelectAlRevery_OlderVersionFilesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SelectAlRevery_OlderVersionFilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SelectAlRevery_OlderVersionFilesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }
