@@ -10,7 +10,7 @@
 namespace TermProject {
     
     
-    public partial class CloudAdministrator {
+    public partial class File_Storage_Restore {
         
         /// <summary>
         /// form1 control.
@@ -22,21 +22,39 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// btnEditCloudUsers control.
+        /// GridVDeletedFiles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditCloudUsers;
+        protected global::System.Web.UI.WebControls.GridView GridVDeletedFiles;
         
         /// <summary>
-        /// btn control.
+        /// BTNDeletedFileReover control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn;
+        protected global::System.Web.UI.WebControls.Button BTNDeletedFileReover;
+        
+        /// <summary>
+        /// GridViewVersionRecover control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewVersionRecover;
+        
+        /// <summary>
+        /// GvShowaLLfiLESwITHiCON control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GvShowaLLfiLESwITHiCON;
     }
 }

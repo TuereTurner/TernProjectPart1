@@ -120,6 +120,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExtraStorageUser\ExtraStorage.csproj">
+      <Project>{c0d200dd-33d1-48e1-a93b-3a7dccf590b4}</Project>
+      <Name>ExtraStorage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\File\File.csproj">
       <Project>{a60e1668-754e-433e-9de3-22627c9a06e4}</Project>
       <Name>File</Name>

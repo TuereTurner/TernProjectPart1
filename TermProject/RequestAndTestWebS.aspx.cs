@@ -390,19 +390,27 @@ namespace TermProject
         public void GenerateGvShowaLLfiLESwITHiCONGridView()
         {
             DataSet set = new DataSet();
-            set = pxy.GetFilesByUser(txtuserNameGetAllFiles.Text);
+            set = pxy.GetFilesByUser(txtGetAllFilesicon.Text);
             GvShowaLLfiLESwITHiCON.DataSource = set;
             GvShowaLLfiLESwITHiCON.DataBind();
             ///
+            CloudWebS cl = new CloudWebS();
             DataSet set1 = new DataSet();
-            set1 = pxy2.GetFilesByIcon(userNemFilesearchIcon);
+            set1 = pxy.GetFilesByIcon(userNemFilesearchIcon);
+
             ///use table to asign
             ///          
+            DataTable table = set1.Tables["Icons"];
+
             //Image img = (Image)GvShowaLLfiLESwITHiCON.Rows[i].FindControl["gvIMage"];
-            for (int i = 0; i < set1.Tables[0].Rows.Count; i++)
+            for (int i = 0; i < set1.Tables["Icons"].Rows.Count; i++)
             {
                 Image img = (Image)GvShowaLLfiLESwITHiCON.Rows[i].FindControl("gvIMage");
-                img.ImageUrl = set1.Tables[0].Rows[i].ToString();
+
+
+                img.ImageUrl = table.Rows[i].ItemArray[0].ToString();
+
+                String g = table.Rows[i].ItemArray.ToString();
             }
 
 
@@ -432,7 +440,7 @@ namespace TermProject
 
         protected void gvUserEditUser_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            pxy2.UserEditUser(gvUserEditUser, e.RowIndex);
+            //pxy2.UserEditUser(gvUserEditUser, e.RowIndex);
             gvUserEditUser.DataSource = pxy.GetAllUsers();
             gvUserEditUser.EditIndex = -1;
             gvUserEditUser.DataBind();

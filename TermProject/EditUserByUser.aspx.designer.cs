@@ -10,7 +10,7 @@
 namespace TermProject {
     
     
-    public partial class CloudAdministrator {
+    public partial class EditUserByUser {
         
         /// <summary>
         /// form1 control.
@@ -22,21 +22,12 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// btnEditCloudUsers control.
+        /// gvEditUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditCloudUsers;
-        
-        /// <summary>
-        /// btn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn;
+        protected global::System.Web.UI.WebControls.GridView gvEditUser;
     }
 }

@@ -12,6 +12,7 @@ using System.Data;
 using File;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using ExtraStorage;
 
 namespace WebSvc
 {
@@ -338,9 +339,14 @@ namespace WebSvc
 
 
         }
+        //seltes file addes it to trash bin //tracks the transaction
         [WebMethod]
-        public String DeleteFile(String username, String fileName, float size)
+        public String DeleteFile(String username, FileInfoWS file)
         {
+            String fileName = file.FileName;
+            float size = file.FileSize;
+            byte[] bytefileArray = file.File;
+
             DBConnect objDB1 = new DBConnect();
             SqlCommand objCommand1 = new SqlCommand();
             objCommand1.CommandType = CommandType.StoredProcedure;
@@ -361,22 +367,38 @@ namespace WebSvc
             objCommand.Parameters.AddWithValue("@username", username);
             objCommand.Parameters.AddWithValue("@fileSize", -(size));
 
-
+            //
             int updated1 = 0;
             updated1 = objDB1.DoUpdateUsingCmdObj(objCommand1);
+
+
             if (updated1 == 0)
             {
                 return "File Not Deleted";
             }
             else
             {
+                //add deletede file to dleted file table 
+                SqlCommand objCommand2 = new SqlCommand();
+                objCommand2.CommandType = CommandType.StoredProcedure;
+                objCommand2.CommandText = "InsertDeletedFile";
+                objCommand2.Parameters.AddWithValue("@file", bytefileArray);
+                objCommand2.Parameters.AddWithValue("@Date", DateTime.Now.ToShortDateString().ToString());
+                objCommand2.Parameters.AddWithValue("@fileType", file.FileType);
+                objCommand2.Parameters.AddWithValue("@fileName", fileName);
+                objCommand2.Parameters.AddWithValue("@fileSize", size);
+
+                objCommand2.Parameters.AddWithValue("@username", username);
+                objDB1.DoUpdateUsingCmdObj(objCommand2);
+
+                ////track user movements 
                 InsertUserTransactions(username, username + " Deleted File " + fileName + "", DateTime.Today.ToString());
 
                 return "File Successfully Deleted";
             }
         }
         [WebMethod]
-        public String UpDateFile(FileInfoWS OBJFile)
+        public String UpDateFile(FileInfoWS OBJFile, String newFileName)
         {
 
             BinaryFormatter Serializer = new BinaryFormatter();
@@ -409,6 +431,25 @@ namespace WebSvc
             }
             else
             {
+                //add file to recovey old version file
+                SqlCommand objCommand1 = new SqlCommand();
+
+                //set parameters for stored prosdure
+                objCommand1.CommandType = CommandType.StoredProcedure;
+                objCommand1.CommandText = "InsertRecoveryFile";
+                objCommand1.Parameters.AddWithValue("@username", OBJFile.Username);
+                objCommand1.Parameters.AddWithValue("@file", bytefileArray);
+                objCommand1.Parameters.AddWithValue("@Date", OBJFile.UploadDate);
+                objCommand1.Parameters.AddWithValue("@fileType", OBJFile.FileType);
+                objCommand1.Parameters.AddWithValue("@fileName", OBJFile.FileName);
+                objCommand1.Parameters.AddWithValue("@fileSize", OBJFile.FileSize);
+
+                objCommand1.Parameters.AddWithValue("@versionNUM", newFileName);
+
+                ///insert
+                updated = objDB.DoUpdateUsingCmdObj(objCommand1);
+
+
                 //record trannsaction
                 InsertUserTransactions(OBJFile.Username, OBJFile.Username + " Updated File " + OBJFile.FileName + "", DateTime.Today.ToString());
                 return "File Successfully updated.";
@@ -540,7 +581,7 @@ namespace WebSvc
             set.Tables.Add(tb);
             return set;
         }
-        public GridView UserEditUser(GridView gv, int i)
+        public GridView UserEditUser(GridView gv, int i, String thisUser)
         {
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
@@ -548,7 +589,7 @@ namespace WebSvc
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "UserEditUser";
 
-            string username = ((TextBox)gv.Rows[i].Cells[0].Controls[0]).Text;
+            string username = thisUser;
             string password = ((TextBox)gv.Rows[i].Cells[1].Controls[0]).Text;
             //string typeOfUser = ((TextBox)gv.Rows[i].Cells[2].Controls[0]).Text;
             string name = ((TextBox)gv.Rows[i].Cells[3].Controls[0]).Text;
@@ -632,56 +673,62 @@ namespace WebSvc
 
             //////////
             DataSet set1 = new DataSet();
+            DataColumn col = new DataColumn();
 
-
-
-
-
-
-
-
+            col.ColumnName = "FileIcon";
             /////////
 
+
             DataTable tb = new DataTable();
-            tb.Clear();
-            tb.Columns.Add("FileIcon");
+            tb.TableName = "Icons";
+            DataRow row;
+            tb.Columns.Add(col);
+
+
             for (int i = 0; i < set.Tables[0].Rows.Count; i++)
             {
                 String ext = set.Tables[0].Rows[i]["fileType"].ToString();
 
-                DataRow row = tb.NewRow();
+
 
 
                 switch (ext)
                 {
                     case ".jpg":
-                        row["FileIcon"] = "~/pic/Icon Images/JPG.png";
+                        row = tb.NewRow();
+
+                        row[0] = "~/pic/Icon Images/JPG.png";
                         tb.Rows.Add(row);
 
                         break;
 
                     case ".mp3":
-                        row["FileIcon"] = "~/pic/Icon Images/MusicIcon.png";
+                        row = tb.NewRow();
+                        row[0] = "~/pic/Icon Images/MusicIcon.png";
                         tb.Rows.Add(row);
 
                         break;
                     case ".pdf":
-                        row["FileIcon"] = "~/pic/Icon Images/pdfIcon.png";
+                        row = tb.NewRow();
+                        row[0] = "~/pic/Icon Images/pdfIcon.png";
                         tb.Rows.Add(row);
 
                         break;
                     case ".png":
-                        row["FileIcon"] = "~/pic/Icon Images/PNGIcon.png";
+                        row = tb.NewRow();
+                        row[0] = "~/pic/Icon Images/PNGIcon.png";
                         tb.Rows.Add(row);
 
                         break;
                     case ".pptx":
-                        row["FileIcon"] = "~/pic/Icon Images/PowerPointIcon.png";
+                        row = tb.NewRow();
+                        row[0] = "~/pic/Icon Images/PowerPointIcon.png";
                         tb.Rows.Add(row);
 
                         break;
                     case ".docx":
-                        row["FileIcon"] = "~/pic/Icon Images/WordIcon.jpg";
+                        row = tb.NewRow();
+                        row[0] = "~/pic/Icon Images/WordIcon.jpg";
                         tb.Rows.Add(row);
 
                         break;
@@ -690,7 +737,7 @@ namespace WebSvc
             set1.Tables.Add(tb);
             return set1;
         }
-        
+
         [WebMethod]
         public String GetAccountType(String username)
         {
@@ -705,16 +752,20 @@ namespace WebSvc
 
             ds = objDB.GetDataSetUsingCmdObj(objCommand);
 
-            string dsToString = ds.ToString();
+            //string dsToString = ds.Tables[0].Rows[i]["username"].ToString()
 
-            if (dsToString == "Cloud User")
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
-                return "Cloud User";
+                if (ds.Tables[0].Rows[i]["typeOfUser"].ToString() == "Cloud User")
+                {
+                    return "Cloud User";
+                }
+                else
+                {
+                    return "Cloud Administrator";
+                }
             }
-            else
-            {
-                return "Cloud Administrator";
-            }
+            return null;
         }
 
         [WebMethod]
@@ -742,6 +793,183 @@ namespace WebSvc
                 }
             }
             return retVal;
+        }
+
+        [WebMethod]
+        public DataSet SelectAllDeletedFiles(String Username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectDeletedFiles";
+
+            objCommand.Parameters.AddWithValue("@username", Username);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            return set;
+        }
+        [WebMethod]
+        public DataSet SelectAlRevery_OlderVersionFiles(String Username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectFile_OlderVersion_Recovery";
+
+            objCommand.Parameters.AddWithValue("@username", Username);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            return set;
+        }
+
+        [WebMethod]
+        public DataSet GetStoragePlans()
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            DataSet ds;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetStoragePlans";
+
+            return ds = objDB.GetDataSetUsingCmdObj(objCommand);
+        }
+
+        [WebMethod]
+        public Boolean InsertPurchaseExtraStorage(ExtraStorageUser ESU)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "InsertExtraStorage";
+
+            if (ESU != null)
+            {
+
+                objCommand.Parameters.AddWithValue("@username", ESU.Username);
+                objCommand.Parameters.AddWithValue("@creditCardNumber", ESU.CreditCardNumber);
+                objCommand.Parameters.AddWithValue("@creditCardExpiration", ESU.CreditCardExpiration);
+                objCommand.Parameters.AddWithValue("@creditCardCVV", ESU.CreditCardCVV);
+                objCommand.Parameters.AddWithValue("@billingAddress", ESU.BillingAddress);
+                objCommand.Parameters.AddWithValue("@phoneNumber", ESU.PhoneNumber);
+                objCommand.Parameters.AddWithValue("@storageAmount", ESU.StorageAmount);
+                objCommand.Parameters.AddWithValue("@storageCost", ESU.StorageCost);
+                objCommand.Parameters.AddWithValue("@name", ESU.Name);
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public Boolean UpdateUserStorageCapacity(ExtraStorageUser ESU)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateStorageAmount";
+            
+            objCommand.Parameters.AddWithValue("@username", ESU.Username);
+            objCommand.Parameters.AddWithValue("@storageAmount", ESU.StorageAmount);
+
+            int count = objDB.DoUpdateUsingCmdObj(objCommand);
+            
+            if(count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        [WebMethod]
+        public Boolean AskQuestion(String username, String question)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "InsertQuestions";
+
+            objCommand.Parameters.AddWithValue("@username", username);
+            objCommand.Parameters.AddWithValue("@question", question);
+
+            int count = objDB.DoUpdateUsingCmdObj(objCommand);
+
+            if(count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        [WebMethod]
+        public Boolean AnswerQuestion(String answerUsername, String answer, int questionsID)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "AnswerQuestion";
+
+            objCommand.Parameters.AddWithValue("@answerUsername", answerUsername);
+            objCommand.Parameters.AddWithValue("@answer", answer);
+            objCommand.Parameters.AddWithValue("@questionsID", questionsID);
+
+            int count = objDB.DoUpdateUsingCmdObj(objCommand);
+
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public DataSet GetQuestions()
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetQuestions";
+
+            DataSet ds = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            return ds;
+        }
+
+        [WebMethod]
+        public DataSet GetSpecificUser(String username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetSpecificUser";
+
+            objCommand.Parameters.AddWithValue("@username", username);
+
+            DataSet ds;
+
+            return ds = objDB.GetDataSetUsingCmdObj(objCommand);
         }
     }
 }

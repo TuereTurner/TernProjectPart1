@@ -10,7 +10,7 @@
 namespace TermProject {
     
     
-    public partial class CloudUser {
+    public partial class ViewOrAnswerQuestions {
         
         /// <summary>
         /// form1 control.
@@ -22,30 +22,57 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// btnBuyMoreStorage control.
+        /// gvQuestions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuyMoreStorage;
+        protected global::System.Web.UI.WebControls.GridView gvQuestions;
         
         /// <summary>
-        /// btnAskQuestion control.
+        /// lblQuestionsID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAskQuestion;
+        protected global::System.Web.UI.WebControls.Label lblQuestionsID;
         
         /// <summary>
-        /// btnEditInformation control.
+        /// txtQuestionsID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditInformation;
+        protected global::System.Web.UI.WebControls.TextBox txtQuestionsID;
+        
+        /// <summary>
+        /// lblAnswer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAnswer;
+        
+        /// <summary>
+        /// txtAnswer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAnswer;
+        
+        /// <summary>
+        /// btnAnswerQuestion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAnswerQuestion;
     }
 }

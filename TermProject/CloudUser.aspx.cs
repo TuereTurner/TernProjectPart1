@@ -13,5 +13,20 @@ namespace TermProject
         {
 
         }
+
+        protected void btnBuyMoreStorage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BuyMoreStorage.aspx");
+        }
+
+        protected void btnAskQuestion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AskQuestion.aspx");
+        }
+
+        protected void btnEditInformation_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EditUserByUser.aspx");
+        }
     }
 }

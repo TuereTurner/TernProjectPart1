@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSvc", "WebSvc\WebSvc.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File", "File\File.csproj", "{A60E1668-754E-433E-9DE3-22627C9A06E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraStorage", "ExtraStorageUser\ExtraStorage.csproj", "{C0D200DD-33D1-48E1-A93B-3A7DCCF590B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A60E1668-754E-433E-9DE3-22627C9A06E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A60E1668-754E-433E-9DE3-22627C9A06E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A60E1668-754E-433E-9DE3-22627C9A06E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0D200DD-33D1-48E1-A93B-3A7DCCF590B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0D200DD-33D1-48E1-A93B-3A7DCCF590B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0D200DD-33D1-48E1-A93B-3A7DCCF590B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0D200DD-33D1-48E1-A93B-3A7DCCF590B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
