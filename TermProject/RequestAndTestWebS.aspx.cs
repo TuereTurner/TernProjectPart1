@@ -78,7 +78,21 @@ namespace TermProject
             String filename = GvFiles.Rows[row].Cells[0].Text;
             //call funtion to do update
             String results = "";
-            results = pxy.DeleteFile(username, filename, size);
+            //couls selecft fthe file then put it in
+           
+
+            //get byte[]aaray
+
+            DataSet byteset = pxy.SelectOneFFile(username, filename);
+
+            byte[] filebyte =(byte[])(byteset.Tables[0].Rows[0]["file"]);
+
+            WebS.FileInfoWS file = new WebS.FileInfoWS();
+            file.FileName = filename;
+            file.File = filebyte;
+                file.FileSize = size;
+            ///deletes file and storws on deleted file table
+            results = pxy.DeleteFile(username, file);
             lblfileListMessage.Text = results;
             lblfileListMessage.ForeColor = System.Drawing.Color.Green;
             //regenerate gridview
@@ -126,7 +140,7 @@ namespace TermProject
 
                 //call funtion to do update
                 String results = "";
-                results = pxy.UpDateFile(objfile);
+                results = pxy.UpDateFile(objfile, objfile.FileName + " " + DateTime.Today.ToShortDateString());
                 lblfileListMessage.Text = results;
                 lblfileListMessage.ForeColor = System.Drawing.Color.Green;
                 //regenerate gridview
@@ -315,7 +329,17 @@ namespace TermProject
             String filename = GvShowaLLfiLESwITHiCON.Rows[row].Cells[0].Text;
             //call funtion to do update
             String results = "";
-            results = pxy.DeleteFile(username, filename, size);
+            DataSet byteset = pxy.SelectOneFFile(username, filename);
+
+            byte[] filebyte = (byte[])(byteset.Tables[0].Rows[0]["file"]);
+
+            WebS.FileInfoWS file = new WebS.FileInfoWS();
+            file.FileName = filename;
+            file.File = filebyte;
+            file.FileSize = size;
+            ///deletes file and storws on deleted file table
+            results = pxy.DeleteFile(username, file);
+           
             lblfileListMessage.Text = results;
             lblfileListMessage.ForeColor = System.Drawing.Color.Green;
             //regenerate gridview
@@ -357,7 +381,7 @@ namespace TermProject
 
                 //call funtion to do update
                 String results = "";
-                results = pxy.UpDateFile(objfile);
+                results = pxy.UpDateFile(objfile, objfile.FileName+" "+DateTime.Today.ToShortDateString());
                 lblfileListMessage.Text = results;
                 lblfileListMessage.ForeColor = System.Drawing.Color.Green;
                 //regenerate gridview

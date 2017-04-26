@@ -102,8 +102,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Registration.aspx" />
-    <None Include="Web References\WebS\CloudWebS.disco" />
     <Content Include="ViewOrAnswerQuestions.aspx" />
+    <None Include="Web References\WebS\CloudWebS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
