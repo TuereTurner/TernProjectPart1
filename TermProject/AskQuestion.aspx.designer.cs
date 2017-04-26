@@ -10,7 +10,7 @@
 namespace TermProject {
     
     
-    public partial class CloudUser {
+    public partial class AskQuestion {
         
         /// <summary>
         /// form1 control.
@@ -22,13 +22,22 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// btnBuyMoreStorage control.
+        /// lblAskQuestion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuyMoreStorage;
+        protected global::System.Web.UI.WebControls.Label lblAskQuestion;
+        
+        /// <summary>
+        /// txtQuestion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtQuestion;
         
         /// <summary>
         /// btnAskQuestion control.
@@ -40,12 +49,21 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.Button btnAskQuestion;
         
         /// <summary>
-        /// btnEditInformation control.
+        /// lblQuestions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditInformation;
+        protected global::System.Web.UI.WebControls.Label lblQuestions;
+        
+        /// <summary>
+        /// gvQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvQuestions;
     }
 }

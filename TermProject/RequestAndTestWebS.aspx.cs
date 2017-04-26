@@ -394,7 +394,7 @@ namespace TermProject
             GvShowaLLfiLESwITHiCON.DataSource = set;
             GvShowaLLfiLESwITHiCON.DataBind();
             ///
-            CloudWebS cl =new CloudWebS();
+            CloudWebS cl = new CloudWebS();
             DataSet set1 = new DataSet();
             set1 = pxy.GetFilesByIcon(userNemFilesearchIcon);
 
@@ -409,7 +409,7 @@ namespace TermProject
 
 
                 img.ImageUrl = table.Rows[i].ItemArray[0].ToString();
-               
+
                 String g = table.Rows[i].ItemArray.ToString();
             }
 
@@ -440,7 +440,7 @@ namespace TermProject
 
         protected void gvUserEditUser_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            pxy2.UserEditUser(gvUserEditUser, e.RowIndex);
+            //pxy2.UserEditUser(gvUserEditUser, e.RowIndex);
             gvUserEditUser.DataSource = pxy.GetAllUsers();
             gvUserEditUser.EditIndex = -1;
             gvUserEditUser.DataBind();

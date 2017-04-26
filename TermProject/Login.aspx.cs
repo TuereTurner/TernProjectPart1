@@ -44,7 +44,7 @@ namespace TermProject
                     //show success allert
                     ATLSuccessAlert.Visible = true;
                     //assign session key to reteive as user moves through the application
-                    Session["login"] = "Loged in";
+                    Session["login"] = txtUserName.Text;
                     //redirect to main page
                     if(pxy2.GetAccountType(txtUserName.Text) == "Cloud User")
                     {

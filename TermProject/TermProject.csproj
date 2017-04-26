@@ -67,8 +67,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppMainPage.aspx" />
+    <Content Include="AskQuestion.aspx" />
+    <Content Include="BuyMoreStorage.aspx" />
     <Content Include="CloudAdministrator.aspx" />
     <Content Include="CloudUser.aspx" />
+    <Content Include="EditCloudUsers.aspx" />
+    <Content Include="EditUserByUser.aspx" />
     <Content Include="File Storage Restore.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
@@ -99,6 +103,7 @@
   <ItemGroup>
     <Content Include="Registration.aspx" />
     <None Include="Web References\WebS\CloudWebS.disco" />
+    <Content Include="ViewOrAnswerQuestions.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +113,20 @@
     </Compile>
     <Compile Include="AppMainPage.aspx.designer.cs">
       <DependentUpon>AppMainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AskQuestion.aspx.cs">
+      <DependentUpon>AskQuestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AskQuestion.aspx.designer.cs">
+      <DependentUpon>AskQuestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BuyMoreStorage.aspx.cs">
+      <DependentUpon>BuyMoreStorage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BuyMoreStorage.aspx.designer.cs">
+      <DependentUpon>BuyMoreStorage.aspx</DependentUpon>
     </Compile>
     <Compile Include="CloudAdministrator.aspx.cs">
       <DependentUpon>CloudAdministrator.aspx</DependentUpon>
@@ -122,6 +141,20 @@
     </Compile>
     <Compile Include="CloudUser.aspx.designer.cs">
       <DependentUpon>CloudUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditCloudUsers.aspx.cs">
+      <DependentUpon>EditCloudUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditCloudUsers.aspx.designer.cs">
+      <DependentUpon>EditCloudUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditUserByUser.aspx.cs">
+      <DependentUpon>EditUserByUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditUserByUser.aspx.designer.cs">
+      <DependentUpon>EditUserByUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="File Storage Restore.aspx.cs">
       <DependentUpon>File Storage Restore.aspx</DependentUpon>
@@ -157,6 +190,13 @@
     <Compile Include="RequestAndTestWebS.aspx.designer.cs">
       <DependentUpon>RequestAndTestWebS.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewOrAnswerQuestions.aspx.cs">
+      <DependentUpon>ViewOrAnswerQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewOrAnswerQuestions.aspx.designer.cs">
+      <DependentUpon>ViewOrAnswerQuestions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Web References\WebS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -164,6 +204,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExtraStorageUser\ExtraStorage.csproj">
+      <Project>{c0d200dd-33d1-48e1-a93b-3a7dccf590b4}</Project>
+      <Name>ExtraStorage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\File\File.csproj">
+      <Project>{a60e1668-754e-433e-9de3-22627c9a06e4}</Project>
+      <Name>File</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Users\Users.csproj">
+      <Project>{65e1cd43-acb5-4604-af2f-1eb7210171c1}</Project>
+      <Name>Users</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebSvc\WebSvc.csproj">
       <Project>{bc204064-3dd3-4e2b-89ee-cc62ceb3b87e}</Project>
       <Name>WebSvc</Name>

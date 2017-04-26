@@ -64,9 +64,11 @@ namespace TermProject.WebS {
         
         private System.Threading.SendOrPostCallback CheckDuplicateUsernameOperationCompleted;
         
-        private System.Threading.SendOrPostCallback SelectAllDeletedFilesOperationCompleted;
+        private System.Threading.SendOrPostCallback GetStoragePlansOperationCompleted;
         
-        private System.Threading.SendOrPostCallback SelectAlRevery_OlderVersionFilesOperationCompleted;
+        private System.Threading.SendOrPostCallback InsertPurchaseExtraStorageOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateUserStorageCapacityOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -158,10 +160,13 @@ namespace TermProject.WebS {
         public event CheckDuplicateUsernameCompletedEventHandler CheckDuplicateUsernameCompleted;
         
         /// <remarks/>
-        public event SelectAllDeletedFilesCompletedEventHandler SelectAllDeletedFilesCompleted;
+        public event GetStoragePlansCompletedEventHandler GetStoragePlansCompleted;
         
         /// <remarks/>
-        public event SelectAlRevery_OlderVersionFilesCompletedEventHandler SelectAlRevery_OlderVersionFilesCompleted;
+        public event InsertPurchaseExtraStorageCompletedEventHandler InsertPurchaseExtraStorageCompleted;
+        
+        /// <remarks/>
+        public event UpdateUserStorageCapacityCompletedEventHandler UpdateUserStorageCapacityCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -372,26 +377,28 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string DeleteFile(string username, FileInfoWS file) {
+        public string DeleteFile(string username, string fileName, float size) {
             object[] results = this.Invoke("DeleteFile", new object[] {
                         username,
-                        file});
+                        fileName,
+                        size});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void DeleteFileAsync(string username, FileInfoWS file) {
-            this.DeleteFileAsync(username, file, null);
+        public void DeleteFileAsync(string username, string fileName, float size) {
+            this.DeleteFileAsync(username, fileName, size, null);
         }
         
         /// <remarks/>
-        public void DeleteFileAsync(string username, FileInfoWS file, object userState) {
+        public void DeleteFileAsync(string username, string fileName, float size, object userState) {
             if ((this.DeleteFileOperationCompleted == null)) {
                 this.DeleteFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteFileOperationCompleted);
             }
             this.InvokeAsync("DeleteFile", new object[] {
                         username,
-                        file}, this.DeleteFileOperationCompleted, userState);
+                        fileName,
+                        size}, this.DeleteFileOperationCompleted, userState);
         }
         
         private void OnDeleteFileOperationCompleted(object arg) {
@@ -403,26 +410,24 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpDateFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string UpDateFile(FileInfoWS OBJFile, string newFileName) {
+        public string UpDateFile(FileInfoWS OBJFile) {
             object[] results = this.Invoke("UpDateFile", new object[] {
-                        OBJFile,
-                        newFileName});
+                        OBJFile});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void UpDateFileAsync(FileInfoWS OBJFile, string newFileName) {
-            this.UpDateFileAsync(OBJFile, newFileName, null);
+        public void UpDateFileAsync(FileInfoWS OBJFile) {
+            this.UpDateFileAsync(OBJFile, null);
         }
         
         /// <remarks/>
-        public void UpDateFileAsync(FileInfoWS OBJFile, string newFileName, object userState) {
+        public void UpDateFileAsync(FileInfoWS OBJFile, object userState) {
             if ((this.UpDateFileOperationCompleted == null)) {
                 this.UpDateFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpDateFileOperationCompleted);
             }
             this.InvokeAsync("UpDateFile", new object[] {
-                        OBJFile,
-                        newFileName}, this.UpDateFileOperationCompleted, userState);
+                        OBJFile}, this.UpDateFileOperationCompleted, userState);
         }
         
         private void OnUpDateFileOperationCompleted(object arg) {
@@ -666,60 +671,87 @@ namespace TermProject.WebS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SelectAllDeletedFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet SelectAllDeletedFiles(string Username) {
-            object[] results = this.Invoke("SelectAllDeletedFiles", new object[] {
-                        Username});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetStoragePlans", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetStoragePlans() {
+            object[] results = this.Invoke("GetStoragePlans", new object[0]);
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void SelectAllDeletedFilesAsync(string Username) {
-            this.SelectAllDeletedFilesAsync(Username, null);
+        public void GetStoragePlansAsync() {
+            this.GetStoragePlansAsync(null);
         }
         
         /// <remarks/>
-        public void SelectAllDeletedFilesAsync(string Username, object userState) {
-            if ((this.SelectAllDeletedFilesOperationCompleted == null)) {
-                this.SelectAllDeletedFilesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSelectAllDeletedFilesOperationCompleted);
+        public void GetStoragePlansAsync(object userState) {
+            if ((this.GetStoragePlansOperationCompleted == null)) {
+                this.GetStoragePlansOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetStoragePlansOperationCompleted);
             }
-            this.InvokeAsync("SelectAllDeletedFiles", new object[] {
-                        Username}, this.SelectAllDeletedFilesOperationCompleted, userState);
+            this.InvokeAsync("GetStoragePlans", new object[0], this.GetStoragePlansOperationCompleted, userState);
         }
         
-        private void OnSelectAllDeletedFilesOperationCompleted(object arg) {
-            if ((this.SelectAllDeletedFilesCompleted != null)) {
+        private void OnGetStoragePlansOperationCompleted(object arg) {
+            if ((this.GetStoragePlansCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.SelectAllDeletedFilesCompleted(this, new SelectAllDeletedFilesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GetStoragePlansCompleted(this, new GetStoragePlansCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SelectAlRevery_OlderVersionFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet SelectAlRevery_OlderVersionFiles(string Username) {
-            object[] results = this.Invoke("SelectAlRevery_OlderVersionFiles", new object[] {
-                        Username});
-            return ((System.Data.DataSet)(results[0]));
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertPurchaseExtraStorage", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool InsertPurchaseExtraStorage(ExtraStorageUser ESU) {
+            object[] results = this.Invoke("InsertPurchaseExtraStorage", new object[] {
+                        ESU});
+            return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void SelectAlRevery_OlderVersionFilesAsync(string Username) {
-            this.SelectAlRevery_OlderVersionFilesAsync(Username, null);
+        public void InsertPurchaseExtraStorageAsync(ExtraStorageUser ESU) {
+            this.InsertPurchaseExtraStorageAsync(ESU, null);
         }
         
         /// <remarks/>
-        public void SelectAlRevery_OlderVersionFilesAsync(string Username, object userState) {
-            if ((this.SelectAlRevery_OlderVersionFilesOperationCompleted == null)) {
-                this.SelectAlRevery_OlderVersionFilesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSelectAlRevery_OlderVersionFilesOperationCompleted);
+        public void InsertPurchaseExtraStorageAsync(ExtraStorageUser ESU, object userState) {
+            if ((this.InsertPurchaseExtraStorageOperationCompleted == null)) {
+                this.InsertPurchaseExtraStorageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertPurchaseExtraStorageOperationCompleted);
             }
-            this.InvokeAsync("SelectAlRevery_OlderVersionFiles", new object[] {
-                        Username}, this.SelectAlRevery_OlderVersionFilesOperationCompleted, userState);
+            this.InvokeAsync("InsertPurchaseExtraStorage", new object[] {
+                        ESU}, this.InsertPurchaseExtraStorageOperationCompleted, userState);
         }
         
-        private void OnSelectAlRevery_OlderVersionFilesOperationCompleted(object arg) {
-            if ((this.SelectAlRevery_OlderVersionFilesCompleted != null)) {
+        private void OnInsertPurchaseExtraStorageOperationCompleted(object arg) {
+            if ((this.InsertPurchaseExtraStorageCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.SelectAlRevery_OlderVersionFilesCompleted(this, new SelectAlRevery_OlderVersionFilesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.InsertPurchaseExtraStorageCompleted(this, new InsertPurchaseExtraStorageCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateUserStorageCapacity", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateUserStorageCapacity(ExtraStorageUser ESU) {
+            object[] results = this.Invoke("UpdateUserStorageCapacity", new object[] {
+                        ESU});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateUserStorageCapacityAsync(ExtraStorageUser ESU) {
+            this.UpdateUserStorageCapacityAsync(ESU, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateUserStorageCapacityAsync(ExtraStorageUser ESU, object userState) {
+            if ((this.UpdateUserStorageCapacityOperationCompleted == null)) {
+                this.UpdateUserStorageCapacityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateUserStorageCapacityOperationCompleted);
+            }
+            this.InvokeAsync("UpdateUserStorageCapacity", new object[] {
+                        ESU}, this.UpdateUserStorageCapacityOperationCompleted, userState);
+        }
+        
+        private void OnUpdateUserStorageCapacityOperationCompleted(object arg) {
+            if ((this.UpdateUserStorageCapacityCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateUserStorageCapacityCompleted(this, new UpdateUserStorageCapacityCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -841,6 +873,123 @@ namespace TermProject.WebS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ExtraStorageUser {
+        
+        private string usernameField;
+        
+        private string creditCardNumberField;
+        
+        private string creditCardExpirationField;
+        
+        private string creditCardCVVField;
+        
+        private string billingAddressField;
+        
+        private string phoneNumberField;
+        
+        private float storageAmountField;
+        
+        private float storageCostField;
+        
+        private string nameField;
+        
+        /// <remarks/>
+        public string Username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CreditCardNumber {
+            get {
+                return this.creditCardNumberField;
+            }
+            set {
+                this.creditCardNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CreditCardExpiration {
+            get {
+                return this.creditCardExpirationField;
+            }
+            set {
+                this.creditCardExpirationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CreditCardCVV {
+            get {
+                return this.creditCardCVVField;
+            }
+            set {
+                this.creditCardCVVField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BillingAddress {
+            get {
+                return this.billingAddressField;
+            }
+            set {
+                this.billingAddressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PhoneNumber {
+            get {
+                return this.phoneNumberField;
+            }
+            set {
+                this.phoneNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float StorageAmount {
+            get {
+                return this.storageAmountField;
+            }
+            set {
+                this.storageAmountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float StorageCost {
+            get {
+                return this.storageCostField;
+            }
+            set {
+                this.storageCostField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class FileInfoWS {
         
         private byte[] fileField;
@@ -854,10 +1003,6 @@ namespace TermProject.WebS {
         private string uploadDateField;
         
         private string usernameField;
-        
-        private string currentFolderField;
-        
-        private string pathField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
@@ -917,26 +1062,6 @@ namespace TermProject.WebS {
             }
             set {
                 this.usernameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CurrentFolder {
-            get {
-                return this.currentFolderField;
-            }
-            set {
-                this.currentFolderField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Path {
-            get {
-                return this.pathField;
-            }
-            set {
-                this.pathField = value;
             }
         }
     }
@@ -1363,17 +1488,17 @@ namespace TermProject.WebS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
-    public delegate void SelectAllDeletedFilesCompletedEventHandler(object sender, SelectAllDeletedFilesCompletedEventArgs e);
+    public delegate void GetStoragePlansCompletedEventHandler(object sender, GetStoragePlansCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SelectAllDeletedFilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetStoragePlansCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal SelectAllDeletedFilesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal GetStoragePlansCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1389,26 +1514,52 @@ namespace TermProject.WebS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
-    public delegate void SelectAlRevery_OlderVersionFilesCompletedEventHandler(object sender, SelectAlRevery_OlderVersionFilesCompletedEventArgs e);
+    public delegate void InsertPurchaseExtraStorageCompletedEventHandler(object sender, InsertPurchaseExtraStorageCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SelectAlRevery_OlderVersionFilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class InsertPurchaseExtraStorageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal SelectAlRevery_OlderVersionFilesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal InsertPurchaseExtraStorageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public System.Data.DataSet Result {
+        public bool Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpdateUserStorageCapacityCompletedEventHandler(object sender, UpdateUserStorageCapacityCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateUserStorageCapacityCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateUserStorageCapacityCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }
