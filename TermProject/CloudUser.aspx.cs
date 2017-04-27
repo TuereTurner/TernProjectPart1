@@ -7,12 +7,14 @@ using System.Data;
 using System.Web.UI.WebControls;
 using WebSvc;
 using File;
+using System.Web.UI.WebControls;
 namespace TermProject
 {
     public partial class CloudUser : System.Web.UI.Page
     {
-        static String userNemFilesearch;
-        static String userNemFilesearchIcon;
+        
+       
+        static String username;
         WebS.CloudWebS pxy = new WebS.CloudWebS();
         
         protected void Page_Load(object sender, EventArgs e)
@@ -33,10 +35,10 @@ namespace TermProject
                 else if (Session["login"].ToString() !=null)
                 {
                     //show page content
+                    username = Session["login"].ToString();
+                    //txtGetAllFilesicon.Text = Session["login"].ToString();
 
-                    txtGetAllFilesicon.Text = Session["login"].ToString();
-                 String s=   Session["login"].ToString();
-
+                    GenerateGvShowaLLfiLESwITHiCONGridView();
                 }
             }
         }
@@ -64,20 +66,19 @@ namespace TermProject
         protected void txtGetAllFilesicon_TextChanged(object sender, EventArgs e)
         {
             //show grid view with files
-            String username = txtGetAllFilesicon.Text;
-            userNemFilesearchIcon = username;
+          
             GenerateGvShowaLLfiLESwITHiCONGridView();
         }
         public void GenerateGvShowaLLfiLESwITHiCONGridView()
         {
             DataSet set = new DataSet();
-            set = pxy.GetFilesByUser(txtGetAllFilesicon.Text);
+            set = pxy.GetFilesByUser(username);
             GvShowaLLfiLESwITHiCON.DataSource = set;
             GvShowaLLfiLESwITHiCON.DataBind();
             ///
            
             DataSet set1 = new DataSet();
-            set1 = pxy.GetFilesByIcon(userNemFilesearchIcon);
+            set1 = pxy.GetFilesByIcon(username);
 
             ///use table to asign
             ///          
@@ -108,7 +109,7 @@ namespace TermProject
         {
             int row = e.RowIndex;
             //get the row upload file
-            String username = userNemFilesearchIcon;
+            
             float size = Convert.ToSingle(GvShowaLLfiLESwITHiCON.Rows[row].Cells[2].Text);
             String filename = GvShowaLLfiLESwITHiCON.Rows[row].Cells[0].Text;
             //call funtion to do update
@@ -172,7 +173,7 @@ namespace TermProject
                 fileExtension = fileExtension.ToLower();
                 objfile.FileType = fileExtension;
                 objfile.UploadDate = (DateTime.Now.ToShortDateString()).ToString();
-                objfile.Username = userNemFilesearchIcon;
+                objfile.Username = username;
                 objfile.File = FileDataByteArray;
 
                 //call funtion to do update
@@ -194,6 +195,97 @@ namespace TermProject
         }
 
         protected void GvShowaLLfiLESwITHiCON_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (BtnFileUpload.HasFile)
+            {
+                //file web object 
+                WebS.FileInfoWS objfile = new WebS.FileInfoWS();
+                //fiile length 
+                int SizeFile = BtnFileUpload.PostedFile.ContentLength;
+                //file byte array
+                byte[] FileDataByteArray = new byte[SizeFile];
+                // inout data from the fileupload control into the byte array
+                BtnFileUpload.PostedFile.InputStream.Read(FileDataByteArray, 0, SizeFile);
+                //objfile.File =
+                // get file lenggth
+                String fileName = BtnFileUpload.PostedFile.FileName;
+                objfile.FileName = fileName;
+                objfile.FileSize = SizeFile;
+                objfile.File = FileDataByteArray;
+                //establishh file extension to get the type
+                String fileExtension = fileName.Substring(fileName.LastIndexOf("."));
+                fileExtension = fileExtension.ToLower();
+                objfile.FileType = fileExtension;
+                objfile.UploadDate = (DateTime.Now.ToShortDateString()).ToString();
+                objfile.Username = username;
+                //check to see what type of file it is 
+                if (fileExtension == ".jpg" || fileExtension == ".mp3" || fileExtension == ".pdf" || fileExtension == ".png" || fileExtension == ".pptx" || fileExtension == ".docx")
+                {
+                    //call method to serialze and store file 
+                    String ResultFIleUpload = "";
+                    ResultFIleUpload = pxy.UploadFile("6477544441684327", objfile, username);
+
+                    if (ResultFIleUpload == "")
+                    {
+                        lblAddfile.Visible
+                            = true;
+                        lblAddfile.Text = ResultFIleUpload;
+                    }
+                    if (ResultFIleUpload == "File not uploaded Succesfully" || ResultFIleUpload == "Not enough free storage to upload file" || ResultFIleUpload == "API Key not found.")
+                    {
+                        lblAddfile.Visible
+                            = true;
+                        lblAddfile.Text = ResultFIleUpload;
+                    }
+                    else
+                    {
+                        lblAddfile.Visible = true;
+                        lblAddfile.ForeColor = System.Drawing.Color.Green;
+                        lblAddfile.Text = "File Successfully Uploaded";
+                        //change icon
+
+                        // ImgFileIcon.ImageUrl = ResultFIleUpload;
+
+
+                        //pop up user control
+
+                        // Register the ASCX control with the page and typecast it to the appropriate class ProductDisplay
+                        WebUserControl1 ctrl = (WebUserControl1)LoadControl("WebUserControlShowFile.ascx");
+
+                            // Set properties for the ProductDisplay object
+                            ctrl.FileImage = ResultFIleUpload;
+                            ctrl.fileName = fileName;
+                        ctrl.UserName = username;
+                        
+                            ctrl.DataBind();
+
+                            // Add the control object to the WebForm's Controls collection
+                            Form.Controls.Add(ctrl);
+                        divplaceholder.Controls.Clear();
+
+                        divplaceholder.Controls.Add(ctrl);
+                        GenerateGvShowaLLfiLESwITHiCONGridView();
+                    }
+
+                }
+
+
+
+                //show iumage icon ImageUr
+                //ImageUrl
+            }
+
+
+
+
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
         {
 
         }

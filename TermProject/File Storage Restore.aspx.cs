@@ -131,13 +131,18 @@ namespace TermProject
                         lblrecoverfile.Text = "File Recovered";
                         //delete from deleted table
 
-                        pxy.DeleteFromRecoveredFFile(username, filename);
+                      //  pxy.DeleteFromRecoveredFFile(username, filename);
                         GenerateRestoredFiles();
                     }
 
                 }
 
             }
+        }
+
+        protected void GridVDeletedFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

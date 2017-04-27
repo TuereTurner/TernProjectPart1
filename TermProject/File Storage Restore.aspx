@@ -125,7 +125,7 @@
         <div class="Stylediv">
                  <asp:Label runat="server" ID="lbldelectedfilerecover"></asp:Label>
 
-        <asp:GridView ID="GridVDeletedFiles" runat="server" AutoGenerateColumns="False" Width="913px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+        <asp:GridView ID="GridVDeletedFiles" runat="server" AutoGenerateColumns="False" Width="913px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" OnSelectedIndexChanged="GridVDeletedFiles_SelectedIndexChanged">
            <Columns>
                <asp:TemplateField>
                    <ItemTemplate>
