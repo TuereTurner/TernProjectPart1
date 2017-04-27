@@ -10,7 +10,7 @@
 namespace TermProject {
     
     
-    public partial class CloudAdministrator {
+    public partial class DeleteCloudUsers {
         
         /// <summary>
         /// form1 control.
@@ -22,30 +22,21 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// btnEditCloudUsers control.
+        /// ddlDeleteCloudUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditCloudUsers;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeleteCloudUsers;
         
         /// <summary>
-        /// btnAnswerQuestion control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAnswerQuestion;
-        
-        /// <summary>
-        /// btnDeletCloudUsers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeletCloudUsers;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
     }
 }

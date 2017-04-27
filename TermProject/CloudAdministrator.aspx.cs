@@ -19,9 +19,14 @@ namespace TermProject
             Response.Redirect("EditCloudUsers.aspx");
         }
 
-        protected void btn_Click(object sender, EventArgs e)
+        protected void btnAnswerQuestion_Click(object sender, EventArgs e)
         {
             Response.Redirect("ViewOrAnswerQuestions.aspx");
+        }
+
+        protected void btnDeletCloudUsers_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DeleteCloudUsers.aspx");
         }
     }
 }

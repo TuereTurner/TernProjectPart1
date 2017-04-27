@@ -71,6 +71,7 @@
     <Content Include="BuyMoreStorage.aspx" />
     <Content Include="CloudAdministrator.aspx" />
     <Content Include="CloudUser.aspx" />
+    <Content Include="DeleteCloudUsers.aspx" />
     <Content Include="EditCloudUsers.aspx" />
     <Content Include="EditUserByUser.aspx" />
     <Content Include="File Storage Restore.aspx" />
@@ -141,6 +142,13 @@
     </Compile>
     <Compile Include="CloudUser.aspx.designer.cs">
       <DependentUpon>CloudUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteCloudUsers.aspx.cs">
+      <DependentUpon>DeleteCloudUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeleteCloudUsers.aspx.designer.cs">
+      <DependentUpon>DeleteCloudUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditCloudUsers.aspx.cs">
       <DependentUpon>EditCloudUsers.aspx</DependentUpon>

@@ -971,5 +971,18 @@ namespace WebSvc
 
             return ds = objDB.GetDataSetUsingCmdObj(objCommand);
         }
+
+        [WebMethod]
+        public DataSet GetCloudUsers()
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            DataSet ds;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectCloudUsers";
+
+            return ds = objDB.GetDataSetUsingCmdObj(objCommand);
+        }
     }
 }
