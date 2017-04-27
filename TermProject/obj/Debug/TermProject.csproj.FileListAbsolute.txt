@@ -102,3 +102,7 @@ C:\Users\Test Account\Source\Repos\TernProjectPart13\TermProject\obj\Debug\TermP
 C:\Users\Test Account\Source\Repos\TernProjectPart13\TermProject\obj\Debug\TermProject.pdb
 C:\Users\tuf07576\Source\Repos\TernProjectPart1\TermProject\bin\File.dll
 C:\Users\tuf07576\Source\Repos\TernProjectPart1\TermProject\bin\File.pdb
+C:\Users\Samuel Gagan\Desktop\Github\TermProject\bin\File.dll
+C:\Users\Samuel Gagan\Desktop\Github\TermProject\bin\File.pdb
+C:\Users\Samuel Gagan\Desktop\Github\TermProject\bin\ExtraStorageUser.dll
+C:\Users\Samuel Gagan\Desktop\Github\TermProject\bin\ExtraStorageUser.pdb

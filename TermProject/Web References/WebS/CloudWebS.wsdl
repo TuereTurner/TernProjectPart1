@@ -189,6 +189,171 @@
       <s:element name="DeleteUserResponse">
         <s:complexType />
       </s:element>
+      <s:element name="SelectFilesWithIcons">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectFilesWithIconsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectFilesWithIconsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUserTransactions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUserTransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertUserTransactionsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectUserTransactions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectUserTransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectUserTransactionsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFilesByIcon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFilesByIconResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFilesByIconResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDuplicateUsername">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDuplicateUsernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckDuplicateUsernameResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStoragePlans">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStoragePlansResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStoragePlansResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPurchaseExtraStorage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ESU" type="tns:ExtraStorageUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ExtraStorageUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditCardNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditCardExpiration" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditCardCVV" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillingAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StorageAmount" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="StorageCost" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPurchaseExtraStorageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertPurchaseExtraStorageResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserStorageCapacity">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ESU" type="tns:ExtraStorageUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserStorageCapacityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserStorageCapacityResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddUserSoapIn">
@@ -257,6 +422,60 @@
   <wsdl:message name="DeleteUserSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
   </wsdl:message>
+  <wsdl:message name="SelectFilesWithIconsSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectFilesWithIcons" />
+  </wsdl:message>
+  <wsdl:message name="SelectFilesWithIconsSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectFilesWithIconsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertUserTransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertUserTransactions" />
+  </wsdl:message>
+  <wsdl:message name="InsertUserTransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertUserTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectUserTransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectUserTransactions" />
+  </wsdl:message>
+  <wsdl:message name="SelectUserTransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectUserTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFilesByIconSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFilesByIcon" />
+  </wsdl:message>
+  <wsdl:message name="GetFilesByIconSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFilesByIconResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccountType" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckDuplicateUsernameSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateUsername" />
+  </wsdl:message>
+  <wsdl:message name="CheckDuplicateUsernameSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStoragePlansSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStoragePlans" />
+  </wsdl:message>
+  <wsdl:message name="GetStoragePlansSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStoragePlansResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPurchaseExtraStorageSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPurchaseExtraStorage" />
+  </wsdl:message>
+  <wsdl:message name="InsertPurchaseExtraStorageSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPurchaseExtraStorageResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserStorageCapacitySoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserStorageCapacity" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserStorageCapacitySoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserStorageCapacityResponse" />
+  </wsdl:message>
   <wsdl:portType name="CloudWebSSoap">
     <wsdl:operation name="AddUser">
       <wsdl:input message="tns:AddUserSoapIn" />
@@ -301,6 +520,42 @@
     <wsdl:operation name="DeleteUser">
       <wsdl:input message="tns:DeleteUserSoapIn" />
       <wsdl:output message="tns:DeleteUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectFilesWithIcons">
+      <wsdl:input message="tns:SelectFilesWithIconsSoapIn" />
+      <wsdl:output message="tns:SelectFilesWithIconsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserTransactions">
+      <wsdl:input message="tns:InsertUserTransactionsSoapIn" />
+      <wsdl:output message="tns:InsertUserTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectUserTransactions">
+      <wsdl:input message="tns:SelectUserTransactionsSoapIn" />
+      <wsdl:output message="tns:SelectUserTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesByIcon">
+      <wsdl:input message="tns:GetFilesByIconSoapIn" />
+      <wsdl:output message="tns:GetFilesByIconSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountType">
+      <wsdl:input message="tns:GetAccountTypeSoapIn" />
+      <wsdl:output message="tns:GetAccountTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateUsername">
+      <wsdl:input message="tns:CheckDuplicateUsernameSoapIn" />
+      <wsdl:output message="tns:CheckDuplicateUsernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoragePlans">
+      <wsdl:input message="tns:GetStoragePlansSoapIn" />
+      <wsdl:output message="tns:GetStoragePlansSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPurchaseExtraStorage">
+      <wsdl:input message="tns:InsertPurchaseExtraStorageSoapIn" />
+      <wsdl:output message="tns:InsertPurchaseExtraStorageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStorageCapacity">
+      <wsdl:input message="tns:UpdateUserStorageCapacitySoapIn" />
+      <wsdl:output message="tns:UpdateUserStorageCapacitySoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWebSSoap" type="tns:CloudWebSSoap">
@@ -404,6 +659,87 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SelectFilesWithIcons">
+      <soap:operation soapAction="http://tempuri.org/SelectFilesWithIcons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserTransactions">
+      <soap:operation soapAction="http://tempuri.org/InsertUserTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectUserTransactions">
+      <soap:operation soapAction="http://tempuri.org/SelectUserTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesByIcon">
+      <soap:operation soapAction="http://tempuri.org/GetFilesByIcon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountType">
+      <soap:operation soapAction="http://tempuri.org/GetAccountType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateUsername">
+      <soap:operation soapAction="http://tempuri.org/CheckDuplicateUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoragePlans">
+      <soap:operation soapAction="http://tempuri.org/GetStoragePlans" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPurchaseExtraStorage">
+      <soap:operation soapAction="http://tempuri.org/InsertPurchaseExtraStorage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStorageCapacity">
+      <soap:operation soapAction="http://tempuri.org/UpdateUserStorageCapacity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CloudWebSSoap12" type="tns:CloudWebSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -499,6 +835,87 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteUser">
       <soap12:operation soapAction="http://tempuri.org/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectFilesWithIcons">
+      <soap12:operation soapAction="http://tempuri.org/SelectFilesWithIcons" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserTransactions">
+      <soap12:operation soapAction="http://tempuri.org/InsertUserTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectUserTransactions">
+      <soap12:operation soapAction="http://tempuri.org/SelectUserTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesByIcon">
+      <soap12:operation soapAction="http://tempuri.org/GetFilesByIcon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountType">
+      <soap12:operation soapAction="http://tempuri.org/GetAccountType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateUsername">
+      <soap12:operation soapAction="http://tempuri.org/CheckDuplicateUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoragePlans">
+      <soap12:operation soapAction="http://tempuri.org/GetStoragePlans" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPurchaseExtraStorage">
+      <soap12:operation soapAction="http://tempuri.org/InsertPurchaseExtraStorage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStorageCapacity">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUserStorageCapacity" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

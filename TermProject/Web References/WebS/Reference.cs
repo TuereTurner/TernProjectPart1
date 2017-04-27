@@ -52,6 +52,24 @@ namespace TermProject.WebS {
         
         private System.Threading.SendOrPostCallback DeleteUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SelectFilesWithIconsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertUserTransactionsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SelectUserTransactionsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetFilesByIconOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAccountTypeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckDuplicateUsernameOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetStoragePlansOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertPurchaseExtraStorageOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateUserStorageCapacityOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -122,6 +140,33 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         public event DeleteUserCompletedEventHandler DeleteUserCompleted;
+        
+        /// <remarks/>
+        public event SelectFilesWithIconsCompletedEventHandler SelectFilesWithIconsCompleted;
+        
+        /// <remarks/>
+        public event InsertUserTransactionsCompletedEventHandler InsertUserTransactionsCompleted;
+        
+        /// <remarks/>
+        public event SelectUserTransactionsCompletedEventHandler SelectUserTransactionsCompleted;
+        
+        /// <remarks/>
+        public event GetFilesByIconCompletedEventHandler GetFilesByIconCompleted;
+        
+        /// <remarks/>
+        public event GetAccountTypeCompletedEventHandler GetAccountTypeCompleted;
+        
+        /// <remarks/>
+        public event CheckDuplicateUsernameCompletedEventHandler CheckDuplicateUsernameCompleted;
+        
+        /// <remarks/>
+        public event GetStoragePlansCompletedEventHandler GetStoragePlansCompleted;
+        
+        /// <remarks/>
+        public event InsertPurchaseExtraStorageCompletedEventHandler InsertPurchaseExtraStorageCompleted;
+        
+        /// <remarks/>
+        public event UpdateUserStorageCapacityCompletedEventHandler UpdateUserStorageCapacityCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -448,6 +493,269 @@ namespace TermProject.WebS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SelectFilesWithIcons", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SelectFilesWithIcons(string userName) {
+            object[] results = this.Invoke("SelectFilesWithIcons", new object[] {
+                        userName});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SelectFilesWithIconsAsync(string userName) {
+            this.SelectFilesWithIconsAsync(userName, null);
+        }
+        
+        /// <remarks/>
+        public void SelectFilesWithIconsAsync(string userName, object userState) {
+            if ((this.SelectFilesWithIconsOperationCompleted == null)) {
+                this.SelectFilesWithIconsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSelectFilesWithIconsOperationCompleted);
+            }
+            this.InvokeAsync("SelectFilesWithIcons", new object[] {
+                        userName}, this.SelectFilesWithIconsOperationCompleted, userState);
+        }
+        
+        private void OnSelectFilesWithIconsOperationCompleted(object arg) {
+            if ((this.SelectFilesWithIconsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SelectFilesWithIconsCompleted(this, new SelectFilesWithIconsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertUserTransactions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string InsertUserTransactions(string Username, string Desc, string date) {
+            object[] results = this.Invoke("InsertUserTransactions", new object[] {
+                        Username,
+                        Desc,
+                        date});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InsertUserTransactionsAsync(string Username, string Desc, string date) {
+            this.InsertUserTransactionsAsync(Username, Desc, date, null);
+        }
+        
+        /// <remarks/>
+        public void InsertUserTransactionsAsync(string Username, string Desc, string date, object userState) {
+            if ((this.InsertUserTransactionsOperationCompleted == null)) {
+                this.InsertUserTransactionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertUserTransactionsOperationCompleted);
+            }
+            this.InvokeAsync("InsertUserTransactions", new object[] {
+                        Username,
+                        Desc,
+                        date}, this.InsertUserTransactionsOperationCompleted, userState);
+        }
+        
+        private void OnInsertUserTransactionsOperationCompleted(object arg) {
+            if ((this.InsertUserTransactionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertUserTransactionsCompleted(this, new InsertUserTransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SelectUserTransactions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SelectUserTransactions(string Username) {
+            object[] results = this.Invoke("SelectUserTransactions", new object[] {
+                        Username});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SelectUserTransactionsAsync(string Username) {
+            this.SelectUserTransactionsAsync(Username, null);
+        }
+        
+        /// <remarks/>
+        public void SelectUserTransactionsAsync(string Username, object userState) {
+            if ((this.SelectUserTransactionsOperationCompleted == null)) {
+                this.SelectUserTransactionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSelectUserTransactionsOperationCompleted);
+            }
+            this.InvokeAsync("SelectUserTransactions", new object[] {
+                        Username}, this.SelectUserTransactionsOperationCompleted, userState);
+        }
+        
+        private void OnSelectUserTransactionsOperationCompleted(object arg) {
+            if ((this.SelectUserTransactionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SelectUserTransactionsCompleted(this, new SelectUserTransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetFilesByIcon", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetFilesByIcon(string userName) {
+            object[] results = this.Invoke("GetFilesByIcon", new object[] {
+                        userName});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetFilesByIconAsync(string userName) {
+            this.GetFilesByIconAsync(userName, null);
+        }
+        
+        /// <remarks/>
+        public void GetFilesByIconAsync(string userName, object userState) {
+            if ((this.GetFilesByIconOperationCompleted == null)) {
+                this.GetFilesByIconOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetFilesByIconOperationCompleted);
+            }
+            this.InvokeAsync("GetFilesByIcon", new object[] {
+                        userName}, this.GetFilesByIconOperationCompleted, userState);
+        }
+        
+        private void OnGetFilesByIconOperationCompleted(object arg) {
+            if ((this.GetFilesByIconCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetFilesByIconCompleted(this, new GetFilesByIconCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountType", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetAccountType(string username) {
+            object[] results = this.Invoke("GetAccountType", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAccountTypeAsync(string username) {
+            this.GetAccountTypeAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void GetAccountTypeAsync(string username, object userState) {
+            if ((this.GetAccountTypeOperationCompleted == null)) {
+                this.GetAccountTypeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAccountTypeOperationCompleted);
+            }
+            this.InvokeAsync("GetAccountType", new object[] {
+                        username}, this.GetAccountTypeOperationCompleted, userState);
+        }
+        
+        private void OnGetAccountTypeOperationCompleted(object arg) {
+            if ((this.GetAccountTypeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAccountTypeCompleted(this, new GetAccountTypeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CheckDuplicateUsername", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool CheckDuplicateUsername(string username) {
+            object[] results = this.Invoke("CheckDuplicateUsername", new object[] {
+                        username});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckDuplicateUsernameAsync(string username) {
+            this.CheckDuplicateUsernameAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void CheckDuplicateUsernameAsync(string username, object userState) {
+            if ((this.CheckDuplicateUsernameOperationCompleted == null)) {
+                this.CheckDuplicateUsernameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckDuplicateUsernameOperationCompleted);
+            }
+            this.InvokeAsync("CheckDuplicateUsername", new object[] {
+                        username}, this.CheckDuplicateUsernameOperationCompleted, userState);
+        }
+        
+        private void OnCheckDuplicateUsernameOperationCompleted(object arg) {
+            if ((this.CheckDuplicateUsernameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckDuplicateUsernameCompleted(this, new CheckDuplicateUsernameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetStoragePlans", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetStoragePlans() {
+            object[] results = this.Invoke("GetStoragePlans", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetStoragePlansAsync() {
+            this.GetStoragePlansAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetStoragePlansAsync(object userState) {
+            if ((this.GetStoragePlansOperationCompleted == null)) {
+                this.GetStoragePlansOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetStoragePlansOperationCompleted);
+            }
+            this.InvokeAsync("GetStoragePlans", new object[0], this.GetStoragePlansOperationCompleted, userState);
+        }
+        
+        private void OnGetStoragePlansOperationCompleted(object arg) {
+            if ((this.GetStoragePlansCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetStoragePlansCompleted(this, new GetStoragePlansCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertPurchaseExtraStorage", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool InsertPurchaseExtraStorage(ExtraStorageUser ESU) {
+            object[] results = this.Invoke("InsertPurchaseExtraStorage", new object[] {
+                        ESU});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InsertPurchaseExtraStorageAsync(ExtraStorageUser ESU) {
+            this.InsertPurchaseExtraStorageAsync(ESU, null);
+        }
+        
+        /// <remarks/>
+        public void InsertPurchaseExtraStorageAsync(ExtraStorageUser ESU, object userState) {
+            if ((this.InsertPurchaseExtraStorageOperationCompleted == null)) {
+                this.InsertPurchaseExtraStorageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertPurchaseExtraStorageOperationCompleted);
+            }
+            this.InvokeAsync("InsertPurchaseExtraStorage", new object[] {
+                        ESU}, this.InsertPurchaseExtraStorageOperationCompleted, userState);
+        }
+        
+        private void OnInsertPurchaseExtraStorageOperationCompleted(object arg) {
+            if ((this.InsertPurchaseExtraStorageCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertPurchaseExtraStorageCompleted(this, new InsertPurchaseExtraStorageCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateUserStorageCapacity", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateUserStorageCapacity(ExtraStorageUser ESU) {
+            object[] results = this.Invoke("UpdateUserStorageCapacity", new object[] {
+                        ESU});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateUserStorageCapacityAsync(ExtraStorageUser ESU) {
+            this.UpdateUserStorageCapacityAsync(ESU, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateUserStorageCapacityAsync(ExtraStorageUser ESU, object userState) {
+            if ((this.UpdateUserStorageCapacityOperationCompleted == null)) {
+                this.UpdateUserStorageCapacityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateUserStorageCapacityOperationCompleted);
+            }
+            this.InvokeAsync("UpdateUserStorageCapacity", new object[] {
+                        ESU}, this.UpdateUserStorageCapacityOperationCompleted, userState);
+        }
+        
+        private void OnUpdateUserStorageCapacityOperationCompleted(object arg) {
+            if ((this.UpdateUserStorageCapacityCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateUserStorageCapacityCompleted(this, new UpdateUserStorageCapacityCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -555,6 +863,123 @@ namespace TermProject.WebS {
             }
             set {
                 this.phoneNumberField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ExtraStorageUser {
+        
+        private string usernameField;
+        
+        private string creditCardNumberField;
+        
+        private string creditCardExpirationField;
+        
+        private string creditCardCVVField;
+        
+        private string billingAddressField;
+        
+        private string phoneNumberField;
+        
+        private float storageAmountField;
+        
+        private float storageCostField;
+        
+        private string nameField;
+        
+        /// <remarks/>
+        public string Username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CreditCardNumber {
+            get {
+                return this.creditCardNumberField;
+            }
+            set {
+                this.creditCardNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CreditCardExpiration {
+            get {
+                return this.creditCardExpirationField;
+            }
+            set {
+                this.creditCardExpirationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CreditCardCVV {
+            get {
+                return this.creditCardCVVField;
+            }
+            set {
+                this.creditCardCVVField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BillingAddress {
+            get {
+                return this.billingAddressField;
+            }
+            set {
+                this.billingAddressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PhoneNumber {
+            get {
+                return this.phoneNumberField;
+            }
+            set {
+                this.phoneNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float StorageAmount {
+            get {
+                return this.storageAmountField;
+            }
+            set {
+                this.storageAmountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float StorageCost {
+            get {
+                return this.storageCostField;
+            }
+            set {
+                this.storageCostField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
             }
         }
     }
@@ -904,6 +1329,240 @@ namespace TermProject.WebS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void DeleteUserCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void SelectFilesWithIconsCompletedEventHandler(object sender, SelectFilesWithIconsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SelectFilesWithIconsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SelectFilesWithIconsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void InsertUserTransactionsCompletedEventHandler(object sender, InsertUserTransactionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertUserTransactionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertUserTransactionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void SelectUserTransactionsCompletedEventHandler(object sender, SelectUserTransactionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SelectUserTransactionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SelectUserTransactionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetFilesByIconCompletedEventHandler(object sender, GetFilesByIconCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetFilesByIconCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetFilesByIconCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetAccountTypeCompletedEventHandler(object sender, GetAccountTypeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAccountTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAccountTypeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void CheckDuplicateUsernameCompletedEventHandler(object sender, CheckDuplicateUsernameCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckDuplicateUsernameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckDuplicateUsernameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetStoragePlansCompletedEventHandler(object sender, GetStoragePlansCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetStoragePlansCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetStoragePlansCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void InsertPurchaseExtraStorageCompletedEventHandler(object sender, InsertPurchaseExtraStorageCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertPurchaseExtraStorageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertPurchaseExtraStorageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpdateUserStorageCapacityCompletedEventHandler(object sender, UpdateUserStorageCapacityCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateUserStorageCapacityCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateUserStorageCapacityCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591
