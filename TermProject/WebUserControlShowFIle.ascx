@@ -1,5 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WebUserControl1.ascx.cs" Inherits="WebSvc.WebUserControl1" %>
-
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WebUserControl1.ascx.cs" Inherits="TermProject.WebUserControl1" %>
 
 
     <asp:Label runat="server" ID="LblUserControlUserNamw"></asp:Label>

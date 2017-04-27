@@ -21,7 +21,8 @@ namespace TermProject
                     //redirect user to login page 
                     ATLAccountFailure.Visible = true;
                    // show error message 
-
+                    
+                
                 }
                 else if  (Session["login"].ToString() == "Loged in")
                 {

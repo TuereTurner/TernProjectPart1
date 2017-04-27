@@ -6,11 +6,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-namespace WebSvc
+namespace TermProject
 {
     public partial class WebUserControl1 : System.Web.UI.UserControl
     {
-        CloudWebS pxy = new CloudWebS();
+      WebS.CloudWebS pxy = new WebS.CloudWebS();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -21,14 +21,14 @@ namespace WebSvc
         [Category("Misc")]
         public String UserName
         {
-            get { return UserName; }
-            set { UserName = value; }
+            get { return LblUserControlUserNamw.Text; }
+            set { LblUserControlUserNamw.Text = value; }
         }
         [Category("Misc")]
         public String fileName
         {
-            get { return fileName; }
-            set { fileName = value; }
+            get { return lblUsercontrolFileName.Text; }
+            set { lblUsercontrolFileName.Text = value; }
         }
      
        
@@ -48,7 +48,7 @@ namespace WebSvc
         public override void DataBind()
         {
 
-            ImgUserControlFileIcon.ImageUrl = FileImage;
+            //ImgUserControlFileIcon.ImageUrl = FileImage;
             DataSet SET = new DataSet();
 
             SET = pxy.SelectOneFFile(UserName, fileName);
@@ -56,12 +56,12 @@ namespace WebSvc
             String type = SET.Tables[0].Rows[0]["fileType"].ToString();
             String date = SET.Tables[0].Rows[0]["uploadDate"].ToString();
             float size =Convert.ToSingle( SET.Tables[0].Rows[0]["fileSize"].ToString());
-            lblUsercontrolFileName.Text = fileName;
+            //lblUsercontrolFileName.Text = fileName;
                 LblUserControlFileType.Text = type ;
             lblUserControlFileUPloadDate.Text = date;
-            LblUserControlUserNamw.Text = UserName;
+           // LblUserControlUserNamw.Text = UserName;
             LblUserCOontrolFileSize.Text = size.ToString()+" Btyes";
-                ImgUserControlFileIcon.ImageUrl = FileImage;
+                //ImgUserControlFileIcon.ImageUrl = FileImage;
 
            
             //call web service

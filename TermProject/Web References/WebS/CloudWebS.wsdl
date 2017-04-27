@@ -87,6 +87,8 @@
           <s:element minOccurs="0" maxOccurs="1" name="FileType" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="UploadDate" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentFolder" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Path" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="UploadFileResponse">
@@ -136,8 +138,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="size" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="file" type="tns:FileInfoWS" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -152,6 +153,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="OBJFile" type="tns:FileInfoWS" />
+            <s:element minOccurs="0" maxOccurs="1" name="newFileName" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -296,6 +298,48 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="SelectAllDeletedFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAllDeletedFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAllDeletedFilesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAlRevery_OlderVersionFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAlRevery_OlderVersionFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAlRevery_OlderVersionFilesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetStoragePlans">
         <s:complexType />
       </s:element>
@@ -351,6 +395,213 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="UpdateUserStorageCapacityResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AskQuestion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="question" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AskQuestionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AskQuestionResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AnswerQuestion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="answerUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="answer" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="questionsID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AnswerQuestionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AnswerQuestionResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuestions">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetQuestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuestionsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSpecificUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSpecificUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSpecificUserResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectOneFFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectOneFFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectOneFFileResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectOldFileVserion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectOldFileVserionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectOldFileVserionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectDDeletedFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectDDeletedFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectDDeletedFilesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectOneRecoveredFFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectOneRecoveredFFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectOneRecoveredFFileResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectOneDELETEDFFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectOneDELETEDFFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectOneDELETEDFFileResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFromDELETEDFFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFromDELETEDFFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteFromDELETEDFFileResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFromRecoveredFFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFromRecoveredFFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteFromRecoveredFFileResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -458,6 +709,18 @@
   <wsdl:message name="CheckDuplicateUsernameSoapOut">
     <wsdl:part name="parameters" element="tns:CheckDuplicateUsernameResponse" />
   </wsdl:message>
+  <wsdl:message name="SelectAllDeletedFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAllDeletedFiles" />
+  </wsdl:message>
+  <wsdl:message name="SelectAllDeletedFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAllDeletedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAlRevery_OlderVersionFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAlRevery_OlderVersionFiles" />
+  </wsdl:message>
+  <wsdl:message name="SelectAlRevery_OlderVersionFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAlRevery_OlderVersionFilesResponse" />
+  </wsdl:message>
   <wsdl:message name="GetStoragePlansSoapIn">
     <wsdl:part name="parameters" element="tns:GetStoragePlans" />
   </wsdl:message>
@@ -475,6 +738,72 @@
   </wsdl:message>
   <wsdl:message name="UpdateUserStorageCapacitySoapOut">
     <wsdl:part name="parameters" element="tns:UpdateUserStorageCapacityResponse" />
+  </wsdl:message>
+  <wsdl:message name="AskQuestionSoapIn">
+    <wsdl:part name="parameters" element="tns:AskQuestion" />
+  </wsdl:message>
+  <wsdl:message name="AskQuestionSoapOut">
+    <wsdl:part name="parameters" element="tns:AskQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AnswerQuestionSoapIn">
+    <wsdl:part name="parameters" element="tns:AnswerQuestion" />
+  </wsdl:message>
+  <wsdl:message name="AnswerQuestionSoapOut">
+    <wsdl:part name="parameters" element="tns:AnswerQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuestions" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSpecificUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSpecificUser" />
+  </wsdl:message>
+  <wsdl:message name="GetSpecificUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSpecificUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectOneFFileSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectOneFFile" />
+  </wsdl:message>
+  <wsdl:message name="SelectOneFFileSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectOneFFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectOldFileVserionSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectOldFileVserion" />
+  </wsdl:message>
+  <wsdl:message name="SelectOldFileVserionSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectOldFileVserionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectDDeletedFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectDDeletedFiles" />
+  </wsdl:message>
+  <wsdl:message name="SelectDDeletedFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectDDeletedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectOneRecoveredFFileSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectOneRecoveredFFile" />
+  </wsdl:message>
+  <wsdl:message name="SelectOneRecoveredFFileSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectOneRecoveredFFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectOneDELETEDFFileSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectOneDELETEDFFile" />
+  </wsdl:message>
+  <wsdl:message name="SelectOneDELETEDFFileSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectOneDELETEDFFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFromDELETEDFFileSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteFromDELETEDFFile" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFromDELETEDFFileSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteFromDELETEDFFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFromRecoveredFFileSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteFromRecoveredFFile" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFromRecoveredFFileSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteFromRecoveredFFileResponse" />
   </wsdl:message>
   <wsdl:portType name="CloudWebSSoap">
     <wsdl:operation name="AddUser">
@@ -545,6 +874,14 @@
       <wsdl:input message="tns:CheckDuplicateUsernameSoapIn" />
       <wsdl:output message="tns:CheckDuplicateUsernameSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="SelectAllDeletedFiles">
+      <wsdl:input message="tns:SelectAllDeletedFilesSoapIn" />
+      <wsdl:output message="tns:SelectAllDeletedFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAlRevery_OlderVersionFiles">
+      <wsdl:input message="tns:SelectAlRevery_OlderVersionFilesSoapIn" />
+      <wsdl:output message="tns:SelectAlRevery_OlderVersionFilesSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetStoragePlans">
       <wsdl:input message="tns:GetStoragePlansSoapIn" />
       <wsdl:output message="tns:GetStoragePlansSoapOut" />
@@ -556,6 +893,50 @@
     <wsdl:operation name="UpdateUserStorageCapacity">
       <wsdl:input message="tns:UpdateUserStorageCapacitySoapIn" />
       <wsdl:output message="tns:UpdateUserStorageCapacitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AskQuestion">
+      <wsdl:input message="tns:AskQuestionSoapIn" />
+      <wsdl:output message="tns:AskQuestionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AnswerQuestion">
+      <wsdl:input message="tns:AnswerQuestionSoapIn" />
+      <wsdl:output message="tns:AnswerQuestionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestions">
+      <wsdl:input message="tns:GetQuestionsSoapIn" />
+      <wsdl:output message="tns:GetQuestionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSpecificUser">
+      <wsdl:input message="tns:GetSpecificUserSoapIn" />
+      <wsdl:output message="tns:GetSpecificUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneFFile">
+      <wsdl:input message="tns:SelectOneFFileSoapIn" />
+      <wsdl:output message="tns:SelectOneFFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectOldFileVserion">
+      <wsdl:input message="tns:SelectOldFileVserionSoapIn" />
+      <wsdl:output message="tns:SelectOldFileVserionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectDDeletedFiles">
+      <wsdl:input message="tns:SelectDDeletedFilesSoapIn" />
+      <wsdl:output message="tns:SelectDDeletedFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneRecoveredFFile">
+      <wsdl:input message="tns:SelectOneRecoveredFFileSoapIn" />
+      <wsdl:output message="tns:SelectOneRecoveredFFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneDELETEDFFile">
+      <wsdl:input message="tns:SelectOneDELETEDFFileSoapIn" />
+      <wsdl:output message="tns:SelectOneDELETEDFFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFromDELETEDFFile">
+      <wsdl:input message="tns:DeleteFromDELETEDFFileSoapIn" />
+      <wsdl:output message="tns:DeleteFromDELETEDFFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFromRecoveredFFile">
+      <wsdl:input message="tns:DeleteFromRecoveredFFileSoapIn" />
+      <wsdl:output message="tns:DeleteFromRecoveredFFileSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWebSSoap" type="tns:CloudWebSSoap">
@@ -713,6 +1094,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SelectAllDeletedFiles">
+      <soap:operation soapAction="http://tempuri.org/SelectAllDeletedFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAlRevery_OlderVersionFiles">
+      <soap:operation soapAction="http://tempuri.org/SelectAlRevery_OlderVersionFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetStoragePlans">
       <soap:operation soapAction="http://tempuri.org/GetStoragePlans" style="document" />
       <wsdl:input>
@@ -733,6 +1132,105 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateUserStorageCapacity">
       <soap:operation soapAction="http://tempuri.org/UpdateUserStorageCapacity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AskQuestion">
+      <soap:operation soapAction="http://tempuri.org/AskQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AnswerQuestion">
+      <soap:operation soapAction="http://tempuri.org/AnswerQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestions">
+      <soap:operation soapAction="http://tempuri.org/GetQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSpecificUser">
+      <soap:operation soapAction="http://tempuri.org/GetSpecificUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneFFile">
+      <soap:operation soapAction="http://tempuri.org/SelectOneFFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOldFileVserion">
+      <soap:operation soapAction="http://tempuri.org/SelectOldFileVserion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectDDeletedFiles">
+      <soap:operation soapAction="http://tempuri.org/SelectDDeletedFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneRecoveredFFile">
+      <soap:operation soapAction="http://tempuri.org/SelectOneRecoveredFFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneDELETEDFFile">
+      <soap:operation soapAction="http://tempuri.org/SelectOneDELETEDFFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFromDELETEDFFile">
+      <soap:operation soapAction="http://tempuri.org/DeleteFromDELETEDFFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFromRecoveredFFile">
+      <soap:operation soapAction="http://tempuri.org/DeleteFromRecoveredFFile" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -896,6 +1394,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SelectAllDeletedFiles">
+      <soap12:operation soapAction="http://tempuri.org/SelectAllDeletedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAlRevery_OlderVersionFiles">
+      <soap12:operation soapAction="http://tempuri.org/SelectAlRevery_OlderVersionFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetStoragePlans">
       <soap12:operation soapAction="http://tempuri.org/GetStoragePlans" style="document" />
       <wsdl:input>
@@ -916,6 +1432,105 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateUserStorageCapacity">
       <soap12:operation soapAction="http://tempuri.org/UpdateUserStorageCapacity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AskQuestion">
+      <soap12:operation soapAction="http://tempuri.org/AskQuestion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AnswerQuestion">
+      <soap12:operation soapAction="http://tempuri.org/AnswerQuestion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestions">
+      <soap12:operation soapAction="http://tempuri.org/GetQuestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSpecificUser">
+      <soap12:operation soapAction="http://tempuri.org/GetSpecificUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneFFile">
+      <soap12:operation soapAction="http://tempuri.org/SelectOneFFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOldFileVserion">
+      <soap12:operation soapAction="http://tempuri.org/SelectOldFileVserion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectDDeletedFiles">
+      <soap12:operation soapAction="http://tempuri.org/SelectDDeletedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneRecoveredFFile">
+      <soap12:operation soapAction="http://tempuri.org/SelectOneRecoveredFFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneDELETEDFFile">
+      <soap12:operation soapAction="http://tempuri.org/SelectOneDELETEDFFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFromDELETEDFFile">
+      <soap12:operation soapAction="http://tempuri.org/DeleteFromDELETEDFFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFromRecoveredFFile">
+      <soap12:operation soapAction="http://tempuri.org/DeleteFromRecoveredFFile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

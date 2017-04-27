@@ -76,6 +76,7 @@
     <Content Include="File Storage Restore.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
+    <Content Include="WebUserControlShowFIle.ascx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -102,8 +103,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Registration.aspx" />
-    <None Include="Web References\WebS\CloudWebS.disco" />
     <Content Include="ViewOrAnswerQuestions.aspx" />
+    <None Include="Web References\WebS\CloudWebS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +202,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControl1.ascx.cs">
+      <DependentUpon>WebUserControlShowFIle.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControl1.ascx.designer.cs">
+      <DependentUpon>WebUserControlShowFIle.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
