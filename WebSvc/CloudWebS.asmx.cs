@@ -170,7 +170,7 @@ namespace WebSvc
 
                 if (OBJFile != null)
                 {
-                    if (CheckStorage((OBJFile.FileSize), OBJFile.Username))
+                    if (CheckStorage((OBJFile.FileSize), username))
                     {
                         BinaryFormatter Serializer = new BinaryFormatter();
                         MemoryStream memStream = new MemoryStream();
@@ -190,7 +190,7 @@ namespace WebSvc
                         objCommand.CommandText = "StoreFile";
                         objCommand.Parameters.AddWithValue("@username", username);
                         objCommand.Parameters.AddWithValue("@file", bytefileArray);
-                        objCommand.Parameters.AddWithValue("@uploadDate", OBJFile.UploadDate);
+                        objCommand.Parameters.AddWithValue("@uploadDate", DateTime.Today.ToShortDateString());
                         objCommand.Parameters.AddWithValue("@fileType", OBJFile.FileType);
                         objCommand.Parameters.AddWithValue("@fileName", OBJFile.FileName);
                         objCommand.Parameters.AddWithValue("@fileSize", OBJFile.FileSize);
@@ -358,27 +358,29 @@ namespace WebSvc
 
             int updated = 0;
             updated = objDB1.DoUpdateUsingCmdObj(objCommand1);
-            //add storage back
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "updateCapacityUsed";
-
-            objCommand.Parameters.AddWithValue("@username", username);
-            objCommand.Parameters.AddWithValue("@fileSize", -(size));
-
-            //
-            int updated1 = 0;
-            updated1 = objDB1.DoUpdateUsingCmdObj(objCommand1);
+     
 
 
-            if (updated1 == 0)
+            if (updated == 0)
             {
                 return "File Not Deleted";
             }
             else
             {
+                //add storage back
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "updateCapacityUsed";
+
+                objCommand.Parameters.AddWithValue("@username", username);
+                objCommand.Parameters.AddWithValue("@fileSize", -(size));
+
+                //
+                objDB.DoUpdateUsingCmdObj(objCommand);
                 //add deletede file to dleted file table 
+                DBConnect objDB2 = new DBConnect();
+
                 SqlCommand objCommand2 = new SqlCommand();
                 objCommand2.CommandType = CommandType.StoredProcedure;
                 objCommand2.CommandText = "InsertDeletedFile";
@@ -389,7 +391,7 @@ namespace WebSvc
                 objCommand2.Parameters.AddWithValue("@fileSize", size);
 
                 objCommand2.Parameters.AddWithValue("@username", username);
-                objDB1.DoUpdateUsingCmdObj(objCommand2);
+                objDB2.DoUpdateUsingCmdObj(objCommand2);
 
                 ////track user movements 
                 InsertUserTransactions(username, username + " Deleted File " + fileName + "", DateTime.Today.ToString());
@@ -971,18 +973,108 @@ namespace WebSvc
 
             return ds = objDB.GetDataSetUsingCmdObj(objCommand);
         }
-
         [WebMethod]
-        public DataSet GetCloudUsers()
+        public DataSet SelectOneFFile(String userName, String fileName)
         {
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
-            DataSet ds;
-
             objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "SelectCloudUsers";
+            objCommand.CommandText = "SelectOneFile";
 
-            return ds = objDB.GetDataSetUsingCmdObj(objCommand);
+            objCommand.Parameters.AddWithValue("@userName", userName);
+            objCommand.Parameters.AddWithValue("@filename", fileName);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+            return set;
+        }
+        [WebMethod]
+        public DataSet SelectOldFileVserion(String userName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectFile_OlderVersion_Recovery";
+
+            objCommand.Parameters.AddWithValue("@userName", userName);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+            return set;
+        }
+        [WebMethod]
+        public DataSet SelectDDeletedFiles(String userName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectDeletedFiles";
+
+            objCommand.Parameters.AddWithValue("@userName", userName);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+            return set;
+        }
+        [WebMethod]
+        public DataSet SelectOneRecoveredFFile(String userName, String fileName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectOneFileFromRecoveryFiles";
+
+            objCommand.Parameters.AddWithValue("@userName", userName);
+            objCommand.Parameters.AddWithValue("@filename", fileName);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+            return set;
+        }
+        [WebMethod]
+        public DataSet SelectOneDELETEDFFile(String userName, String fileName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectOneFileFromDeletedFiles";
+
+            objCommand.Parameters.AddWithValue("@userName", userName);
+            objCommand.Parameters.AddWithValue("@filename", fileName);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+            return set;
+        }
+
+        [WebMethod]
+        public int DeleteFromDELETEDFFile(String userName, String fileName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "DeleteFileFromDeletedFIles";
+
+            objCommand.Parameters.AddWithValue("@userName", userName);
+            objCommand.Parameters.AddWithValue("@filename", fileName);
+            int i = 0;
+           i= objDB.DoUpdateUsingCmdObj(objCommand);
+            return i;
+        }
+        [WebMethod]
+        public int DeleteFromRecoveredFFile(String userName, String fileName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "DeleteFileFromRecoveredFIles";
+
+            objCommand.Parameters.AddWithValue("@userName", userName);
+            objCommand.Parameters.AddWithValue("@filename", fileName);
+
+            int i = 0;
+            i = objDB.DoUpdateUsingCmdObj(objCommand);
+            return i;
         }
     }
 }

@@ -13,6 +13,15 @@ namespace TermProject {
     public partial class File_Storage_Restore {
         
         /// <summary>
+        /// ATLAccountFailure control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ATLAccountFailure;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
+        /// lbldelectedfilerecover control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldelectedfilerecover;
         
         /// <summary>
         /// GridVDeletedFiles control.
@@ -40,6 +58,15 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.Button BTNDeletedFileReover;
         
         /// <summary>
+        /// lblrecoverfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblrecoverfile;
+        
+        /// <summary>
         /// GridViewVersionRecover control.
         /// </summary>
         /// <remarks>
@@ -49,12 +76,12 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.GridView GridViewVersionRecover;
         
         /// <summary>
-        /// GvShowaLLfiLESwITHiCON control.
+        /// btnResoreVerson control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GvShowaLLfiLESwITHiCON;
+        protected global::System.Web.UI.WebControls.Button btnResoreVerson;
     }
 }

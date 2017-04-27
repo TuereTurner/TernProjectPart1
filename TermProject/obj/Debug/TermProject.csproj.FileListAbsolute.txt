@@ -106,3 +106,5 @@ C:\Users\Samuel Gagan\Desktop\Github\TermProject\bin\File.dll
 C:\Users\Samuel Gagan\Desktop\Github\TermProject\bin\File.pdb
 C:\Users\Samuel Gagan\Desktop\Github\TermProject\bin\ExtraStorageUser.dll
 C:\Users\Samuel Gagan\Desktop\Github\TermProject\bin\ExtraStorageUser.pdb
+C:\Users\Test Account\Source\Repos\TernProjectPart13\TermProject\bin\ExtraStorageUser.dll
+C:\Users\Test Account\Source\Repos\TernProjectPart13\TermProject\bin\ExtraStorageUser.pdb
