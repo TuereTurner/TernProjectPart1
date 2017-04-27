@@ -11,7 +11,9 @@
     <div>
         <asp:Button ID="btnEditCloudUsers" runat="server" Text="Edit Cloud Users" OnClick="btnEditCloudUsers_Click" />
         <br /> <br />
-        <asp:Button ID="btn" runat="server" Text="View/Answer Questions" OnClick="btn_Click" />
+        <asp:Button ID="btnAnswerQuestion" runat="server" Text="View/Answer Questions" OnClick="btnAnswerQuestion_Click" />
+        <br /> <br />
+        <asp:Button ID="btnDeletCloudUsers" runat="server" Text="Delete Cloud Users" OnClick="btnDeletCloudUsers_Click" />
     </div>
     </form>
 </body>

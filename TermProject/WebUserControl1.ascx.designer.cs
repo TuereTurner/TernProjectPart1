@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebSvc {
+namespace TermProject {
     
     
     public partial class WebUserControl1 {
