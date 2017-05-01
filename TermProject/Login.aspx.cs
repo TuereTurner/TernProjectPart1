@@ -150,7 +150,7 @@ namespace TermProject
             decryptionStream.Close();
 
             password = encoder.GetString(text);
-
+            /////
             return password;
         }
     }
