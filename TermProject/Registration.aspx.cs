@@ -57,9 +57,14 @@ namespace TermProject
                         UserIdCookie.Values["loginID"] = txtUserName.Text;
                         UserIdCookie.Expires = new DateTime(2025, 1, 1);
                         Response.Cookies.Add(UserIdCookie);
+                       
+                        int x;
+                        x = pxy.InsertuSERObject(username);
+                        
                     }
                     Response.Redirect("Login.aspx");
-
+                    //add to user object 
+                    pxy.InsertuSERObject(username);
                 }
             }
             else

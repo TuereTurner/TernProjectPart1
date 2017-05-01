@@ -66,8 +66,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppMainPage.aspx" />
     <Content Include="AskQuestion.aspx" />
+    <Content Include="CSS  Style\BodyStyleSheet.css" />
     <Content Include="BuyMoreStorage.aspx" />
     <Content Include="CloudAdministrator.aspx" />
     <Content Include="CloudUser.aspx" />
@@ -77,6 +77,8 @@
     <Content Include="File Storage Restore.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
+    <None Include="Web References\WebS\CloudWebS.disco" />
+    <Content Include="UserControlNavBAR.ascx" />
     <Content Include="WebUserControlShowFIle.ascx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -105,17 +107,9 @@
   <ItemGroup>
     <Content Include="Registration.aspx" />
     <Content Include="ViewOrAnswerQuestions.aspx" />
-    <None Include="Web References\WebS\CloudWebS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppMainPage.aspx.cs">
-      <DependentUpon>AppMainPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AppMainPage.aspx.designer.cs">
-      <DependentUpon>AppMainPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AskQuestion.aspx.cs">
       <DependentUpon>AskQuestion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -198,6 +192,13 @@
     </Compile>
     <Compile Include="RequestAndTestWebS.aspx.designer.cs">
       <DependentUpon>RequestAndTestWebS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlNavBAR.ascx.cs">
+      <DependentUpon>UserControlNavBAR.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControlNavBAR.ascx.designer.cs">
+      <DependentUpon>UserControlNavBAR.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewOrAnswerQuestions.aspx.cs">
       <DependentUpon>ViewOrAnswerQuestions.aspx</DependentUpon>

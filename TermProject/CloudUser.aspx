@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CloudUser.aspx.cs" Inherits="TermProject.CloudUser" %>
 
+<%@ Register Src="~/UserControlNavBAR.ascx" TagPrefix="uc1" TagName="UserControlNavBAR" %>
+
+
+
 
 
 <!DOCTYPE html>
@@ -62,35 +66,7 @@
             border-radius: 0%;
             color:white;
         }
-       ul{
-           list-style-type:none;
-           margin-left:20px;
-            padding-left: 50px;
-           padding:0;
-           overflow:hidden;
-           background-color:black;
-           position:fixed;
-           top:0;
-           width:100%;
-            left: -20px;
-            margin-right: 0;
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-       li{
-           float:left;
-       }
-       li a{
-           display:block;
-           color: white;
-           text-align:center;
-           padding:14px 16px;
-           text-decoration:none;
-       }
-       li image{
-           height:10px;
-           width:10px;
-       }
+    
         #form1 {
             height: 1195px;
         }
@@ -109,16 +85,7 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div>
-           
-             <ul>
-            <li> <a href="CloudUser.aspx"> Home</a></li>
-            <li> <a href="File Storage Restore.aspx"> Restore Files</a></li>
-            <li> <a href="AskQuestion.aspx"> Ask Questions</a></li>
-
-            <li style="float:right""> <a href="EditUserByUser.aspx">  <i class="fa fa-gear"></i> User Setting</a></li>
-            <li style="float:right; color:cornflowerblue;"> <a href="Login.aspx" > <i class="fa fa-sign-out"></i> LogOut </a></li>
-        </ul>
-
+            <uc1:UserControlNavBAR runat="server" id="UserControlNavBAR" />
         </div>
         <br />
 
@@ -127,7 +94,7 @@
             <h1>User Cloud Home</h1>
         </header>
        
-             <div runat="server" id="divplaceholder" style=" background-color:white; float:right; height:124px; width:371px;  ">
+             <div runat="server" id="divplaceholder" visible="false" style=" background-color:lightskyblue;border-color:white;  border:thick; float:right; height:124px; width:371px;  ">
     
  </div>     
        
@@ -147,59 +114,50 @@
         <br />
         <br />
         <br />
-         <div class="Stylediv" style=" align-content:center; float:left;padding-right:inherit;margin-right:5px; margin-left:-10px;padding-left:0px;padding-top:0px;margin-top:15px"   >
-              <h5 style="width: 121px; height: 42px">Cloud Folder</h5>
-             <br />
-            
-                  <br />
-                  <br />
-                  <br />
-
-                  
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <br />
-                  <br />
-                  <br />
-                  <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                
-        </div>
+        
         <!---Fie schrynization-->
+          <div>
+             <h1> Cloud Files</h1>
+        <div>
+
+
+        <div class="Stylediv">
+          
+                     
+     <br />
+           
+             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                 <ContentTemplate>
+                     <asp:Label runat="server" ID="lblNewCloudUser" ForeColor="Red" ></asp:Label>
+                     <asp:GridView ID="GridViewCloudObj" runat="server" AutoGenerateColumns="False"   style="margin-left: 50px" Width="1080px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                         <Columns>
+                             <asp:BoundField DataField="fileName" HeaderText="File Name" ReadOnly="true" />
+                             <asp:BoundField DataField="fileType" HeaderText="File Type" ReadOnly="true" />
+                             <asp:BoundField DataField="fileSize" HeaderText="Size" ReadOnly="true" />
+                             <asp:BoundField DataField="uploadDate" HeaderText="Upload date" ReadOnly="true" />
+                             <asp:TemplateField HeaderText=" icon">
+                                 <ItemTemplate>
+                                     <asp:Image ID="gvIMage" runat="server" Height="60" Width="45" />
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                           
+                         </Columns>
+                         <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                         <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                         <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                         <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                         <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                         <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                         <SortedDescendingHeaderStyle BackColor="#242121" />
+                     </asp:GridView>
+                 </ContentTemplate>
+            </asp:UpdatePanel>
+            
+        </div>
+        </div>
          <div>
-             <h1> Files </h1>
+             <h1> Update and Delete Files </h1>
         <div>
 
 
@@ -216,9 +174,11 @@
             <p>
 
             </p>
-             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                 <ContentTemplate>
-                     <asp:GridView ID="GvShowaLLfiLESwITHiCON" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="GvShowaLLfiLESwITHiCON_RowCancelingEdit" OnRowDeleting="GvShowaLLfiLESwITHiCON_RowDeleting" OnRowEditing="GvShowaLLfiLESwITHiCON_RowEditing" OnRowUpdating="GvShowaLLfiLESwITHiCON_RowUpdating" OnSelectedIndexChanged="GvShowaLLfiLESwITHiCON_SelectedIndexChanged" style="margin-left: 50px" Width="463px">
+       
+                
+                     
+                     <asp:GridView ID="GvShowaLLfiLESwITHiCON" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GvShowaLLfiLESwITHiCON_RowCancelingEdit"  OnRowDeleting="GvShowaLLfiLESwITHiCON_RowDeleting" OnRowEditing="GvShowaLLfiLESwITHiCON_RowEditing" OnRowUpdating="GvShowaLLfiLESwITHiCON_RowUpdating" OnSelectedIndexChanged="GvShowaLLfiLESwITHiCON_SelectedIndexChanged" style="margin-left: 50px" Width="463px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                         <AlternatingRowStyle BackColor="#CCCCCC" />
                          <Columns>
                              <asp:BoundField DataField="fileName" HeaderText="File Name" ReadOnly="true" />
                              <asp:BoundField DataField="fileType" HeaderText="File Type" ReadOnly="true" />
@@ -232,21 +192,34 @@
                              <asp:TemplateField HeaderText="UpdateFile to Newer Version">
                                  <ItemTemplate>
                                      <asp:FileUpload ID="fileUploadGV1" runat="server" />
+                                 
                                  </ItemTemplate>
                              </asp:TemplateField>
+                              
+                             <asp:CommandField ButtonType="Button" HeaderText="Download File" ShowSelectButton="true" SelectText="Download" ControlStyle-BackColor="CornflowerBlue" ControlStyle-BorderStyle="Groove" ControlStyle-ForeColor="White">
+                             <ControlStyle BackColor="CornflowerBlue" BorderStyle="Groove" ForeColor="White" />
+                             </asp:CommandField>
                              <asp:CommandField ButtonType="Button" HeaderText="Edit File" ShowEditButton="true" />
                              <asp:CommandField ButtonType="Button" HeaderText="Delete File" ShowDeleteButton="true" />
                          </Columns>
+                         <FooterStyle BackColor="#CCCCCC" />
+                         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                         <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                         <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                         <SortedAscendingHeaderStyle BackColor="#808080" />
+                         <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                         <SortedDescendingHeaderStyle BackColor="#383838" />
                      </asp:GridView>
-                 </ContentTemplate>
-            </asp:UpdatePanel>
+                 
+           
             
         </div>
         </div>
         <!-- storage-->
         <div>
                <div>
-                   <asp:LinkButton runat="server" OnClick="Unnamed_Click" Text="Download File"></asp:LinkButton>
+                   
                </div>
         
         

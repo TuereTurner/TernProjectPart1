@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="File Storage Restore.aspx.cs" Inherits="TermProject.File_Storage_Restore" %>
 
+<%@ Register Src="~/UserControlNavBAR.ascx" TagPrefix="uc1" TagName="UserControlNavBAR" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -63,35 +66,7 @@
             margin-left:-100px;
            margin-right:-100px;
        }
-       ul{
-           list-style-type:none;
-           margin-left:20px;
-            padding-left: 50px;
-           padding:0;
-           overflow:hidden;
-           background-color:black;
-           position:fixed;
-           top:0;
-           width:100%;
-            left: -20px;
-            margin-right: 0;
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-       li{
-           float:left;
-       }
-       li a{
-           display:block;
-           color: white;
-           text-align:center;
-           padding:14px 16px;
-           text-decoration:none;
-       }
-       li image{
-           height:10px;
-           width:10px;
-       }
+    
     </style>
 </head>
 <body>
@@ -106,15 +81,7 @@
            
     <form id="form1" runat="server">
         <div>
-             <ul>
-            <li> <a href="CloudUser.aspx"> Home</a></li>
-            <li> <a href="File Storage Restore.aspx"> Restore Files</a></li>
-            <li> <a href="AskQuestion.aspx"> Ask Questions</a></li>
-
-            <li style="float:right""> <a href="EditUserByUser.aspx">  <i class="fa fa-gear"></i> User Setting</a></li>
-            <li style="float:right; color:cornflowerblue;"> <a href="Login.aspx" > <i class="fa fa-sign-out"></i> LogOut </a></li>
-        </ul>
-
+      <uc1:UserControlNavBAR runat="server" ID="UserControlNavBAR" />
         </div>
 
        <br />
