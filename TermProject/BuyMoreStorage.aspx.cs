@@ -36,38 +36,44 @@ namespace TermProject
 
         protected void btnPurchase_Click(object sender, EventArgs e)
         {
-            WebS.ExtraStorageUser ESU = new WebS.ExtraStorageUser();
+                WebS.ExtraStorageUser ESU = new WebS.ExtraStorageUser();
 
-            Double cost = Convert.ToDouble(ddlStoragePlans.SelectedValue);
+                Double cost = Convert.ToDouble(ddlStoragePlans.SelectedValue);
 
 
-            String username = Session["login"].ToString();
-            String creditCardNumber = txtCreditCardNumber.Text;
-            String creditCardExpirationDate = txtExpirationDate.Text;
-            String creditCardCVV = txtCVV.Text;
-            String billingAddress = txtBillingAddress.Text;
-            String phoneNumber = txtPhoneNumber.Text;
-            Double storageAmount = Convert.ToDouble(ddlStoragePlans.SelectedValue);
-            Double storageCost = cost / 10000;
-            String name = txtName.Text;
+                String username = Session["login"].ToString();
+                String creditCardNumber = txtCreditCardNumber.Text;
+                String creditCardExpirationDate = txtExpirationDate.Text;
+                String creditCardCVV = txtCVV.Text;
+                String billingAddress = txtBillingAddress.Text;
+                String phoneNumber = txtPhoneNumber.Text;
+                Double storageAmount = Convert.ToDouble(ddlStoragePlans.SelectedValue);
+                Double storageCost = cost / 10000;
+                String name = txtName.Text;
 
-            ESU.Username = username;
-            ESU.CreditCardNumber = creditCardNumber;
-            ESU.CreditCardExpiration = creditCardExpirationDate;
-            ESU.CreditCardCVV = creditCardCVV;
-            ESU.BillingAddress = billingAddress;
-            ESU.PhoneNumber = phoneNumber;
-            ESU.StorageAmount = (float)storageAmount;
-            ESU.StorageCost = (float)storageCost;
-            ESU.Name = name;
+                       if (username!="" && creditCardNumber!="" && creditCardExpirationDate != "" && creditCardCVV != "" && billingAddress != "" && phoneNumber!= ""   && name != "") { 
+                ESU.Username = username;
+                ESU.CreditCardNumber = creditCardNumber;
+                ESU.CreditCardExpiration = creditCardExpirationDate;
+                ESU.CreditCardCVV = creditCardCVV;
+                ESU.BillingAddress = billingAddress;
+                ESU.PhoneNumber = phoneNumber;
+                ESU.StorageAmount = (float)storageAmount;
+                ESU.StorageCost = (float)storageCost;
+                ESU.Name = name;
 
-            if (pxy.InsertPurchaseExtraStorage(ESU) && pxy.UpdateUserStorageCapacity(ESU))
-            {
-                lblOutput.Text = "Storage Plan Purchased";
+                if (pxy.InsertPurchaseExtraStorage(ESU) && pxy.UpdateUserStorageCapacity(ESU))
+                {
+                    lblOutput.Text = "Storage Plan Purchased";
+                }
+                else
+                {
+                    lblOutput.Text = "Something went wrong. Please try again.";
+                }
             }
             else
             {
-                lblOutput.Text = "Something went wrong. Please try again.";
+                lblOutput.Text = "All fields Requiered";
             }
         }
     }

@@ -323,6 +323,10 @@ namespace WebSvc
             set = objDB.GetDataSetUsingCmdObj(objCommand);
             if (set.Tables[0].Rows.Count != 0)
             {
+                //deserialize the file
+
+
+
                 return set;
             }
             else
@@ -1077,7 +1081,25 @@ namespace WebSvc
             i = objDB.DoUpdateUsingCmdObj(objCommand);
             return i;
         }
+
         [WebMethod]
+        public DataSet GetCloudUsers()
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            DataSet ds;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectCloudUsers";
+
+            return ds = objDB.GetDataSetUsingCmdObj(objCommand);
+        }
+    
+
+
+
+
+           [WebMethod]
 
         public int InsertuSERObject(String username)
         {
@@ -1087,16 +1109,19 @@ namespace WebSvc
             ///add colum to dataset
             ///
             DataTable tb = new DataTable();
-            tb.Columns.Add( "Files");
-            
+            tb.Columns.Add(new DataColumn("fileName"));
+            tb.Columns.Add(new DataColumn("fileType"));
+            tb.Columns.Add(new DataColumn("fileSize"));
+            tb.Columns.Add(new DataColumn("uploadDate"));
             DataSet set1 = new DataSet();
 
 
             DataRow row;
              row=   tb.NewRow();
-            row[0] = " No files Uploaded, Add Files";
+            row[0] = " No files Uploaded";
             tb.Rows.Add(row);
             set1.Tables.Add(tb);
+
             useObj.UserFilesObj = set1;
             useObj.Username = username;
             

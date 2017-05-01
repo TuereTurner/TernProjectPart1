@@ -128,8 +128,8 @@
            
              <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                  <ContentTemplate>
-                     <asp:Label runat="server" ID="lblNewCloudUser" ForeColor="Red" ></asp:Label>
-                     <asp:GridView ID="GridViewCloudObj" runat="server" AutoGenerateColumns="False"   style="margin-left: 50px" Width="1080px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                     <asp:Label runat="server" ID="lblNewCloudUser" ForeColor="Red" Text="Upload Files"  ></asp:Label>
+                     <asp:GridView ID="GridViewCloudObj" runat="server" AutoGenerateColumns="False"   style="margin-left: 50px; z-index: 2;" Width="1080px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
                          <Columns>
                              <asp:BoundField DataField="fileName" HeaderText="File Name" ReadOnly="true" />
                              <asp:BoundField DataField="fileType" HeaderText="File Type" ReadOnly="true" />

@@ -10,6 +10,7 @@ using System.Collections;
 using System.Web.Configuration;
 using File;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TermProject
 {
@@ -252,25 +253,23 @@ namespace TermProject
             ///download file
             ///fet the dataset
             //
-            DataSet set = new DataSet();
-            set = pxy.SelectOneFFile(username, filename);
-            String type = set.Tables[0].Rows[0]["fileType"].ToString();
+         //   DataSet set = new DataSet();
+          //  set = pxy.SelectOneFFile(username, filename);
+          //  String type = set.Tables[0].Rows[0]["fileType"].ToString();
             DataSet byteset = pxy.SelectOneFFile(username, filename);
 
             byte[] filebyte = (byte[])(byteset.Tables[0].Rows[0]["file"]);
-            Response.Buffer = true;
-            Response.Charset = "";
+            BinaryFormatter deSerializer = new BinaryFormatter();
+            MemoryStream memStream = new MemoryStream(filebyte);
 
+            FileInfoWS filebytesdeserialized = (FileInfoWS)deSerializer.Deserialize(memStream);
 
-            Response.AddHeader("content-disposition", "attachment;    filename=" + filename);
+            filebyte = filebytesdeserialized.File;
 
-            Response.ContentType = "Application/pdf";
-            string FilePath = MapPath(filename);
-
-            Response.BinaryWrite(filebyte);
-            Response.WriteFile(FilePath);
-
-            Response.Close();
+            Response.ContentType = "application/octet-stream";
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + filename);
+            Response.OutputStream.Write(filebyte, 0, filebyte.Length);
+            Response.Flush();
 
             GenerateUSEROHJECTGridView();
 
@@ -302,7 +301,7 @@ namespace TermProject
                 objfile.UploadDate = (DateTime.Now.ToShortDateString()).ToString();
                 objfile.Username = username;
                 //check to see what type of file it is 
-                if (fileExtension == ".jpg" || fileExtension == ".mp3" || fileExtension == ".pdf" || fileExtension == ".png" || fileExtension == ".pptx" || fileExtension == ".docx")
+                if ( fileExtension == ".pdf" || fileExtension == ".xlsx" || fileExtension == ".csv"|| fileExtension == ".pptx" || fileExtension == ".docx")
                 {
                     //call method to serialze and store file 
                     String ResultFIleUpload = "";

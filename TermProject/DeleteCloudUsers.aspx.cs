@@ -24,7 +24,7 @@ namespace TermProject
             }
             if (!IsPostBack)
             {
-             //   ddlDeleteCloudUsers.DataSource = pxy2.GetCloudUsers();
+              ddlDeleteCloudUsers.DataSource = pxy2.GetCloudUsers();
                 ddlDeleteCloudUsers.DataTextField = "name";
                 ddlDeleteCloudUsers.DataValueField = "username";
                 ddlDeleteCloudUsers.DataBind();
@@ -34,7 +34,7 @@ namespace TermProject
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             pxy2.DeleteUser(ddlDeleteCloudUsers.SelectedValue);
-          //  ddlDeleteCloudUsers.DataSource = pxy2.GetCloudUsers();
+          ddlDeleteCloudUsers.DataSource = pxy2.GetCloudUsers();
             ddlDeleteCloudUsers.DataBind();
         }
     }

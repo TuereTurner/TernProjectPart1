@@ -40,7 +40,10 @@
                  <li> <a href="BuyMoreStorage.aspx"> Buy Storage</a></li>
                     <li> <a href="Registration.aspx"> Registration</a></li>
             <li style="float:right""> <a href="EditUserByUser.aspx">  <i class="fa fa-gear"></i> User Setting</a></li>
-            <li style="float:right; color:cornflowerblue;"> <a href="Login.aspx" > <i class="fa fa-sign-out"></i> LogOut </a></li>
-        </ul>
+            <li style="float:right; color:cornflowerblue;"> <i class="fa fa-sign-out"> <asp:Button runat="server" ID="btnLogOut" BackColor="Black" ForeColor="White" Text="LogOut" Height="52px" OnClick="btnLogOut_Click" />  </i>    </li>
+       
+                  </ul>
 
         </div>
+<p>
+    &nbsp;</p>

@@ -58,8 +58,9 @@ namespace TermProject
                     //assign session key to reteive as user moves through the application
                     Session["login"] = txtUserName.Text;
                     //redirect to main page
-                    if (pxy2.GetAccountType(txtUserName.Text) == "Cloud User")
+                    if (pxy2.GetAccountType(txtUserName.Text) == "Cloud User" )
                     {
+                        pxy.UpDateuSERObject(txtUserName.Text);
                         Response.Redirect("CloudUser.aspx");
                     }
                     if (pxy2.GetAccountType(txtUserName.Text) == "Cloud Administrator")
