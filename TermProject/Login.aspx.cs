@@ -84,6 +84,30 @@ namespace TermProject
                     lblInactive.Text = "Account inactive";
                 }
             }
+                //authiticate login info
+                if (VerifyAccount(txtUserName.Text, txtPassword.Text))
+                {
+                    //show success allert
+                    ATLSuccessAlert.Visible = true;
+                    //assign session key to reteive as user moves through the application
+                    Session["login"] = txtUserName.Text;
+                    //redirect to main page
+                    if (pxy2.GetAccountType(txtUserName.Text) == "Cloud User" )
+                    {
+                        pxy.UpDateuSERObject(txtUserName.Text);
+                        Response.Redirect("CloudUser.aspx");
+                    }
+                    if (pxy2.GetAccountType(txtUserName.Text) == "Cloud Administrator")
+                    {
+                        Response.Redirect("CloudAdministrator.aspx");
+                    }
+                    //Response.Redirect("AppMainPage.aspx");
+                }
+                else
+                {
+                    ATLAccountFailure.Visible = true;
+                }
+            }
             else
             {
                 txtUserName.Text = "Required";
@@ -161,7 +185,7 @@ namespace TermProject
             decryptionStream.Close();
 
             password = encoder.GetString(text);
-
+            /////
             return password;
         }
     }

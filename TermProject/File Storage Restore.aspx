@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="File Storage Restore.aspx.cs" Inherits="TermProject.File_Storage_Restore" %>
 
+<%@ Register Src="~/UserControlNavBAR.ascx" TagPrefix="uc1" TagName="UserControlNavBAR" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,16 +23,9 @@
            
     <form id="form1" runat="server">
         <div>
-            <ul>
-                <li><a href="CloudUser.aspx">Home</a></li>
-                <li><a href="File Storage Restore.aspx">Restore Files</a></li>
-                <li><a href="AskQuestion.aspx">Ask Questions</a></li>
-                <li><a href="BuyMoreStorage.aspx">Buy More Storage</a></li>
-
-                <li style="float: right"><a href="EditUserByUser.aspx"><i class="fa fa-gear"></i>User Setting</a></li>
-                <li style="float: right; color: cornflowerblue;"><a href="Login.aspx"><i class="fa fa-sign-out"></i>LogOut </a></li>
-            </ul>
+      <uc1:UserControlNavBAR runat="server" ID="UserControlNavBAR" />
         </div>
+        
 
        <br />
         <header > Restore Files </header>

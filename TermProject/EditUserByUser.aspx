@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditUserByUser.aspx.cs" Inherits="TermProject.EditUserByUser" %>
 
+<%@ Register Src="~/UserControlNavBAR.ascx" TagPrefix="uc1" TagName="UserControlNavBAR" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -22,10 +25,15 @@
         </div>
     <br /><br /><br />
     <form id="form1" runat="server">
+        <uc1:UserControlNavBAR runat="server" ID="UserControlNavBAR" />
         <div>
-            <br /> <br />
-            <asp:GridView ID="gvEditUser" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="gvEditUser_RowCancelingEdit" OnRowEditing="gvUserEditUser_RowEditing" OnRowUpdated="gvUserEditUser_RowUpdated" OnRowUpdating="gvUserEditUser_RowUpdating" Width="1400px" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical">
-                <AlternatingRowStyle BackColor="White" />
+             <div">
+      <h1 style="text-align:center">&nbsp;</h1>
+        <h1 style="text-align:center">Edit Profile</h1>
+
+        </div>
+            <br /> 
+            <asp:GridView ID="gvEditUser" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="gvEditUser_RowCancelingEdit" OnRowEditing="gvUserEditUser_RowEditing" OnRowUpdated="gvUserEditUser_RowUpdated" OnRowUpdating="gvUserEditUser_RowUpdating" Width="1400px">
                 <Columns>
                     <asp:BoundField DataField="username" HeaderText="Username" ReadOnly="true" />
                     <asp:BoundField DataField="password" HeaderText="Password" />
@@ -50,6 +58,8 @@
                 <SortedDescendingCellStyle BackColor="#EAEAD3" />
                 <SortedDescendingHeaderStyle BackColor="#575357" />
             </asp:GridView>
+
+        <br />
 
         </div>
     </form>

@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AskQuestion.aspx.cs" Inherits="TermProject.AskQuestion" %>
 
+<%@ Register Src="~/UserControlNavBAR.ascx" TagPrefix="uc1" TagName="UserControlNavBAR" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -15,20 +18,18 @@
     </style>
 </head>
 <body>
-    <br /><br /><br /><br />
-            <div>
-            <ul>
-                <li><a href="CloudUser.aspx">Home</a></li>
-                <li><a href="File Storage Restore.aspx">Restore Files</a></li>
-                <li><a href="AskQuestion.aspx">Ask Questions</a></li>
-                <li><a href="BuyMoreStorage.aspx">Buy More Storage</a></li>
-
-                <li style="float: right"><a href="EditUserByUser.aspx"><i class="fa fa-gear"></i>User Setting</a></li>
-                <li style="float: right; color: cornflowerblue;"><a href="Login.aspx"><i class="fa fa-sign-out"></i>LogOut </a></li>
-            </ul>
-        </div>
     <form id="form1" runat="server">
-    <div>
+        <div>
+        <uc1:UserControlNavBAR runat="server" ID="UserControlNavBAR" />
+
+        </div>
+
+         <div">
+      <h1 style="text-align:center">&nbsp;</h1>
+        <h1 style="text-align:center">Ask Quesitons</h1>
+
+        </div>
+    <div style="z-index: 1; left: 187px; top: 207px; align-content:center; position: absolute; height: 426px; width: 1159px">
     <asp:Label ID="lblAskQuestion" runat="server" Text="Type Question Here: "></asp:Label>
         <br />
         <asp:TextBox ID="txtQuestion" runat="server" TextMode="MultiLine" Height="105px" Width="265px"></asp:TextBox>

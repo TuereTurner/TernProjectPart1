@@ -605,6 +605,79 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="InsertuSERObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertuSERObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertuSERObjectResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAllFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAllFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteAllFilesResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sELECTuSERObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sELECTuSERObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sELECTuSERObjectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpDateuSERObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpDateuSERObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpDateuSERObjectResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="stuff">
+        <s:complexType />
+      </s:element>
+      <s:element name="stuffResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="stuffResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddUserSoapIn">
@@ -805,6 +878,36 @@
   <wsdl:message name="DeleteFromRecoveredFFileSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteFromRecoveredFFileResponse" />
   </wsdl:message>
+  <wsdl:message name="InsertuSERObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertuSERObject" />
+  </wsdl:message>
+  <wsdl:message name="InsertuSERObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertuSERObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAllFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteAllFiles" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAllFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAllFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="sELECTuSERObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:sELECTuSERObject" />
+  </wsdl:message>
+  <wsdl:message name="sELECTuSERObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:sELECTuSERObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpDateuSERObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:UpDateuSERObject" />
+  </wsdl:message>
+  <wsdl:message name="UpDateuSERObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:UpDateuSERObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="stuffSoapIn">
+    <wsdl:part name="parameters" element="tns:stuff" />
+  </wsdl:message>
+  <wsdl:message name="stuffSoapOut">
+    <wsdl:part name="parameters" element="tns:stuffResponse" />
+  </wsdl:message>
   <wsdl:portType name="CloudWebSSoap">
     <wsdl:operation name="AddUser">
       <wsdl:input message="tns:AddUserSoapIn" />
@@ -937,6 +1040,26 @@
     <wsdl:operation name="DeleteFromRecoveredFFile">
       <wsdl:input message="tns:DeleteFromRecoveredFFileSoapIn" />
       <wsdl:output message="tns:DeleteFromRecoveredFFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertuSERObject">
+      <wsdl:input message="tns:InsertuSERObjectSoapIn" />
+      <wsdl:output message="tns:InsertuSERObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllFiles">
+      <wsdl:input message="tns:DeleteAllFilesSoapIn" />
+      <wsdl:output message="tns:DeleteAllFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sELECTuSERObject">
+      <wsdl:input message="tns:sELECTuSERObjectSoapIn" />
+      <wsdl:output message="tns:sELECTuSERObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpDateuSERObject">
+      <wsdl:input message="tns:UpDateuSERObjectSoapIn" />
+      <wsdl:output message="tns:UpDateuSERObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="stuff">
+      <wsdl:input message="tns:stuffSoapIn" />
+      <wsdl:output message="tns:stuffSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWebSSoap" type="tns:CloudWebSSoap">
@@ -1238,6 +1361,51 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InsertuSERObject">
+      <soap:operation soapAction="http://tempuri.org/InsertuSERObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllFiles">
+      <soap:operation soapAction="http://tempuri.org/DeleteAllFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sELECTuSERObject">
+      <soap:operation soapAction="http://tempuri.org/sELECTuSERObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpDateuSERObject">
+      <soap:operation soapAction="http://tempuri.org/UpDateuSERObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="stuff">
+      <soap:operation soapAction="http://tempuri.org/stuff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CloudWebSSoap12" type="tns:CloudWebSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1531,6 +1699,51 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteFromRecoveredFFile">
       <soap12:operation soapAction="http://tempuri.org/DeleteFromRecoveredFFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertuSERObject">
+      <soap12:operation soapAction="http://tempuri.org/InsertuSERObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllFiles">
+      <soap12:operation soapAction="http://tempuri.org/DeleteAllFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sELECTuSERObject">
+      <soap12:operation soapAction="http://tempuri.org/sELECTuSERObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpDateuSERObject">
+      <soap12:operation soapAction="http://tempuri.org/UpDateuSERObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="stuff">
+      <soap12:operation soapAction="http://tempuri.org/stuff" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

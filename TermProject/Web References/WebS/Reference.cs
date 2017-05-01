@@ -96,6 +96,16 @@ namespace TermProject.WebS {
         
         private System.Threading.SendOrPostCallback DeleteFromRecoveredFFileOperationCompleted;
         
+        private System.Threading.SendOrPostCallback InsertuSERObjectOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteAllFilesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback sELECTuSERObjectOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpDateuSERObjectOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback stuffOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -232,6 +242,21 @@ namespace TermProject.WebS {
         
         /// <remarks/>
         public event DeleteFromRecoveredFFileCompletedEventHandler DeleteFromRecoveredFFileCompleted;
+        
+        /// <remarks/>
+        public event InsertuSERObjectCompletedEventHandler InsertuSERObjectCompleted;
+        
+        /// <remarks/>
+        public event DeleteAllFilesCompletedEventHandler DeleteAllFilesCompleted;
+        
+        /// <remarks/>
+        public event sELECTuSERObjectCompletedEventHandler sELECTuSERObjectCompleted;
+        
+        /// <remarks/>
+        public event UpDateuSERObjectCompletedEventHandler UpDateuSERObjectCompleted;
+        
+        /// <remarks/>
+        public event stuffCompletedEventHandler stuffCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1208,6 +1233,149 @@ namespace TermProject.WebS {
             if ((this.DeleteFromRecoveredFFileCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.DeleteFromRecoveredFFileCompleted(this, new DeleteFromRecoveredFFileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertuSERObject", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int InsertuSERObject(string username) {
+            object[] results = this.Invoke("InsertuSERObject", new object[] {
+                        username});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InsertuSERObjectAsync(string username) {
+            this.InsertuSERObjectAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void InsertuSERObjectAsync(string username, object userState) {
+            if ((this.InsertuSERObjectOperationCompleted == null)) {
+                this.InsertuSERObjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertuSERObjectOperationCompleted);
+            }
+            this.InvokeAsync("InsertuSERObject", new object[] {
+                        username}, this.InsertuSERObjectOperationCompleted, userState);
+        }
+        
+        private void OnInsertuSERObjectOperationCompleted(object arg) {
+            if ((this.InsertuSERObjectCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertuSERObjectCompleted(this, new InsertuSERObjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteAllFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int DeleteAllFiles(string userName) {
+            object[] results = this.Invoke("DeleteAllFiles", new object[] {
+                        userName});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteAllFilesAsync(string userName) {
+            this.DeleteAllFilesAsync(userName, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteAllFilesAsync(string userName, object userState) {
+            if ((this.DeleteAllFilesOperationCompleted == null)) {
+                this.DeleteAllFilesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteAllFilesOperationCompleted);
+            }
+            this.InvokeAsync("DeleteAllFiles", new object[] {
+                        userName}, this.DeleteAllFilesOperationCompleted, userState);
+        }
+        
+        private void OnDeleteAllFilesOperationCompleted(object arg) {
+            if ((this.DeleteAllFilesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteAllFilesCompleted(this, new DeleteAllFilesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/sELECTuSERObject", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet sELECTuSERObject(string userName) {
+            object[] results = this.Invoke("sELECTuSERObject", new object[] {
+                        userName});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void sELECTuSERObjectAsync(string userName) {
+            this.sELECTuSERObjectAsync(userName, null);
+        }
+        
+        /// <remarks/>
+        public void sELECTuSERObjectAsync(string userName, object userState) {
+            if ((this.sELECTuSERObjectOperationCompleted == null)) {
+                this.sELECTuSERObjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsELECTuSERObjectOperationCompleted);
+            }
+            this.InvokeAsync("sELECTuSERObject", new object[] {
+                        userName}, this.sELECTuSERObjectOperationCompleted, userState);
+        }
+        
+        private void OnsELECTuSERObjectOperationCompleted(object arg) {
+            if ((this.sELECTuSERObjectCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.sELECTuSERObjectCompleted(this, new sELECTuSERObjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpDateuSERObject", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int UpDateuSERObject(string username) {
+            object[] results = this.Invoke("UpDateuSERObject", new object[] {
+                        username});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpDateuSERObjectAsync(string username) {
+            this.UpDateuSERObjectAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void UpDateuSERObjectAsync(string username, object userState) {
+            if ((this.UpDateuSERObjectOperationCompleted == null)) {
+                this.UpDateuSERObjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpDateuSERObjectOperationCompleted);
+            }
+            this.InvokeAsync("UpDateuSERObject", new object[] {
+                        username}, this.UpDateuSERObjectOperationCompleted, userState);
+        }
+        
+        private void OnUpDateuSERObjectOperationCompleted(object arg) {
+            if ((this.UpDateuSERObjectCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpDateuSERObjectCompleted(this, new UpDateuSERObjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/stuff", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int stuff() {
+            object[] results = this.Invoke("stuff", new object[0]);
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void stuffAsync() {
+            this.stuffAsync(null);
+        }
+        
+        /// <remarks/>
+        public void stuffAsync(object userState) {
+            if ((this.stuffOperationCompleted == null)) {
+                this.stuffOperationCompleted = new System.Threading.SendOrPostCallback(this.OnstuffOperationCompleted);
+            }
+            this.InvokeAsync("stuff", new object[0], this.stuffOperationCompleted, userState);
+        }
+        
+        private void OnstuffOperationCompleted(object arg) {
+            if ((this.stuffCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.stuffCompleted(this, new stuffCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2369,6 +2537,136 @@ namespace TermProject.WebS {
         private object[] results;
         
         internal DeleteFromRecoveredFFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void InsertuSERObjectCompletedEventHandler(object sender, InsertuSERObjectCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertuSERObjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertuSERObjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteAllFilesCompletedEventHandler(object sender, DeleteAllFilesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteAllFilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteAllFilesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void sELECTuSERObjectCompletedEventHandler(object sender, sELECTuSERObjectCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class sELECTuSERObjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal sELECTuSERObjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpDateuSERObjectCompletedEventHandler(object sender, UpDateuSERObjectCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpDateuSERObjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpDateuSERObjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void stuffCompletedEventHandler(object sender, stuffCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class stuffCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal stuffCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

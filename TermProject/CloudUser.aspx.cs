@@ -6,21 +6,25 @@ using System.Web.UI;
 using System.Data;
 using System.Web.UI.WebControls;
 using WebSvc;
+using System.Collections;
+using System.Web.Configuration;
 using File;
-using System.Web.UI.WebControls;
-using WebSvc;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
 namespace TermProject
 {
     public partial class CloudUser : System.Web.UI.Page
     {
-        
-       
+
+
         static String username;
         WebS.CloudWebS pxy = new WebS.CloudWebS();
         CloudWebS pxy2 = new CloudWebS();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             if (!IsPostBack)
             {
                 //check to see if user is loged in
@@ -34,12 +38,19 @@ namespace TermProject
                     form1.Visible = false;
 
                 }
-                else if (Session["login"].ToString() !=null)
+                else if (Session["login"].ToString() != null)
                 {
+
                     //show page content
                     username = Session["login"].ToString();
-                    //txtGetAllFilesicon.Text = Session["login"].ToString();
                     lblUsage.Text = "You have used " + pxy2.GetDataUseage(username);
+                    //txtGetAllFilesicon.Text = Session["login"].ToString();
+                    //update
+                    pxy.UpDateuSERObject(username);
+
+                    GenerateUSEROHJECTGridView();
+
+                    divplaceholder.Visible = false;
 
                     GenerateGvShowaLLfiLESwITHiCONGridView();
                 }
@@ -69,17 +80,24 @@ namespace TermProject
         protected void txtGetAllFilesicon_TextChanged(object sender, EventArgs e)
         {
             //show grid view with files
-          
+
             GenerateGvShowaLLfiLESwITHiCONGridView();
         }
         public void GenerateGvShowaLLfiLESwITHiCONGridView()
         {
             DataSet set = new DataSet();
-            set = pxy.GetFilesByUser(username);
-            GvShowaLLfiLESwITHiCON.DataSource = set;
-            GvShowaLLfiLESwITHiCON.DataBind();
+            set = pxy.GetFilesByUser(username); try
+            {
+               
+                GvShowaLLfiLESwITHiCON.DataSource = set;
+                GvShowaLLfiLESwITHiCON.DataBind();
+            }
+            catch(Exception e)
+            {
+                
+            }
             ///
-           
+
             DataSet set1 = new DataSet();
             set1 = pxy.GetFilesByIcon(username);
 
@@ -101,7 +119,38 @@ namespace TermProject
 
             GvShowaLLfiLESwITHiCON.Visible = true;
         }
+        public void GenerateUSEROHJECTGridView()
+        {
+            pxy.UpDateuSERObject(username);
 
+            int wi = pxy.UpDateuSERObject(username);
+            DataSet set = new DataSet();
+            set = pxy.sELECTuSERObject(username);
+            GridViewCloudObj.DataSource = set;
+            GridViewCloudObj.DataBind();
+            ///
+
+            DataSet set1 = new DataSet();
+            set1 = pxy.GetFilesByIcon(username);
+
+            ///use table to asign
+            ///          
+            DataTable table = set1.Tables["Icons"];
+
+            //Image img = (Image)GvShowaLLfiLESwITHiCON.Rows[i].FindControl["gvIMage"];
+            for (int i = 0; i < set1.Tables["Icons"].Rows.Count; i++)
+            {
+                Image img = (Image)GridViewCloudObj.Rows[i].FindControl("gvIMage");
+
+
+                img.ImageUrl = table.Rows[i].ItemArray[0].ToString();
+
+                String g = table.Rows[i].ItemArray.ToString();
+            }
+
+
+            GridViewCloudObj.Visible = true;
+        }
         protected void GvShowaLLfiLESwITHiCON_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GvShowaLLfiLESwITHiCON.EditIndex = -1;
@@ -112,7 +161,7 @@ namespace TermProject
         {
             int row = e.RowIndex;
             //get the row upload file
-            
+
             float size = Convert.ToSingle(GvShowaLLfiLESwITHiCON.Rows[row].Cells[2].Text);
             String filename = GvShowaLLfiLESwITHiCON.Rows[row].Cells[0].Text;
             //call funtion to do update
@@ -121,16 +170,16 @@ namespace TermProject
 
             byte[] filebyte = (byte[])(byteset.Tables[0].Rows[0]["file"]);
 
-           WebS.FileInfoWS file = new WebS.FileInfoWS();
-           
+            WebS.FileInfoWS file = new WebS.FileInfoWS();
+
             file.FileName = filename;
             file.File = filebyte;
             file.FileType = GvShowaLLfiLESwITHiCON.Rows[row].Cells[1].Text;
             file.FileSize = size;
             ///deletes file and storws on deleted file table
             ///
-           
-            
+
+
             pxy.DeleteFile(username, file);
 
 
@@ -140,6 +189,7 @@ namespace TermProject
             //regenerate gridview
             GvShowaLLfiLESwITHiCON.EditIndex = -1;
             GenerateGvShowaLLfiLESwITHiCONGridView();
+            GenerateUSEROHJECTGridView();
         }
 
         protected void GvShowaLLfiLESwITHiCON_RowEditing(object sender, GridViewEditEventArgs e)
@@ -181,13 +231,13 @@ namespace TermProject
 
                 //call funtion to do update
                 String results = "";
-                results = pxy.UpDateFile(objfile, objfile.FileName+" "+DateTime.Today.ToShortDateString());
+                results = pxy.UpDateFile(objfile, objfile.FileName + " " + DateTime.Today.ToShortDateString());
                 lblfileListMessage.Text = results;
                 lblfileListMessage.ForeColor = System.Drawing.Color.Green;
                 //regenerate gridview
                 GvShowaLLfiLESwITHiCON.EditIndex = -1;
                 GenerateGvShowaLLfiLESwITHiCONGridView();
-
+                GenerateUSEROHJECTGridView();
             }
             else
             {
@@ -199,6 +249,32 @@ namespace TermProject
 
         protected void GvShowaLLfiLESwITHiCON_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int row = GvShowaLLfiLESwITHiCON.SelectedRow.RowIndex;
+            Button btnDownload = (Button)GvShowaLLfiLESwITHiCON.SelectedRow.FindControl("btnGridDownload");
+            String filename = GvShowaLLfiLESwITHiCON.Rows[row].Cells[0].Text;
+            ///download file
+            ///fet the dataset
+            //
+         //   DataSet set = new DataSet();
+          //  set = pxy.SelectOneFFile(username, filename);
+          //  String type = set.Tables[0].Rows[0]["fileType"].ToString();
+            DataSet byteset = pxy.SelectOneFFile(username, filename);
+
+            byte[] filebyte = (byte[])(byteset.Tables[0].Rows[0]["file"]);
+            BinaryFormatter deSerializer = new BinaryFormatter();
+            MemoryStream memStream = new MemoryStream(filebyte);
+
+            FileInfoWS filebytesdeserialized = (FileInfoWS)deSerializer.Deserialize(memStream);
+
+            filebyte = filebytesdeserialized.File;
+
+            Response.ContentType = "application/octet-stream";
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + filename);
+            Response.OutputStream.Write(filebyte, 0, filebyte.Length);
+            Response.Flush();
+
+            GenerateUSEROHJECTGridView();
+
 
         }
 
@@ -227,7 +303,7 @@ namespace TermProject
                 objfile.UploadDate = (DateTime.Now.ToShortDateString()).ToString();
                 objfile.Username = username;
                 //check to see what type of file it is 
-                if (fileExtension == ".jpg" || fileExtension == ".mp3" || fileExtension == ".pdf" || fileExtension == ".png" || fileExtension == ".pptx" || fileExtension == ".docx")
+                if ( fileExtension == ".pdf" || fileExtension == ".xlsx" || fileExtension == ".csv"|| fileExtension == ".pptx" || fileExtension == ".docx")
                 {
                     //call method to serialze and store file 
                     String ResultFIleUpload = "";
@@ -260,20 +336,23 @@ namespace TermProject
                         // Register the ASCX control with the page and typecast it to the appropriate class ProductDisplay
                         WebUserControl1 ctrl = (WebUserControl1)LoadControl("WebUserControlShowFile.ascx");
 
-                            // Set properties for the ProductDisplay object
-                            ctrl.FileImage = ResultFIleUpload;
-                            ctrl.fileName = fileName;
+                        // Set properties for the ProductDisplay object
+                        ctrl.FileImage = ResultFIleUpload;
+                        ctrl.fileName = fileName;
                         ctrl.UserName = username;
-                        
-                            ctrl.DataBind();
 
-                            // Add the control object to the WebForm's Controls collection
-                            Form.Controls.Add(ctrl);
+                        ctrl.DataBind();
+
+                        // Add the control object to the WebForm's Controls collection
+                        Form.Controls.Add(ctrl);
                         divplaceholder.Controls.Clear();
 
                         divplaceholder.Controls.Add(ctrl);
                         lblUsage.Text = pxy2.GetDataUseage(username);
                         GenerateGvShowaLLfiLESwITHiCONGridView();
+                        GenerateUSEROHJECTGridView();
+                        divplaceholder.Visible = true;
+
                     }
 
                 }
@@ -293,5 +372,9 @@ namespace TermProject
         {
 
         }
+
+
+
+
     }
 }

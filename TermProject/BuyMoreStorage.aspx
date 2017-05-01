@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BuyMoreStorage.aspx.cs" Inherits="TermProject.BuyMoreStorage" %>
 
+<%@ Register Src="~/UserControlNavBAR.ascx" TagPrefix="uc1" TagName="UserControlNavBAR" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,20 +12,25 @@
         <link rel="stylesheet" href="styleSheet.css"/>
 </head>
 <body>
-            <div>
-            <ul>
-                <li><a href="CloudUser.aspx">Home</a></li>
-                <li><a href="File Storage Restore.aspx">Restore Files</a></li>
-                <li><a href="AskQuestion.aspx">Ask Questions</a></li>
-                <li><a href="BuyMoreStorage.aspx">Buy More Storage</a></li>
+    <form id="form1" runat="server">
+        <div>
+              <uc1:UserControlNavBAR runat="server" ID="UserControlNavBAR" />
 
-                <li style="float: right"><a href="EditUserByUser.aspx"><i class="fa fa-gear"></i>User Setting</a></li>
-                <li style="float: right; color: cornflowerblue;"><a href="Login.aspx"><i class="fa fa-sign-out"></i>LogOut </a></li>
-            </ul>
         </div>
-    <form id="form1" runat="server" style="margin-bottom:100px;">
-    <div style="margin-bottom:100px;">
-        <asp:Label ID="lblHowMuch" runat="server" Text="Choose the storage plan you would like:" style="z-index: 1; left: 10px; top: 55px; position: absolute"></asp:Label>
+        <div">
+      <h1 style="text-align:center">&nbsp;</h1>
+        <h1 style="text-align:center">Buy Storage</h1>
+
+        </div>
+        <div style="padding-top: 100px; margin-top: 100px; align-content:center; z-index: 1; left: 346px; top: 108px; position: absolute; height: 127px; width: 1159px;">
+           <asp:Label ID="lblHowMuch" runat="server" Text="Choose the storage plan you would like." style="z-index: 1; left: -10px; top: 17px; position: absolute"></asp:Label>
+             <asp:DropDownList ID="ddlStoragePlans" runat="server" Style="z-index: 1; left: 262px; top: 15px; position: absolute"></asp:DropDownList>
+
+            <asp:Label ID="lblName" runat="server" Text="Name on Credit Card:" Style="z-index: 1; left: 14px; top: 70px; position: absolute"></asp:Label>
+            <asp:TextBox ID="txtName" runat="server" Style="z-index: 1; left: 196px; top: 70px; position: absolute; width: 225px;"></asp:TextBox>
+
+            <asp:Label ID="lblCreditCardNumber" runat="server" Text="Credit Card Number:" Style="z-index: 1; left: 14px; top: 120px; position: absolute"></asp:Label>
+            <asp:TextBox ID="txtCreditCardNumber" runat="server" Style="z-index: 1; left: 196px; top: 120px; position: absolute; width: 225px;"></asp:TextBox>
 
         <asp:Label ID="lblName" runat="server" Text="Name on Credit Card:" style="z-index: 1; left: 14px; top: 93px; position: absolute"></asp:Label>
         <asp:TextBox ID="txtName" runat="server" style="z-index: 1; left: 195px; top: 93px; position: absolute; width: 225px;"></asp:TextBox>

@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using Utilities;
 using System.Data.SqlClient;
 using System.Data;
+
 using File;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -322,6 +323,10 @@ namespace WebSvc
             set = objDB.GetDataSetUsingCmdObj(objCommand);
             if (set.Tables[0].Rows.Count != 0)
             {
+                //deserialize the file
+
+
+
                 return set;
             }
             else
@@ -358,7 +363,7 @@ namespace WebSvc
 
             int updated = 0;
             updated = objDB1.DoUpdateUsingCmdObj(objCommand1);
-     
+
 
 
             if (updated == 0)
@@ -750,7 +755,7 @@ namespace WebSvc
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "GetAccountType";
 
-            objCommand.Parameters.AddWithValue("@username", username);                    
+            objCommand.Parameters.AddWithValue("@username", username);
 
             ds = objDB.GetDataSetUsingCmdObj(objCommand);
 
@@ -787,9 +792,9 @@ namespace WebSvc
             DataSet ds = objDB.GetDataSetUsingCmdObj(objCommand);
             //ds.Tables[0].Rows[i]["username"].ToString();
 
-            for(int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
-                if(ds.Tables[0].Rows[i]["username"].ToString() == username)
+                if (ds.Tables[0].Rows[i]["username"].ToString() == username)
                 {
                     retVal = false;
                 }
@@ -885,13 +890,13 @@ namespace WebSvc
 
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "UpdateStorageAmount";
-            
+
             objCommand.Parameters.AddWithValue("@username", ESU.Username);
             objCommand.Parameters.AddWithValue("@storageAmount", ESU.StorageAmount);
 
             int count = objDB.DoUpdateUsingCmdObj(objCommand);
-            
-            if(count > 0)
+
+            if (count > 0)
             {
                 InsertUserTransactions(ESU.Username, "Storage Capacity Updated", DateTime.Now.ToShortDateString());
                 return true;
@@ -915,7 +920,7 @@ namespace WebSvc
 
             int count = objDB.DoUpdateUsingCmdObj(objCommand);
 
-            if(count > 0)
+            if (count > 0)
             {
                 InsertUserTransactions(username, "Asked: " + question, DateTime.Now.ToShortDateString());
                 return true;
@@ -1066,7 +1071,7 @@ namespace WebSvc
             objCommand.Parameters.AddWithValue("@userName", userName);
             objCommand.Parameters.AddWithValue("@filename", fileName);
             int i = 0;
-           i= objDB.DoUpdateUsingCmdObj(objCommand);
+            i = objDB.DoUpdateUsingCmdObj(objCommand);
             return i;
         }
         [WebMethod]
@@ -1079,6 +1084,92 @@ namespace WebSvc
 
             objCommand.Parameters.AddWithValue("@userName", userName);
             objCommand.Parameters.AddWithValue("@filename", fileName);
+
+            int i = 0;
+            i = objDB.DoUpdateUsingCmdObj(objCommand);
+            return i;
+        }
+
+        [WebMethod]
+        public DataSet GetCloudUsers()
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            DataSet ds;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectCloudUsers";
+
+            return ds = objDB.GetDataSetUsingCmdObj(objCommand);
+        }
+    
+
+
+
+
+           [WebMethod]
+
+        public int InsertuSERObject(String username)
+        {
+            //generic obkect
+            UserObject useObj = new UserObject();
+
+            ///add colum to dataset
+            ///
+            DataTable tb = new DataTable();
+            tb.Columns.Add(new DataColumn("fileName"));
+            tb.Columns.Add(new DataColumn("fileType"));
+            tb.Columns.Add(new DataColumn("fileSize"));
+            tb.Columns.Add(new DataColumn("uploadDate"));
+            DataSet set1 = new DataSet();
+
+
+            DataRow row;
+             row=   tb.NewRow();
+            row[0] = " No files Uploaded";
+            tb.Rows.Add(row);
+            set1.Tables.Add(tb);
+
+            useObj.UserFilesObj = set1;
+            useObj.Username = username;
+            
+
+            BinaryFormatter Serializer = new BinaryFormatter();
+            MemoryStream memStream = new MemoryStream();
+            Byte[] bytefileArray;
+
+            Serializer.Serialize(memStream, useObj);
+            //Create byte array
+            bytefileArray = memStream.ToArray();
+
+            ////sql code to store the serialized fiel
+
+
+            DBConnect objDB1 = new DBConnect();
+            SqlCommand objCommand1 = new SqlCommand();
+
+
+            //set parameters for stored prosdure
+            objCommand1.CommandType = CommandType.StoredProcedure;
+            objCommand1.CommandText = "InsertUSERObject";
+            objCommand1.Parameters.AddWithValue("@username", username);
+            objCommand1.Parameters.AddWithValue("@fileOnjects", bytefileArray);
+
+            int ans = 0;
+            ///upload file
+            ans = objDB1.DoUpdateUsingCmdObj(objCommand1);
+            return ans;
+        }
+        [WebMethod]
+        public int DeleteAllFiles(String userName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "DeleteAllFIles";
+
+            objCommand.Parameters.AddWithValue("@userName", userName);
+
 
             int i = 0;
             i = objDB.DoUpdateUsingCmdObj(objCommand);
@@ -1196,6 +1287,94 @@ namespace WebSvc
 
 
 
+        }
+        [WebMethod]
+        public DataSet sELECTuSERObject(String userName)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectUserObject";
+
+            objCommand.Parameters.AddWithValue("@userName", userName);
+
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+
+
+
+            Byte[] byteArray = (Byte[])set.Tables[0].Rows[0]["CloudObject"];
+
+            BinaryFormatter deSerializer = new BinaryFormatter();
+            MemoryStream memStream = new MemoryStream(byteArray);
+
+            UserObject objFile = (UserObject)deSerializer.Deserialize(memStream);
+            DataSet set1 = new DataSet();
+            set1 = objFile.UserFilesObj;
+            return set1;
+        }
+
+
+
+        [WebMethod]
+        public int UpDateuSERObject(String username)
+        {
+            UserObject useObj = new UserObject();
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetUserFilesNotFileData";
+
+            objCommand.Parameters.AddWithValue("@username", username);
+
+            DataSet set = new DataSet();
+            set = objDB.GetDataSetUsingCmdObj(objCommand);
+            ///add colum to dataset
+
+
+            //  byte[] files = new byte[set.Tables[0].Rows.Count];
+            //  for (int i = 0; i < set.Tables[0].Rows.Count; i++)
+            //  {
+
+            //   files[i] = (byte)set.Tables[0].Rows[i]["file"];
+            //  }
+
+
+            /// useObj.FileObject = files;
+            useObj.Username = username;
+            useObj.UserFilesObj = set;
+
+            BinaryFormatter Serializer = new BinaryFormatter();
+            MemoryStream memStream = new MemoryStream();
+            Byte[] bytefileArray;
+
+            Serializer.Serialize(memStream, useObj);
+            //Create byte array
+            bytefileArray = memStream.ToArray();
+
+            ////sql code to store the serialized fiel
+
+
+            DBConnect objDB1 = new DBConnect();
+            SqlCommand objCommand1 = new SqlCommand();
+
+
+            //set parameters for stored prosdure
+            objCommand1.CommandType = CommandType.StoredProcedure;
+            objCommand1.CommandText = "UpdateUserCloudOBJ";
+            objCommand1.Parameters.AddWithValue("@username", username);
+            objCommand1.Parameters.AddWithValue("@fileOBJ", bytefileArray);
+
+            int set1 = 0;
+            ///upload file
+            set1 = objDB1.DoUpdateUsingCmdObj(objCommand1);
+            return set1;
+        }
+        [WebMethod]
+        public int stuff()
+        {
+            return 2;
         }
     }
 }

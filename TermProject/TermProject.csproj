@@ -66,8 +66,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppMainPage.aspx" />
     <Content Include="AskQuestion.aspx" />
+    <Content Include="CSS  Style\BodyStyleSheet.css" />
     <Content Include="BuyMoreStorage.aspx" />
     <Content Include="CloudAdministrator.aspx" />
     <Content Include="CloudUser.aspx" />
@@ -75,9 +75,12 @@
     <Content Include="EditCloudUsers.aspx" />
     <Content Include="EditUserByUser.aspx" />
     <Content Include="File Storage Restore.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
-    <Content Include="styleSheet.css" />
+    <None Include="Web References\WebS\CloudWebS.disco" />
+    <Content Include="UserControlNavBAR.ascx" />
+	<Content Include="styleSheet.css" />
     <Content Include="SuperAdmin.aspx" />
     <Content Include="WebUserControlShowFIle.ascx" />
     <None Include="Properties\Settings.settings">
@@ -107,7 +110,6 @@
   <ItemGroup>
     <Content Include="Registration.aspx" />
     <Content Include="ViewOrAnswerQuestions.aspx" />
-    <None Include="Web References\WebS\CloudWebS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +176,9 @@
     <Compile Include="File Storage Restore.aspx.designer.cs">
       <DependentUpon>File Storage Restore.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -201,12 +206,12 @@
     <Compile Include="RequestAndTestWebS.aspx.designer.cs">
       <DependentUpon>RequestAndTestWebS.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SuperAdmin.aspx.cs">
-      <DependentUpon>SuperAdmin.aspx</DependentUpon>
+    <Compile Include="UserControlNavBAR.ascx.cs">
+      <DependentUpon>UserControlNavBAR.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SuperAdmin.aspx.designer.cs">
-      <DependentUpon>SuperAdmin.aspx</DependentUpon>
+    <Compile Include="UserControlNavBAR.ascx.designer.cs">
+      <DependentUpon>UserControlNavBAR.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewOrAnswerQuestions.aspx.cs">
       <DependentUpon>ViewOrAnswerQuestions.aspx</DependentUpon>

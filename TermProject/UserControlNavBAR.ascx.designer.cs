@@ -10,24 +10,15 @@
 namespace TermProject {
     
     
-    public partial class AppMainPage {
+    public partial class UserControlNavBAR {
         
         /// <summary>
-        /// form1 control.
+        /// btnLogOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// ATLAccountFailure control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ATLAccountFailure;
+        protected global::System.Web.UI.WebControls.Button btnLogOut;
     }
 }

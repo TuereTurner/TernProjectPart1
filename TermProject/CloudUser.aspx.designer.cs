@@ -40,6 +40,15 @@ namespace TermProject {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// UserControlNavBAR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::TermProject.UserControlNavBAR UserControlNavBAR;
+        
+        /// <summary>
         /// divplaceholder control.
         /// </summary>
         /// <remarks>
@@ -76,13 +85,31 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.FileUpload BtnFileUpload;
         
         /// <summary>
-        /// lblUsage control.
+        /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        
+        /// <summary>
+        /// lblNewCloudUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNewCloudUser;
         protected global::System.Web.UI.WebControls.Label lblUsage;
+        /// <summary>
+        /// GridViewCloudObj control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewCloudObj;
         
         /// <summary>
         /// lblfileListMessage control.
@@ -101,15 +128,6 @@ namespace TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblviewfILESMesage;
-        
-        /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// GvShowaLLfiLESwITHiCON control.
