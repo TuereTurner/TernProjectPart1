@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Log in Page</title>
+    <link rel="stylesheet" href="styleSheet.css"/>
     <style type="text/css">
         .auto-style1 {
             position: absolute;
@@ -68,7 +69,7 @@
                             <asp:Button runat="server" ID="btnRegister" CssClass="btn btn-primary btn-sm" Text="Register" OnClick="btnRegister_Click" />
                             <asp:CheckBox ID="chkRememberMe" runat="server" style="z-index: 1; left: 355px; top: 170px; position: absolute"></asp:CheckBox>
                             <asp:Label ID="lblRememberMe" runat="server" Text="Remember Me" style="z-index: 1; left: 250px; top: 170px; position: absolute"></asp:Label></div>
-                        
+                        <asp:Label ID="lblInactive" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
             </div>

@@ -50,27 +50,38 @@ namespace TermProject
 
 
                 }
-                //authiticate login info
-                if (VerifyAccount(txtUserName.Text, txtPassword.Text))
+                if (pxy2.GetUserActive(txtUserName.Text) == "yes")
                 {
-                    //show success allert
-                    ATLSuccessAlert.Visible = true;
-                    //assign session key to reteive as user moves through the application
-                    Session["login"] = txtUserName.Text;
-                    //redirect to main page
-                    if (pxy2.GetAccountType(txtUserName.Text) == "Cloud User")
+                    //authiticate login info
+                    if (VerifyAccount(txtUserName.Text, txtPassword.Text))
                     {
-                        Response.Redirect("CloudUser.aspx");
+                        //show success allert
+                        ATLSuccessAlert.Visible = true;
+                        //assign session key to reteive as user moves through the application
+                        Session["login"] = txtUserName.Text;
+                        //redirect to main page
+                        if (pxy2.GetAccountType(txtUserName.Text) == "Cloud User")
+                        {
+                            Response.Redirect("CloudUser.aspx");
+                        }
+                        if (pxy2.GetAccountType(txtUserName.Text) == "Cloud Administrator")
+                        {
+                            Response.Redirect("CloudAdministrator.aspx");
+                        }
+                        if (pxy2.GetAccountType(txtUserName.Text) == "Super Admin")
+                        {
+                            Response.Redirect("SuperAdmin.aspx");
+                        }
+                        //Response.Redirect("AppMainPage.aspx");
                     }
-                    if (pxy2.GetAccountType(txtUserName.Text) == "Cloud Administrator")
+                    else
                     {
-                        Response.Redirect("CloudAdministrator.aspx");
+                        ATLAccountFailure.Visible = true;
                     }
-                    //Response.Redirect("AppMainPage.aspx");
                 }
-                else
+                else if (pxy2.GetUserActive(txtUserName.Text) == "no")
                 {
-                    ATLAccountFailure.Visible = true;
+                    lblInactive.Text = "Account inactive";
                 }
             }
             else
