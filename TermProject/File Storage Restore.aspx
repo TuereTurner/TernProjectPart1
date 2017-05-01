@@ -5,94 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-
-    <title></title>
-    <style>
-        h1{
-            text-align:center;
-            color:dodgerblue;
-        }
-        body{
-            background-color:aliceblue;
-            border:thick;
-            border-color:white;
-        }
-         
-        .button{
-            background-color:deepskyblue;
-            font-size:20px;
-            border-radius: 10%;
-            color:white;
-        }
- .Stylediv{
-          margin-top:inherit;
-           background-color:white;
-           padding-top:30px;
-           padding-bottom:30px;
-           padding-left: 150px;
-           border-bottom-color:dodgerblue;
-            margin-left:-100px;
-           margin-right:-100px;
-       }
-   
-
-       body{
-           background-color:#ffffff;
-           
-       }
-       header{
-           background-color:white;
-           text-emphasis:filled;
-       }
-       h1{
-           background-color:deepskyblue;
-           color:white;
-           text-align:center;
-           height:70px;
-           margin-bottom:0px;
-           margin-left:-100px;
-           margin-right:-100px;
-       }
-       .Stylediv{
-          margin-top:inherit;
-           background-color:white;
-           padding-top:30px;
-           padding-bottom:30px;
-           padding-left: 150px;
-           border-bottom-color:dodgerblue;
-            margin-left:-100px;
-           margin-right:-100px;
-       }
-       ul{
-           list-style-type:none;
-           margin-left:20px;
-            padding-left: 50px;
-           padding:0;
-           overflow:hidden;
-           background-color:black;
-           position:fixed;
-           top:0;
-           width:100%;
-            left: -20px;
-            margin-right: 0;
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-       li{
-           float:left;
-       }
-       li a{
-           display:block;
-           color: white;
-           text-align:center;
-           padding:14px 16px;
-           text-decoration:none;
-       }
-       li image{
-           height:10px;
-           width:10px;
-       }
-    </style>
+    <link rel="stylesheet" href="styleSheet.css"/>
+    <title>File Restore</title>
+    
 </head>
 <body>
     
@@ -106,15 +21,15 @@
            
     <form id="form1" runat="server">
         <div>
-             <ul>
-            <li> <a href="CloudUser.aspx"> Home</a></li>
-            <li> <a href="File Storage Restore.aspx"> Restore Files</a></li>
-            <li> <a href="AskQuestion.aspx"> Ask Questions</a></li>
+            <ul>
+                <li><a href="CloudUser.aspx">Home</a></li>
+                <li><a href="File Storage Restore.aspx">Restore Files</a></li>
+                <li><a href="AskQuestion.aspx">Ask Questions</a></li>
+                <li><a href="BuyMoreStorage.aspx">Buy More Storage</a></li>
 
-            <li style="float:right""> <a href="EditUserByUser.aspx">  <i class="fa fa-gear"></i> User Setting</a></li>
-            <li style="float:right; color:cornflowerblue;"> <a href="Login.aspx" > <i class="fa fa-sign-out"></i> LogOut </a></li>
-        </ul>
-
+                <li style="float: right"><a href="EditUserByUser.aspx"><i class="fa fa-gear"></i>User Setting</a></li>
+                <li style="float: right; color: cornflowerblue;"><a href="Login.aspx"><i class="fa fa-sign-out"></i>LogOut </a></li>
+            </ul>
         </div>
 
        <br />

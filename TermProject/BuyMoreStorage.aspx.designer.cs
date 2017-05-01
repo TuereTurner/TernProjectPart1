@@ -31,15 +31,6 @@ namespace TermProject {
         protected global::System.Web.UI.WebControls.Label lblHowMuch;
         
         /// <summary>
-        /// ddlStoragePlans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStoragePlans;
-        
-        /// <summary>
         /// lblName control.
         /// </summary>
         /// <remarks>
@@ -164,5 +155,14 @@ namespace TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPurchase;
+        
+        /// <summary>
+        /// ddlStoragePlans control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStoragePlans;
     }
 }

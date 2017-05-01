@@ -762,9 +762,13 @@ namespace WebSvc
                 {
                     return "Cloud User";
                 }
-                else
+                else if (ds.Tables[0].Rows[i]["typeOfUser"].ToString() == "Cloud Administrator")
                 {
                     return "Cloud Administrator";
+                }
+                else if(ds.Tables[0].Rows[i]["typeOfUser"].ToString() == "Super Administrator")
+                {
+                    return "Super Admin";
                 }
             }
             return null;
@@ -889,6 +893,7 @@ namespace WebSvc
             
             if(count > 0)
             {
+                InsertUserTransactions(ESU.Username, "Storage Capacity Updated", DateTime.Now.ToShortDateString());
                 return true;
             }
             else
@@ -912,6 +917,7 @@ namespace WebSvc
 
             if(count > 0)
             {
+                InsertUserTransactions(username, "Asked: " + question, DateTime.Now.ToShortDateString());
                 return true;
             }
             else
@@ -936,6 +942,7 @@ namespace WebSvc
 
             if (count > 0)
             {
+                InsertUserTransactions(answerUsername, "Question: " + questionsID + " answered", DateTime.Now.ToShortDateString());
                 return true;
             }
             else
@@ -973,6 +980,7 @@ namespace WebSvc
 
             return ds = objDB.GetDataSetUsingCmdObj(objCommand);
         }
+
         [WebMethod]
         public DataSet SelectOneFFile(String userName, String fileName)
         {
@@ -1075,6 +1083,119 @@ namespace WebSvc
             int i = 0;
             i = objDB.DoUpdateUsingCmdObj(objCommand);
             return i;
+        }
+        [WebMethod]
+        public DataSet GetCloudUsers()
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            DataSet ds;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectCloudUsers";
+
+            return ds = objDB.GetDataSetUsingCmdObj(objCommand);
+        }
+
+        [WebMethod]
+        public DataSet GetCloudAdministrators()
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            DataSet ds;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "SelectCloudAdministrators";
+
+            return ds = objDB.GetDataSetUsingCmdObj(objCommand);
+        }
+
+        [WebMethod]
+        public DataSet GetTransactionsByUsername(String username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            DataSet ds;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetTransactionsByUsername";
+
+            objCommand.Parameters.AddWithValue("@username", username);
+
+            return ds = objDB.GetDataSetUsingCmdObj(objCommand);
+        }
+
+        [WebMethod]
+        public Boolean DisableOrEnableUser(String username, String active)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "DisableOrEnableUser";
+
+            objCommand.Parameters.AddWithValue("@username", username);
+            objCommand.Parameters.AddWithValue("@active", active);
+
+            int count = objDB.DoUpdateUsingCmdObj(objCommand);
+
+            if(count > 0)
+            {
+                InsertUserTransactions(username, "Disabled Or Enabled User", DateTime.Now.ToShortDateString());
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        [WebMethod]
+        public String GetUserActive(String username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            DataSet ds;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetUserActive";
+
+            objCommand.Parameters.AddWithValue("@username", username);
+
+            ds = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //string dsToString = ds.Tables[0].Rows[i]["username"].ToString()
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                if (ds.Tables[0].Rows[i]["active"].ToString() == "yes")
+                {
+                    return "yes";
+                }
+                else if (ds.Tables[0].Rows[i]["active"].ToString() == "no")
+                {
+                    return "no";
+                }
+            }
+            return null;
+        }
+
+        public String GetDataUseage(String username)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            DataSet ds;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetDataUseage";
+
+            objCommand.Parameters.AddWithValue("@username", username);
+
+            ds = objDB.GetDataSetUsingCmdObj(objCommand);
+
+           return (Convert.ToDecimal(ds.Tables[0].Rows[0]["capacityUsed"]) / Convert.ToDecimal(ds.Tables[0].Rows[0]["totalCapacity"])).ToString();
+
+
+
         }
     }
 }

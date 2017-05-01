@@ -10,7 +10,7 @@
 namespace TermProject {
     
     
-    public partial class DeleteCloudUsers {
+    public partial class SuperAdmin {
         
         /// <summary>
         /// form1 control.
@@ -22,48 +22,30 @@ namespace TermProject {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ddlDeleteCloudUsers control.
+        /// lblSuperAdminSelect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDeleteCloudUsers;
+        protected global::System.Web.UI.WebControls.Label lblSuperAdminSelect;
         
         /// <summary>
-        /// btnEnable control.
+        /// ddlCloudAdministrators control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEnable;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCloudAdministrators;
         
         /// <summary>
-        /// btnDisable control.
+        /// gvTransactions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDisable;
-        
-        /// <summary>
-        /// btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
-        
-        /// <summary>
-        /// lblAlert control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlert;
+        protected global::System.Web.UI.WebControls.GridView gvTransactions;
     }
 }

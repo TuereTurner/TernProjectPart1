@@ -36,6 +36,23 @@ namespace TermProject
             pxy2.DeleteUser(ddlDeleteCloudUsers.SelectedValue);
             ddlDeleteCloudUsers.DataSource = pxy2.GetCloudUsers();
             ddlDeleteCloudUsers.DataBind();
+            lblAlert.Text = ddlDeleteCloudUsers.SelectedValue.ToString() + "'s account deleted.";
+        }
+
+        protected void btnDisable_Click(object sender, EventArgs e)
+        {
+            pxy2.DisableOrEnableUser(ddlDeleteCloudUsers.SelectedValue, "'no'");
+            ddlDeleteCloudUsers.DataSource = pxy2.GetCloudUsers();
+            ddlDeleteCloudUsers.DataBind();
+            lblAlert.Text = ddlDeleteCloudUsers.SelectedValue.ToString() + "'s account disabled.";
+        }
+
+        protected void btnEnable_Click(object sender, EventArgs e)
+        {
+            pxy2.DisableOrEnableUser(ddlDeleteCloudUsers.SelectedValue, "'yes'");
+            ddlDeleteCloudUsers.DataSource = pxy2.GetCloudUsers();
+            ddlDeleteCloudUsers.DataBind();
+            lblAlert.Text = ddlDeleteCloudUsers.SelectedValue.ToString() + "'s account enabled.";
         }
     }
 }

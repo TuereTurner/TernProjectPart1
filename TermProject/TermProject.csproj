@@ -77,6 +77,8 @@
     <Content Include="File Storage Restore.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
+    <Content Include="styleSheet.css" />
+    <Content Include="SuperAdmin.aspx" />
     <Content Include="WebUserControlShowFIle.ascx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -198,6 +200,13 @@
     </Compile>
     <Compile Include="RequestAndTestWebS.aspx.designer.cs">
       <DependentUpon>RequestAndTestWebS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin.aspx.cs">
+      <DependentUpon>SuperAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin.aspx.designer.cs">
+      <DependentUpon>SuperAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewOrAnswerQuestions.aspx.cs">
       <DependentUpon>ViewOrAnswerQuestions.aspx</DependentUpon>

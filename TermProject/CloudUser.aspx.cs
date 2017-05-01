@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using WebSvc;
 using File;
 using System.Web.UI.WebControls;
+using WebSvc;
 namespace TermProject
 {
     public partial class CloudUser : System.Web.UI.Page
@@ -16,7 +17,8 @@ namespace TermProject
        
         static String username;
         WebS.CloudWebS pxy = new WebS.CloudWebS();
-        
+        CloudWebS pxy2 = new CloudWebS();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,6 +39,7 @@ namespace TermProject
                     //show page content
                     username = Session["login"].ToString();
                     //txtGetAllFilesicon.Text = Session["login"].ToString();
+                    lblUsage.Text = "You have used " + pxy2.GetDataUseage(username);
 
                     GenerateGvShowaLLfiLESwITHiCONGridView();
                 }
@@ -269,6 +272,7 @@ namespace TermProject
                         divplaceholder.Controls.Clear();
 
                         divplaceholder.Controls.Add(ctrl);
+                        lblUsage.Text = pxy2.GetDataUseage(username);
                         GenerateGvShowaLLfiLESwITHiCONGridView();
                     }
 
